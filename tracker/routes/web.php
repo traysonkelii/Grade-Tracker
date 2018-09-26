@@ -12,7 +12,14 @@
 */
 
 Route::get('/', 'ContentsController@home')->name('home');
+
+//routes for the teacher view
 Route::get('/teacher', 'TeacherController@landing')->name('teacher');
+Route::get('/teacher/all-students', 'StudentController@index')->name('all_students');
+Route::get('/teacher/student-repertoires/{student_id}', 'StudentController@showRep')->name('student_repertoire');
+
+//routes for the student view
+Route::get('/student', 'StudentController@landing')->name('student');
+
 Route::get('/practice', 'ContentsController@home')->name('practice');
-Route::get('/student', 'StudentController@index')->name('all_students');
-Route::get('/student/repertoire/{student_id}', 'StudentController@showRep')->name('student_rep');
+

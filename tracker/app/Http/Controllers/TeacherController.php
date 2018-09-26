@@ -8,6 +8,6 @@ class TeacherController extends Controller
 {
     public function landing()
     {
-        return view('contents/teacher');
+        return view('contents/teacher/teacher');
     }
 }

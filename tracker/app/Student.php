@@ -33,7 +33,7 @@ class Student extends Model
 
     public function getRepertoires($student_id)
     {
-        $data = [];
+        $instruments = [];
         $rep_id = DB::table('repertoire_student')
             ->where('student_id', $student_id)
             ->get();
@@ -44,11 +44,21 @@ class Student extends Model
         return $instruments;
     }
 
-    public function getName($student_id)
+    public function getFirstName($student_id)
     {
-        $name = DB::table('students')->where('id', $student_id)->first();
-        return $name;
+        $name = DB::table('students')->find($student_id)->first();  
+        return $name->first_name;
     }
+
+    public function getTeacher($student_id)
+    {
+        //WILL NEED TO MODIFY FOR MULTIPLE TEACHERS CORNER CASE LATER
+        $teacher_id = DB::table('student_teacher')->where('student_id',$student_id)->first();
+        $teacher = DB::table('teachers')->find($teacher_id);
+        return $teacher;
+    }
+
+
     //NEED TO HAVE GRADE TABLE WORKING BEFORE DOING THISONE
     public function getGrades($student_id)
     {
