@@ -1,0 +1,19 @@
+/* custom */
+.login-image{
+    width: 100%;
+    background-image: url("../../../images/large-landing.jpg");
+    background-position-x: 50%;
+    background-position-y: 50%;
+    height: 600px;
+    text-align: center;
+}
+
+/* sign in styles */
+.sign-in-panel{
+    padding: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 20px;
+    background-color: white;
+    text-align: center;
+}
