@@ -7,7 +7,9 @@
             @foreach ($repertoires as $repertoire)
                 <h3>{{$repertoire}}</h3>
             @endforeach
-<a href="{{route('all_students')}}">Back to students</a>
+    <a href="{{route('all_students')}}">
+        Back to students
+    </a>
 </div>
         
 @endsection

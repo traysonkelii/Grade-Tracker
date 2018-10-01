@@ -20,9 +20,14 @@ class StudentController extends Controller
     {
         //this is hardcoded but we will get it from  log in
         $data = [];
-        $id = "hpotter";
-        $teacher_id = $this->student->getTeacher($id)->first_name;
-        return view('contents/student/student');
+        $student_id = "hpotter";
+        $teacher_obj = $this->student->getTeacherObject($student_id);
+        $teacher = $teacher_obj->first_name;
+        $data['teacher'] = $teacher;
+        $data['student_id'] = $student_id;
+        $data['type'] = 'student';
+
+        return view('contents/student/student', $data);
 
     }
 

@@ -50,10 +50,11 @@ class Student extends Model
         return $name->first_name;
     }
 
-    public function getTeacher($student_id)
+    public function getTeacherObject($student_id)
     {
         //WILL NEED TO MODIFY FOR MULTIPLE TEACHERS CORNER CASE LATER
-        $teacher_id = DB::table('student_teacher')->where('student_id',$student_id)->first();
+        $pivot_obj = DB::table('student_teacher')->where('student_id',$student_id)->first();
+        $teacher_id = $pivot_obj->teacher_id;
         $teacher = DB::table('teachers')->find($teacher_id);
         return $teacher;
     }
