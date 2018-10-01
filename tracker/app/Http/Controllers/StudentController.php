@@ -20,12 +20,14 @@ class StudentController extends Controller
     {
         //this is hardcoded but we will get it from  log in
         $data = [];
-        $student_id = "hpotter";
+        $student_id = "traysonk";
         $teacher_obj = $this->student->getTeacherObject($student_id);
         $teacher = $teacher_obj->first_name;
+        $major = $this->student->getMajor($student_id);
         $data['teacher'] = $teacher;
         $data['student_id'] = $student_id;
-        $data['type'] = 'student';
+        $data['major'] = $major;
+        $data['firstName'] = $this->student->getFirstName($student_id);
 
         return view('contents/student/student', $data);
 
@@ -52,7 +54,6 @@ class StudentController extends Controller
     public function showRep($student_id){
 
         $data = [];
-        $student = new Student();
         $repertoires = $this->student->getRepertoires($student_id);
         $my_name = $this->student->find($student_id)->first_name;
         $data['my_name'] = $my_name;

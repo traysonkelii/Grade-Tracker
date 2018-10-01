@@ -13,19 +13,24 @@ class Repertoire extends Model
         return $this->belongsToMany('App\Student', 'repertoire_student', 'repertoire_id', 'student_id');
     }
 
-    public function grades()
+    // public function grades()
+    // {
+    //     return $this->hasMany('App\Grade', 'repertoire_id');
+    // }
+
+    public function instrument()
     {
-        return $this->hasMany('App\Grade', 'repertoire_id');
+        return $this->belongsTo('App\Instrument', 'instrument_id');
     }
 
-    public function getRepertoires($student_id)
+    public function genre()
     {
-        $data = [];
-        $rep_id = DB::table('repertoire_student')
-            ->where('student_id', $student_id)
-            ->get();
-        foreach ($rep_id as $id) {
-            
-        }
+        return $this->belongsTo('App\Genre', 'genre_id');
     }
+
+    public function composer()
+    {
+        return $this->belongsTo('App\Composer', 'composer_id');
+    }
+
 }

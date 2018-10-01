@@ -10,8 +10,6 @@ class Student extends Model
     //any table not using an incrementing key should have this set to false.
     public $incrementing = false;
 
-    //establishes many to many relationships
-
     public function teachers()
     {
         return $this->belongsToMany('App\Teacher', 'student_teacher', 'student_id', 'teacher_id');
@@ -22,11 +20,14 @@ class Student extends Model
         return $this->belongsToMany('App\Repertoire', 'repertoire_student', 'student_id', 'repertoire_id');
     }
 
-    //establishes one to many relationships
+    // public function grades()
+    // {
+    //     return $this->hasMany('App\Grade', 'student_id');
+    // }
 
-    public function grades()
+    public function major()
     {
-        return $this->hasMany('App\Grade', 'student_id');
+        return $this->belongsTo('App\Major', 'major_id');
     }
 
     //database functions
@@ -46,7 +47,7 @@ class Student extends Model
 
     public function getFirstName($student_id)
     {
-        $name = DB::table('students')->find($student_id)->first();  
+        $name = DB::table('students')->find($student_id);  
         return $name->first_name;
     }
 
@@ -59,6 +60,14 @@ class Student extends Model
         return $teacher;
     }
 
+    public function getMajor($student_id)
+    {
+        $student_obj = DB::table('students')->find($student_id);
+        $major_id = $student_obj->major_id;
+        $major = DB::table('major')->find($major_id);
+        $major_id = $major->name;
+        return $major_id;
+    }
 
     //NEED TO HAVE GRADE TABLE WORKING BEFORE DOING THISONE
     public function getGrades($student_id)

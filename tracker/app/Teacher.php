@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Teacher extends Model
 {
@@ -15,12 +14,14 @@ class Teacher extends Model
         return $this->belongsTo('App\Department', 'department_id');
     }
 
+    public function instrument()
+    {
+        return $this->belongsTo('App\Instrument', 'instrument_id');
+    }
+
     public function students()
     {
         return $this->belongsToMany('App\Student', 'student_teacher', 'teacher_id', 'student_id');
     }
-    
 
 }
-
-
