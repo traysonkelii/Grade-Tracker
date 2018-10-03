@@ -13,11 +13,6 @@ class Repertoire extends Model
         return $this->belongsToMany('App\Student', 'repertoire_student', 'repertoire_id', 'student_id');
     }
 
-    // public function grades()
-    // {
-    //     return $this->hasMany('App\Grade', 'repertoire_id');
-    // }
-
     public function instrument()
     {
         return $this->belongsTo('App\Instrument', 'instrument_id');
@@ -33,4 +28,9 @@ class Repertoire extends Model
         return $this->belongsTo('App\Composer', 'composer_id');
     }
 
+    public function getRepertoire($repertoire_id)
+    {
+        $repertoire = DB::table('repertoires')->find($repertoire_id);
+        return $repertoire;
+    }
 }

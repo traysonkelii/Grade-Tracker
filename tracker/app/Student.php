@@ -20,11 +20,6 @@ class Student extends Model
         return $this->belongsToMany('App\Repertoire', 'repertoire_student', 'student_id', 'repertoire_id');
     }
 
-    // public function grades()
-    // {
-    //     return $this->hasMany('App\Grade', 'student_id');
-    // }
-
     public function major()
     {
         return $this->belongsTo('App\Major', 'major_id');
@@ -32,32 +27,41 @@ class Student extends Model
 
     //database functions
 
+    public function getStudent($student_id)
+    {
+        $student = DB::table('students')->find($student_id);
+        return $student;
+    }
+
+    public function getTeacherIds($student_id)
+    {
+        $teacher_ids = [];
+        $pivot_obj = DB::table('student_teacher')->where('student_id',$student_id)->get();
+        foreach($pivot_obj as $obj)
+        {
+            $teacher_id = $obj->teacher_id;   
+            array_push($teacher_ids, $teacher_id);
+        }
+        return $teacher_ids;
+    }
+
     public function getRepertoires($student_id)
     {
-        $instruments = [];
+        $repertoires = [];
         $rep_id = DB::table('repertoire_student')
             ->where('student_id', $student_id)
             ->get();
         foreach ($rep_id as $rep) {
-            $instrument = DB::table('repertoires')->where('id', $rep->repertoire_id)->first();
-            array_push($instruments, $instrument->name);
+            $repertoire = DB::table('repertoires')->find($rep->repertoire_id);
+            array_push($repertoires, $repertoire);
         }
-        return $instruments;
+        return $repertoires;
     }
 
     public function getFirstName($student_id)
     {
         $name = DB::table('students')->find($student_id);  
         return $name->first_name;
-    }
-
-    public function getTeacherObject($student_id)
-    {
-        //WILL NEED TO MODIFY FOR MULTIPLE TEACHERS CORNER CASE LATER
-        $pivot_obj = DB::table('student_teacher')->where('student_id',$student_id)->first();
-        $teacher_id = $pivot_obj->teacher_id;
-        $teacher = DB::table('teachers')->find($teacher_id);
-        return $teacher;
     }
 
     public function getMajor($student_id)
