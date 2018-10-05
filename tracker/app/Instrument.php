@@ -11,10 +11,4 @@ class Instrument extends Model
     {
         return $this->hasMany('App\Repertoire', 'instrument_id');
     }
-
-    public function getInstrument($instrument_id)
-    {
-        $instrument = DB::table('instruments')->find($instrument_id);
-        return $instrument;
-    }
 }

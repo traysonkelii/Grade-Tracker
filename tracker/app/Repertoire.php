@@ -27,10 +27,4 @@ class Repertoire extends Model
     {
         return $this->belongsTo('App\Composer', 'composer_id');
     }
-
-    public function getRepertoire($repertoire_id)
-    {
-        $repertoire = DB::table('repertoires')->find($repertoire_id);
-        return $repertoire;
-    }
 }

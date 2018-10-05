@@ -11,10 +11,4 @@ class Composer extends Model
     public function repertoire(){
         return $this->hasMany('App\Repertoire', 'composer_id');
     }
-
-    public function getComposer($composer_id)
-    {
-        $composer = DB::table('composers')->find($composer_id);
-        return $composer;
-    }
 }

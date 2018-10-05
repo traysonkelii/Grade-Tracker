@@ -11,10 +11,4 @@ class Major extends Model
     {
         return $this->hasMany('App\Student', 'major_id');
     }
-
-    public function getMajor($major_id)
-    {
-        $major = DB::table('majors')->find($major_id);
-        return $major;
-    }
 }

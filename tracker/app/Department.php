@@ -12,10 +12,4 @@ class Department extends Model
     {
         return $this->hasMany('App\Teacher', 'department_id');
     }
-
-    public function getDepartment($depatment_id)
-    {
-        $department = DB::table('departments')->find($depatment_id);
-        return $department;
-    }
 }

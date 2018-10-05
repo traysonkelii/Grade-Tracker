@@ -33,7 +33,7 @@
         <!-- TODO make a javascript file that adds the class active "after" a click -->
         <byu-menu slot="nav" class="transparent">
             <a href="{{ route('teacher') }}">Techer View</a>
-            <a href="{{ route('student') }}">Student View</a>
+            <a href="#">Student View</a>
         </byu-menu>
     </byu-header>
 

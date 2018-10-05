@@ -25,24 +25,14 @@ class StudentController extends Controller
     /**
      * returns the landing page view for a student
      */
-    public function landing()
+    public function landing($student_id)
     {
         //this is hardcoded but we will get it from  log in
-        $data = [];
-        $teachers = [];
-        $student_id = "traysonk";
-        $teacher_id = $this->student->getTeacherIds($student_id);
-        foreach ($teacher_id as $id)
-        {
-            $teacher_obj =  $this->teacher->getTeacher($id);
-            array_push($teachers, $teacher_obj);
-        }
-        $major = $this->student->getMajor($student_id);
-        $data['teachers'] = $teachers;
-        $data['student_id'] = $student_id;
-        $data['major'] = $major;
-        $data['firstName'] = $this->student->getFirstName($student_id);
-
+        $student = $this->student->find($student_id);
+        $data['teachers'] = $student->teachers;
+        $data['major'] = $student->major;
+        $data['repertoires'] = $student->repertoires;
+        $data['student'] = $student;
         return view('contents/student/student', $data);
 
     }
@@ -68,24 +58,13 @@ class StudentController extends Controller
      * @return array []: repertoires 
      */
     public function showRep($student_id){
-        $composer = new Composer;
-        $genre = new Genre;
-        $instrument = new Instrument;
 
+        $current_student = $this->student->find($student_id);
+        $repertoires = $current_student->repertoires;
         $data = [];
-
-        $repertoires = $this->student->getRepertoires($student_id);
-        foreach($repertoires as $rep)
-        {
-            $details = [];
-            $com = $this->composer->find($rep->composer_id);
-            $gen = $this->genre->find($rep->genre_id);
-            $inst = $this->instrument->find($rep->instrument_id);
-            array_push($details, [$com,$gen,$inst,$rep]);
-            $data['piece'] = $details;
-        }
-        $student = $this->student->getStudent($student_id);
-        $data['student'] = $student;
+        $data['student'] = $current_student;
+        $data['repertoires'] = $repertoires;
+        
 
         return view('contents/student/studentRepertoires', $data);
     }

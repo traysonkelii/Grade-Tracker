@@ -19,7 +19,7 @@ Route::get('/teacher/all-students', 'StudentController@index')->name('all_studen
 Route::get('/teacher/student-repertoires/{student_id}', 'StudentController@showRep')->name('student_repertoire');
 
 //routes for the student view
-Route::get('/student', 'StudentController@landing')->name('student');
+Route::get('/student/{student_id}', 'StudentController@landing')->name('student');
 
 Route::get('/practice', 'ContentsController@home')->name('practice');
 

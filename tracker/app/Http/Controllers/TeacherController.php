@@ -19,7 +19,7 @@ class TeacherController extends Controller
     public function landing()
     {
         $data = [];
-        $students = $this->getMyStudents('byoung','fa2018');
+        $students = $this->getMyStudents('byoung','su2018');
         $teacher = $this->teacher->getTeacher('byoung');
         $data['students'] = $students;
         $data['teacher'] = $teacher;
