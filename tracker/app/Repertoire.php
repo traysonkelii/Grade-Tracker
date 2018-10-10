@@ -4,13 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Student as Student;
 
 class Repertoire extends Model
 {
 
     public function students()
     {
-        return $this->belongsToMany('App\Student', 'repertoire_student', 'repertoire_id', 'student_id');
+        return $this->belongsToMany('App\Student', 'repertoire_student', 'repertoire_id', 'student_id')
+        ->withPivot('status');
     }
 
     public function instrument()
@@ -26,5 +28,22 @@ class Repertoire extends Model
     public function composer()
     {
         return $this->belongsTo('App\Composer', 'composer_id');
+    }
+
+    public function updateStatus($rep_id,$student_id,$status)
+    {
+        $pivot = DB::table('repertoire_student')
+        ->where('student_id',$student_id)
+        ->where('repertoire_id', $rep_id)
+        ->update(['status' => $status]);
+    }
+
+    static public function filterByStatus($student_id, $status)
+    {
+        $pivot = DB::table('repertoire_student')
+        ->where('student_id', $student_id)
+        ->where('status', $status)
+        ->get();
+        return $pivot;
     }
 }

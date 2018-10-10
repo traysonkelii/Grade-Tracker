@@ -24,5 +24,4 @@ class Teacher extends Model
     {
         return $this->belongsToMany('App\Student', 'student_teacher', 'teacher_id', 'student_id');
     }
-
 }

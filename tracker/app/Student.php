@@ -17,7 +17,8 @@ class Student extends Model
 
     public function repertoires()
     {
-        return $this->belongsToMany('App\Repertoire', 'repertoire_student', 'student_id', 'repertoire_id');
+        return $this->belongsToMany('App\Repertoire', 'repertoire_student', 'student_id', 'repertoire_id')
+        ->withPivot('status');
     }
 
     public function major()

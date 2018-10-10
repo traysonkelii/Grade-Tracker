@@ -2,17 +2,19 @@
 
 @section('content')
 
-    <div class="sign-in-panel">
+    <div class="panel">
         <h1>Professor {{$teacher->first_name}}'s Pannel</h1>
-        <br>
         <h2>Students</h2>
         @foreach($students as $student)
-            <h3>{{$student->first_name}} {{$student->last_name}}</h3>
-            <h3>netid: {{$student->id}}</h3>
-            <a href="{{route('student_repertoire', ['student_id' => $student->id])}}">
-                <h3>Repertoires</h3>
+        <form id="{{$student->id}}" method="post" action="{{route('teacher-student', ['student_id' => $student->id])}}">
+            @csrf    
+            <input type="hidden" name="name" value="value" /> 
+            <a onclick="document.getElementById('{{$student->id}}').submit();">
+                <div class="teacher-attendance">
+                    {{$student->first_name}} {{$student->last_name}}
+                </div>
             </a>
-            <br>
+        </form>
         @endforeach
     </div>
 

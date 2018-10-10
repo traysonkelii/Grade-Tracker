@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/style/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style/font.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style/repertoire.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style/layout.css') }}">
     <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" />
     <link rel="stylesheet" href="https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.css" />
@@ -39,7 +40,6 @@
 
     <!-- Here is where the views are displayed is displayed  -->
     @yield('content')
-
     <byu-footer></byu-footer>
 </body>
 
