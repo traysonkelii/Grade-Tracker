@@ -7,6 +7,7 @@ use App\Genre as Genre;
 use App\Instrument as Instrument;
 use App\Student as Student;
 use App\Teacher as Teacher;
+use App\Repertoire as Repertoire;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -26,6 +27,7 @@ class StudentController extends Controller
      */
     public function landing($student_id, Request $request)
     {
+        $rep_builder = new Repertoire;
         if ($request->isMethod("post")) {
             $student = $this->student->find($student_id);
             $data['teachers'] = $student->teachers;
@@ -33,7 +35,8 @@ class StudentController extends Controller
             $data['repertoires'] = $student->repertoires;
             $data['student'] = $student;
             $data['stat'] = 'teacher';
-            return view('contents/student/student', $data);
+            return view('contents/student/student', $data)
+            ->withModel($rep_builder);
         } else {
             $student = $this->student->find($student_id);
             $data['teachers'] = $student->teachers;

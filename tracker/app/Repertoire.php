@@ -46,4 +46,13 @@ class Repertoire extends Model
         ->get();
         return $pivot;
     }
+
+    static public function getJuried($student_id, $type)
+    {
+        $pivot = DB::table('repertoire_student')
+        ->where('student_id', $student_id)
+        ->where('jury', '!=', 0)
+        ->get();
+        return $pivot;
+    }
 }
