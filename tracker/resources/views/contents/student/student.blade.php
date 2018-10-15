@@ -6,16 +6,19 @@
 
     @if($stat == 'teacher')
     <h1>{{$student->first_name}} {{$student->last_name}}'s Pannel</h1>
-        <div class="practice">
-
-        </div>
-        @include('contents.repertoire.repertoire')
-        @yield('rep-list')
        
     @elseif($stat == 'student')
-        <p>I AM A {{$stat}}</p>
+    <h1>Student</h1>
     @endif
-    <h1>{{$student->first_name}} {{$student->last_name}}'s Pannel</h1>
+
+
+    @include('contents.practice.practice')   
+    @include('contents.repertoire.repertoire')
+    {{-- 
+        
+        THESE ARE CONTROLS FOR THE STUDENT
+        
+        <h1>{{$student->first_name}} {{$student->last_name}}'s Pannel</h1>
     <h4><a href="{{route('rep_filter', ['student_id' => $student->id, 'type' => 'open'])}}">submit repertoires</a></h4>
     <h4><a href="{{route('rep_filter', ['student_id' => $student->id, 'type' => 'submitted'])}}">pending repertoires</a></h4>
     <h4><a href="{{route('rep_filter', ['student_id' => $student->id, 'type' => 'rejected'])}}">rejected repertoires</a></h4>
@@ -35,7 +38,7 @@
             <h4> Composer: {{$rep->composer->first_name}} {{$rep->composer->last_name}}</h4>
             <h4> Instrument: {{$rep->instrument->type}}</h4>
             <h4> Genre: {{$rep->genre->name}}</h4>
-        @endforeach
+        @endforeach --}}
         </div>
 
 @endsection

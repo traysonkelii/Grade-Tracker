@@ -26,7 +26,8 @@ Route::get('/practice', 'ContentsController@home')->name('practice');
 
 //routes for the repertoires
 Route::get('/repertoire/{student_id}', 'RepertoireController@index')->name('repertoire');
-Route::get('/repertoire/{student_id}/{repertiore_id}/submit', 'RepertoireController@submit')->name('rep_submit');
-Route::post('/repertoire/{student_id}/{repertiore_id}/approve', 'RepertoireController@approve')->name('rep_approved');
-Route::post('/repertoire/{student_id}/{repertiore_id}/reject', 'RepertoireController@reject')->name('rep_reject');
+Route::get('/repertoire/{student_id}/{repertiore_id}/update', 'RepertoireController@update')->name('rep_update');
+// Route::post('/repertoire/{student_id}/{repertiore_id}/approve', 'RepertoireController@approve')->name('rep_approved');
+// Route::post('/repertoire/{student_id}/{repertiore_id}/reject', 'RepertoireController@reject')->name('rep_reject');
 Route::get('/repertoire/filter/{student_id}/{type}', 'RepertoireController@filter')->name('rep_filter');
+Route::get('/repertoire/{student_id}/{repertoire_id}/{type}/approve', 'RepertoireController@approve')->name('approve');

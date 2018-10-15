@@ -1,15 +1,7 @@
 .sort-repertoires{
-    padding: 15px;
-    display: grid;
-    grid-template-areas:
-    "tab tab tab tab"
-    "list list list list"
-    "list list list list";
 }
 
 .tab{
-    background-color: #e0e0e0;
-    grid-area: tab;
     display: inline-block;
     padding-top: 10px;
 }
@@ -54,12 +46,66 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.view-row div{
+.view-row > div{
     float: left;
     border-bottom: solid black 2px;
-    color: black;
+}
+
+.teacher-approve{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* justify-self: center; */
+    /* align-self: center; */
+}
+
+
+.icon{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    float: left;
+    margin-top: 5px; 
+    transition: .5s all;
+}
+
+.icon-holder{
+    float: left;
+}
+
+.icon img{
+    max-width: 100%;
+}
+
+.icon:hover{
+    opacity: .5;
+    cursor: pointer;
+    transition: .5s all;
+}
+
+.accept{
+    float: left;
+}
+
+.reject{
+    float: left;
 }
 
 #all{
     opacity: 1;
+}
+
+#all-rep{
+   
+}
+
+#juried-rep{
+    display: none;
+}
+
+#recital-rep{
+    display: none;
+}
+
+#unsubmitted-rep{
+    display: none;
 }

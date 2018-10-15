@@ -12,7 +12,7 @@ class Repertoire extends Model
     public function students()
     {
         return $this->belongsToMany('App\Student', 'repertoire_student', 'repertoire_id', 'student_id')
-        ->withPivot('status');
+        ->withPivot('status','jury','recital');
     }
 
     public function instrument()
@@ -38,6 +38,14 @@ class Repertoire extends Model
         ->update(['status' => $status]);
     }
 
+    public function approve($repertoire_id, $student_id, $type)
+    {
+        $pivot = DB::table('repertoire_student')
+        ->where('student_id',$student_id)
+        ->where('repertoire_id', $rep_id)
+        ->update([$type => '3']);
+    }
+
     static public function filterByStatus($student_id, $status)
     {
         $pivot = DB::table('repertoire_student')
@@ -54,5 +62,23 @@ class Repertoire extends Model
         ->where('jury', '!=', 0)
         ->get();
         return $pivot;
+    }
+
+    static public function assignStatus($num)
+    {
+        switch ($num) {
+            case '0':
+                return 'Not submitted';
+            case '1':
+                return 'Submitted';
+            case '2': 
+                return 'Approved';
+            case '3':
+                return 'Performed';
+            case '4': 
+                return 'Not Approved';
+            default:
+                return 'Error in status assignemnt';
+        }
     }
 }

@@ -27,25 +27,18 @@ class StudentController extends Controller
      */
     public function landing($student_id, Request $request)
     {
-        $rep_builder = new Repertoire;
+        $data = [];
+        // if it came from a teacher
         if ($request->isMethod("post")) {
-            $student = $this->student->find($student_id);
-            $data['teachers'] = $student->teachers;
-            $data['major'] = $student->major;
-            $data['repertoires'] = $student->repertoires;
-            $data['student'] = $student;
             $data['stat'] = 'teacher';
-            return view('contents/student/student', $data)
-            ->withModel($rep_builder);
         } else {
-            $student = $this->student->find($student_id);
-            $data['teachers'] = $student->teachers;
-            $data['major'] = $student->major;
-            $data['repertoires'] = $student->repertoires;
-            $data['student'] = $student;
             $data['stat'] = 'student';
-            return view('contents/student/student', $data);
         }
+
+        $student = $this->student->find($student_id);
+        $data['repertoires'] = $student->repertoires;
+        $data['student'] = $student;
+        return view('contents/student/student', $data);
     }
 
     /**

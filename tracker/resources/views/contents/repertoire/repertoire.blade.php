@@ -1,36 +1,30 @@
 
 <div class="sort-repertoires">
     <div class="tab">
-        {{-- <a href="{{route('all_rep')}}">
+        <a href="#">
             <div id="all">All</div>
         </a>
-        <a href="{{route('juried_rep')}}">
+        <a href="#">
             <div id="juried">Juried</div>
         </a>
-        <a href="{{route('recital_rep')}}">
+        <a href="#">
             <div id="recital">Recital</div>
         </a>
-        <a href="{{route('unassigned_rep')}}">
-            <div id="practiced">Practiced</div>
-        </a> --}}
+        <a href="#">
+            <div id="unsubmitted">Unsubmitted</div>
+        </a>
     </div>
-    <div class="list">
-        <div class="viewed-list">
-            <div class="view-row" id="control-row">
-                <div>Title</div>
-                <div>Composer</div>
-                <div>Instrument Type</div>
-                <div>Genre</div>
-            </div>
-                @foreach ($repertoires as $rep)
-                    <div class="view-row">
-                        <div>{{$rep->name}}</div>
-                        <div>{{$rep->composer->first_name}} {{$rep->composer->last_name}}</div>
-                        <div>{{$rep->instrument->type}}</div>
-                        <div>{{$rep->genre->name}}</div>
-                    </div>
-            @endforeach
-        </div>
+    <div id="all-rep">
+        @include('contents.repertoire.list.all')
+    </div>
+    <div id="juried-rep">
+        @include('contents.repertoire.list.juried')
+    </div>
+    <div id="recital-rep">
+        @include('contents.repertoire.list.recital')
+    </div>
+    <div id="unsubmitted-rep">
+        @include('contents.repertoire.list.unsubmitted')
     </div>
 </div>
 <script src="{{ asset('/js/rep-control.js') }}"></script>
