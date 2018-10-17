@@ -21,12 +21,12 @@
                                             </p>
                                     </div>
                                     <div class="icon-holder">
-                                            <div class="icon">
-                                                    <a href="{{route('rep_filter', ['student_id' => $student->id, 'type' => 'open'])}}">
-                                                            <img src="{{asset('images/approve.png')}}" alt="">
-                                                    </a>
-                                                </div>
-                                            <div class="icon"><img src="{{asset('images/reject.png')}}" alt=""></div>
+                                            <div class="icon approved-click" onclick="{{App\Repertoire::approve( $student->id , $rep->id,'jury')}}">    
+                                                <img src="{{asset('images/approve.png')}}" alt="">
+                                            </div>
+                                            <div class="icon unapproved-click"  onclick="{{App\Repertoire::unapprove( $student->id , $rep->id,'jury')}}">
+                                                <img src="{{asset('images/reject.png')}}" alt="">
+                                            </div>
                                     </div>
                                 </div>
                             @else
@@ -40,3 +40,4 @@
             @endforeach
         </div>
     </div>
+    <script src="{{ asset('/js/repertoire/approveReject.js') }}"></script>

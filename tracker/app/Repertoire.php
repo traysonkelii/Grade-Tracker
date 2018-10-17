@@ -38,30 +38,32 @@ class Repertoire extends Model
         ->update(['status' => $status]);
     }
 
-    public function approve($repertoire_id, $student_id, $type)
+    static public function submit($student_id, $repertoire_id, $type)
     {
-        $pivot = DB::table('repertoire_student')
+        $update = DB::table('repertoire_student')
         ->where('student_id',$student_id)
-        ->where('repertoire_id', $rep_id)
-        ->update([$type => '3']);
+        ->where('repertoire_id', $repertoire_id)
+        ->update([$type => '1']);
+        return $update;
     }
 
-    static public function filterByStatus($student_id, $status)
+
+    static public function approve($student_id, $repertoire_id, $type)
     {
-        $pivot = DB::table('repertoire_student')
-        ->where('student_id', $student_id)
-        ->where('status', $status)
-        ->get();
-        return $pivot;
+        $update = DB::table('repertoire_student')
+        ->where('student_id',$student_id)
+        ->where('repertoire_id', $repertoire_id)
+        ->update([$type => '2']);
+        return $update;
     }
 
-    static public function getJuried($student_id, $type)
+    static public function unapprove($student_id, $repertoire_id, $type)
     {
-        $pivot = DB::table('repertoire_student')
-        ->where('student_id', $student_id)
-        ->where('jury', '!=', 0)
-        ->get();
-        return $pivot;
+        $update = DB::table('repertoire_student')
+        ->where('student_id',$student_id)
+        ->where('repertoire_id', $repertoire_id)
+        ->update([$type => '4']);
+        return $update;
     }
 
     static public function assignStatus($num)

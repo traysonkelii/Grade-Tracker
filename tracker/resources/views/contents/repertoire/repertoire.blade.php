@@ -27,4 +27,4 @@
         @include('contents.repertoire.list.unsubmitted')
     </div>
 </div>
-<script src="{{ asset('/js/rep-control.js') }}"></script>
+<script src="{{ asset('/js/repertoire/tabControl.js') }}"></script>

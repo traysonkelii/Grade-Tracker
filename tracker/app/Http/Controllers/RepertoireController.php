@@ -7,12 +7,16 @@ use App\Student as Student;
 
 class RepertoireController extends Controller
 {
-    //
+
+    public function __construct(Student $student, Repertoire $repertoire) {
+        $this->student = $student;
+        $this->repertoire = $repertoire;
+    }
+
     public function index($student_id)
     {
         $data = [];
-        $Student = new Student();
-        $current = $Student->find($student_id);
+        $current = $this->student->find($student_id);
         $data['student'] = $current;
 
         return view('contents/repertoire/repertoire', $data);
@@ -21,10 +25,9 @@ class RepertoireController extends Controller
     public function submit($student_id, $repertoire_id)
     {
         $data = [];
-        $Repetoire = new Repertoire();
         $status = 'submitted';
 
-        $current = Repertoire::find($repertoire_id);
+        $current = $this->repertoire->find($repertoire_id);
         $updated = $current->updateStatus($repertoire_id, $student_id, $status);
         $pivot = $current->students->where('id', $student_id)->first();
         $newStatus = $pivot->pivot->status;
@@ -38,13 +41,12 @@ class RepertoireController extends Controller
     {
         $data = [];
         $repertoires = [];
-        $pivot = Repertoire::filterByStatus($student_id, $type);
-        $student = Student::find($student_id);
+        $pivot = $this->repertoire->filterByStatus($student_id, $type);
+        $student = $this->student->find($student_id);
 
-        if($pivot){
-            foreach($pivot as $piv)
-            {
-                $rep = Repertoire::find($piv->repertoire_id);
+        if ($pivot) {
+            foreach ($pivot as $piv) {
+                $rep = $this->repertoire($piv->repertoire_id);
                 array_push($repertoires, $rep);
             }
         }
@@ -53,5 +55,15 @@ class RepertoireController extends Controller
         $data['repertoires'] = $repertoires;
 
         return view('contents/repertoire/filter', $data);
+    }
+
+    public function approve($student_id, $repertoire_id, $type)
+    {
+        $update = $this->repertoire->approve($student_id, $repertoire_id, $type);
+        // if (!$update)
+        // {
+        //     return "error";
+        // }
+        // return "success";
     }
 }
