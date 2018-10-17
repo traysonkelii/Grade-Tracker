@@ -13,13 +13,10 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
 
-    public function __construct(Student $student, Teacher $teacher,
-        Composer $composer, Instrument $instrument, Genre $genre) {
+    public function __construct(Student $student, Teacher $teacher, Repertoire $repertoire) {
         $this->student = $student;
         $this->teacher = $teacher;
-        $this->composer = $composer;
-        $this->instrument = $instrument;
-        $this->genre = $genre;
+        $this->repertoire = $repertoire;
     }
 
     /**
@@ -38,7 +35,8 @@ class StudentController extends Controller
         $student = $this->student->find($student_id);
         $data['repertoires'] = $student->repertoires;
         $data['student'] = $student;
-        return view('contents/student/student', $data);
+        $model = $this->repertoire;
+        return view('contents/student/student', $data)->withModel($model);
     }
 
     /**

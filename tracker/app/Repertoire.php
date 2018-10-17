@@ -30,41 +30,15 @@ class Repertoire extends Model
         return $this->belongsTo('App\Composer', 'composer_id');
     }
 
-    public function updateStatus($rep_id,$student_id,$status)
-    {
-        $pivot = DB::table('repertoire_student')
-        ->where('student_id',$student_id)
-        ->where('repertoire_id', $rep_id)
-        ->update(['status' => $status]);
-    }
-
-    static public function submit($student_id, $repertoire_id, $type)
+    static public function updateStatus($student_id, $repertoire_id, $type, $val)
     {
         $update = DB::table('repertoire_student')
         ->where('student_id',$student_id)
         ->where('repertoire_id', $repertoire_id)
-        ->update([$type => '1']);
+        ->update([$type => $val]);
         return $update;
     }
 
-
-    static public function approve($student_id, $repertoire_id, $type)
-    {
-        $update = DB::table('repertoire_student')
-        ->where('student_id',$student_id)
-        ->where('repertoire_id', $repertoire_id)
-        ->update([$type => '2']);
-        return $update;
-    }
-
-    static public function unapprove($student_id, $repertoire_id, $type)
-    {
-        $update = DB::table('repertoire_student')
-        ->where('student_id',$student_id)
-        ->where('repertoire_id', $repertoire_id)
-        ->update([$type => '4']);
-        return $update;
-    }
 
     static public function assignStatus($num)
     {

@@ -25,4 +25,14 @@ class Student extends Model
     {
         return $this->belongsTo('App\Major', 'major_id');
     }
+
+    
+    static public function updateStatus($student_id, $repertoire_id, $type, $val)
+    {
+        $update = DB::table('repertoire_student')
+        ->where('student_id',$student_id)
+        ->where('repertoire_id', $repertoire_id)
+        ->update([$type => $val]);
+        return $update;
+    }
 }

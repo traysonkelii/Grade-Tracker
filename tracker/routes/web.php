@@ -30,5 +30,6 @@ Route::get('/repertoire/{student_id}/{repertiore_id}/update', 'RepertoireControl
 Route::get('/repertoire/{student_id}/{repertiore_id}/{type}', 'RepertoireController@approve')->name('approve');
 // Route::post('/repertoire/{student_id}/{repertiore_id}/approve', 'RepertoireController@approve')->name('rep_approved');
 // Route::post('/repertoire/{student_id}/{repertiore_id}/reject', 'RepertoireController@reject')->name('rep_reject');
-Route::get('/repertoire/filter/{student_id}/{type}', 'RepertoireController@filter')->name('rep_filter');
-Route::get('/repertoire/{student_id}/{repertoire_id}/{type}/approve', 'RepertoireController@approve')->name('approve');
+Route::get('/repertoire/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('update');
+Route::get('/repertoire/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@approve')->name('approve');
+Route::post('/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('updateStatus');

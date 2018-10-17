@@ -57,13 +57,9 @@ class RepertoireController extends Controller
         return view('contents/repertoire/filter', $data);
     }
 
-    public function approve($student_id, $repertoire_id, $type)
+    public function updateStatus($student_id, $repertoire_id, $type, $val)
     {
-        $update = $this->repertoire->approve($student_id, $repertoire_id, $type);
-        // if (!$update)
-        // {
-        //     return "error";
-        // }
-        // return "success";
+        $update = $this->repertoire->updateStatus($student_id, $repertoire_id, $type, $val);
+        return null;
     }
 }

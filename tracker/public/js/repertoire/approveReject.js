@@ -1,5 +1,5 @@
-const approved = document.getElementsByClassName('approved-click');
-const unapproved = document.getElementsByClassName('unapproved-click');
+const approved = document.getElementsByClassName('accept');
+const unapproved = document.getElementsByClassName('reject');
 
 const approveClick = (elements, check) => {
     // conversion to ES6 array to allow map function
@@ -8,6 +8,15 @@ const approveClick = (elements, check) => {
     // loops through each item and adds a click listener
     DOMarray.map((elem) => {
         elem.addEventListener('click', function () {
+            let myHTML;
+            if (check)
+            {
+                myHTML = '<p style="color: green" class="center-submission">Approved</p>';
+            }
+            else
+            {
+                myHTML =  '<p style="color: red" class="center-submission">Rejected</p>';
+            }
 
             let parent = this.parentNode;
             let grandParent = parent.parentNode;
@@ -16,15 +25,8 @@ const approveClick = (elements, check) => {
             {
                 grandParent.removeChild(grandParent.firstChild);
             }
-            
-            if (check) 
-            {
-                grandParent.innerHTML = '<p style="color: green" class="center-submission">Approved</p>';
-            }
-            else 
-            {
-                grandParent.innerHTML = '<p style="color: red" class="center-submission">Rejected</p>';
-            }
+
+            grandParent.innerHTML = myHTML;
         })
     })
 }

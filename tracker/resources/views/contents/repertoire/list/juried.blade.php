@@ -21,12 +21,8 @@
                                             </p>
                                     </div>
                                     <div class="icon-holder">
-                                            <div class="icon approved-click" onclick="{{App\Repertoire::approve( $student->id , $rep->id,'jury')}}">    
-                                                <img src="{{asset('images/approve.png')}}" alt="">
-                                            </div>
-                                            <div class="icon unapproved-click"  onclick="{{App\Repertoire::unapprove( $student->id , $rep->id,'jury')}}">
-                                                <img src="{{asset('images/reject.png')}}" alt="">
-                                            </div>
+                                    <img src="{{asset('images/approve.png')}}" rep="{{$rep->id}}" class='accept' name='{{$student->id}}' type='jury'>    
+                                            <img src="{{asset('images/reject.png')}}" rep="{{$rep->id}}" class='reject' name='{{$student->id}}' type='jury'>
                                     </div>
                                 </div>
                             @else
@@ -40,4 +36,5 @@
             @endforeach
         </div>
     </div>
+    <script src="{{ asset('/js/repertoire/updateStatus.js') }}"></script>
     <script src="{{ asset('/js/repertoire/approveReject.js') }}"></script>

@@ -62,7 +62,7 @@
     grid-column: 1/3;
 }
 
-.icon{
+.accept, .reject{
     width: 25px;
     height: 25px;
     padding: 5px;
@@ -75,23 +75,17 @@
     float: left;
 }
 
-.icon img{
-    max-width: 100%;
-}
 
-.icon:hover{
+.accept:hover, .reject:hover{
     opacity: .5;
     cursor: pointer;
     transition: .5s all;
 }
 
-.accept{
-    float: left;
+.accept img, .reject img{
+    max-width: 100%;
 }
 
-.reject{
-    float: left;
-}
 
 #all{
     opacity: 1;
