@@ -5,41 +5,46 @@ let DOMarray = Array.from(elements);
 
 DOMarray.map((element) => {
     element.addEventListener('click', function (e) {
-        const studentId = e.target.name;
-        const repertoireId = e.target.rep;
-        const type = e.target.type;
+        const dataArray = getQueryData(e.target.name);
+        const repertoireId = dataArray[2];
+        const type = dataArray[1];
+        const studentId = dataArray[0]
+        const token = dataArray[3];
         if (e.target && e.target.matches('img.accept')) {
-            updateStatus(studentId, repertoireId, type, '2');
+            updateStatus(studentId, repertoireId, type, token, '2');
         }
 
-        if (e.targe && e.target.matches('img.reject')) {
-            updateStatus(studentId, repertoireId, type, '4');
+        if (e.target && e.target.matches('img.reject')) {
+            updateStatus(studentId, repertoireId, type, token, '4');
         }
     })
 })
 
+const getQueryData = (data) => {
+    return data.split(' ');
+}
 
-console.log(studentId, repId, type, val);
-    $(document).ready(function () {
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
-        
-        $.ajax({
-            url: "{{ url('/update/{student_id}/{repertoire_id}/{type}/{val}') }}",
-            method: 'post',
-            data: {
-                student_id: studentId,
-                repertoire_id: repId,
-                type: type,
-                val: val,
-            },
-            success: function (result) {
-                console.log(result);
-            }
-        });
-    
+const updateStatus = (studentId, repId, type, token, val) => {
+    console.log(studentId, repId, type, val, token);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
     });
+
+    $.ajax({
+        url: `/update/${studentId}/${repId}/${type}/${val}`,
+        method: 'post',
+        data: {
+            _token : token
+        },
+        success: function (result) {
+            console.log(result);
+        },
+        error : function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+            console.log(jqXHR);
+            console.log(textStatus);
+        }
+    });
+}

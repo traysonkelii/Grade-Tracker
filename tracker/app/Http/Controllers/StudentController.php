@@ -9,6 +9,8 @@ use App\Student as Student;
 use App\Teacher as Teacher;
 use App\Repertoire as Repertoire;
 use Illuminate\Http\Request;
+use App\Http\Responses\testResponse;
+use App\Http\Responses\Student\StudentLandingResponse;
 
 class StudentController extends Controller
 {
@@ -24,32 +26,38 @@ class StudentController extends Controller
      */
     public function landing($student_id, Request $request)
     {
-        $data = [];
-        // if it came from a teacher
-        if ($request->isMethod("post")) {
-            $data['stat'] = 'teacher';
-        } else {
-            $data['stat'] = 'student';
-        }
+        return new StudentLandingResponse($request, $student_id);
+        // $data = [];
+        // // if it came from a teacher
+        // if ($request->isMethod("post")) {
+        //     $data['stat'] = 'teacher';
+        // } else {
+        //     $data['stat'] = 'student';
+        // }
 
-        $student = $this->student->find($student_id);
-        $data['repertoires'] = $student->repertoires;
-        $data['student'] = $student;
-        $model = $this->repertoire;
-        return view('contents/student/student', $data)->withModel($model);
+        // $student = $this->student->find($student_id);
+        // $data['repertoires'] = $student->repertoires;
+        // $data['jury'] = 
+        // $data['student'] = $student;
+        // $model = $this->repertoire;
+        // return view('contents/student/student', $data)->withModel($model);
     }
+
+
 
     /**
      * Returns all students
      */
     public function index()
     {
-        $data = [];
 
-        $data['students'] = $this->student->all();
-        //get all repertoires for the given student
+        return new testResponse();
+        // $data = [];
 
-        return view('contents/student/allStudents', $data);
+        // $data['students'] = $this->student->all();
+        // //get all repertoires for the given student
+
+        // return view('contents/student/allStudents', $data);
     }
 
     /**

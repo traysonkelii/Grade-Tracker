@@ -20,6 +20,7 @@ Route::get('/teacher/all-students', 'StudentController@index')->name('all_studen
 //routes for the student view
 Route::get('/student/{student_id}', 'StudentController@landing')->name('student');
 Route::post('/student/{student_id}', 'StudentController@landing')->name('teacher-student');
+Route::get('/student', 'StudentController@index');
 
 //routes for practice
 Route::get('/practice', 'ContentsController@home')->name('practice');

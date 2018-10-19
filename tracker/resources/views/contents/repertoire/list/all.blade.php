@@ -8,10 +8,20 @@
         </div>
             @foreach ($repertoires as $rep)
                 <div class="view-row">
-                    <div>{{$rep->name}}</div>
-                    <div>{{$rep->composer->first_name}} {{$rep->composer->last_name}}</div>
-                    <div>{{$rep->instrument->type}}</div>
-                    <div>{{$rep->genre->name}}</div>
+                    <div> 
+                        <p>{{$rep->name}} </p>
+                    </div>
+                    <div>
+                        <p>
+                            {{$rep->composer->first_name}} {{$rep->composer->last_name}}
+                        </p>    
+                    </div>
+                    <div>
+                        <p>{{$rep->instrument->type}}</p>
+                    </div>
+                    <div>
+                        <p>{{$rep->genre->name}}</p>
+                    </div>
                 </div>
         @endforeach
     </div>

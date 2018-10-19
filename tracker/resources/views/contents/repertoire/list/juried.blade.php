@@ -6,8 +6,7 @@
                 <div>Instrument Type</div>
                 <div>Status</div>
             </div>
-                @foreach ($repertoires as $rep)
-                    @if ($rep->students->where('id',$student->id)->first()->pivot->jury != 0)
+                @foreach ($jury as $rep)
                     <div class="view-row">
                         <div><p> {{$rep->name}} </p></div>
                         <div> <p>{{$rep->composer->first_name}} {{$rep->composer->last_name}} </p></div>
@@ -17,12 +16,12 @@
                                 <div class="teacher-approve"> 
                                     <div class="word-approve">
                                             <p> 
-                                                    {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}}
+                                                {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}}
                                             </p>
                                     </div>
                                     <div class="icon-holder">
-                                    <img src="{{asset('images/approve.png')}}" rep="{{$rep->id}}" class='accept' name='{{$student->id}}' type='jury'>    
-                                            <img src="{{asset('images/reject.png')}}" rep="{{$rep->id}}" class='reject' name='{{$student->id}}' type='jury'>
+                                    <img src="{{asset('images/approve.png')}}" class='accept' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>    
+                                            <img src="{{asset('images/reject.png')}}" class='reject' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>
                                     </div>
                                 </div>
                             @else
@@ -32,7 +31,6 @@
                         <div> <p> IM JUSTA STUDENT</p></div>
                         @endif
                     </div>
-                    @endif
             @endforeach
         </div>
     </div>

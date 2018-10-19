@@ -1,18 +1,10 @@
 
 <div class="sort-repertoires">
     <div class="tab">
-        <a href="#">
-            <div id="all">All</div>
-        </a>
-        <a href="#">
-            <div id="juried">Juried</div>
-        </a>
-        <a href="#">
-            <div id="recital">Recital</div>
-        </a>
-        <a href="#">
-            <div id="unsubmitted">Unsubmitted</div>
-        </a>
+        <div id="all">All</div>
+        <div id="juried">Juried</div>
+        <div id="recital">Recital</div>
+        <div id="unsubmitted">Unsubmitted</div>
     </div>
     <div id="all-rep">
         @include('contents.repertoire.list.all')
@@ -27,4 +19,5 @@
         @include('contents.repertoire.list.unsubmitted')
     </div>
 </div>
+{{-- controls the tab and switches list displayed --}}
 <script src="{{ asset('/js/repertoire/tabControl.js') }}"></script>
