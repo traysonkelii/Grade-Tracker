@@ -6,7 +6,7 @@
             <div>Instrument Type</div>
             <div>Genre</div>
         </div>
-            @foreach ($repertoires as $rep)
+            @foreach ($all as $rep)
                 <div class="view-row">
                     <div> 
                         <p>{{$rep->name}} </p>

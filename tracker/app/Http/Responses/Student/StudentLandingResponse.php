@@ -3,6 +3,7 @@
 namespace App\Http\Responses\Student;
 
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\Log;
 use App\Student;
 
 class StudentLandingResponse implements Responsable
@@ -26,6 +27,7 @@ class StudentLandingResponse implements Responsable
         }
 
         $student = Student::find($this->student_id);
+        Log::debug($student->id);
         $data['all'] = $student->repertoires;
         $data['jury'] = $this->getTypeRepertoires($student->repertoires, $student->id, 'jury');
         $data['recital'] = $this->getTypeRepertoires($student->repertoires, $student->id, 'recital');
@@ -40,7 +42,9 @@ class StudentLandingResponse implements Responsable
         foreach ($reps as $rep)
         {
             
-            if ($rep->students->where('id',$studentId)->first()->pivot->$type != 0)
+            if ($rep->students
+            ->where('id',$studentId)
+            ->first()->pivot->$type != 0)
             {
                 array_push($typeReps, $rep);
             }
@@ -48,23 +52,20 @@ class StudentLandingResponse implements Responsable
         return $typeReps;
     } 
 
-    protected function getUnsubmitted($reps, $studentId, $type)
+    protected function getUnsubmitted($reps, $studentId)
     {
         $typeReps = [];
-        $reps.map(function(){
-            if ($reps->students->where('id',$studentId)->first()->pivot->recital != 0 && $reps->students->where('id',$studentId)->first()->pivot->jury != 0)
+       
+        foreach ($reps as $rep)
+        {   
+            if ($rep->students->where('id',$studentId)
+            ->first()->pivot->recital == 0 && $rep->students
+            ->where('id',$studentId)
+            ->first()->pivot->jury == 0)
             {
                 array_push($typeReps, $rep);
             }
-        });
-        // foreach ($reps as $rep)
-        // {
-            
-        //     if ($rep->students->where('id',$studentId)->first()->pivot->$type != 0)
-        //     {
-        //         array_push($typeReps, $rep);
-        //     }
-        // }
+        }
         return $typeReps;
     } 
 

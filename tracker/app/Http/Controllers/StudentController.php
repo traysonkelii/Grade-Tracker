@@ -26,7 +26,7 @@ class StudentController extends Controller
      */
     public function landing($student_id, Request $request)
     {
-        return new StudentLandingResponse($request, $student_id);
+        return new StudentLandingResponse($student_id);
         // $data = [];
         // // if it came from a teacher
         // if ($request->isMethod("post")) {
