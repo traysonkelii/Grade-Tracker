@@ -10,13 +10,13 @@ const unsubmittedRep = document.getElementById('unsubmitted-rep')
 
 const setClick = (element, list) => {
     element.addEventListener('click', function(){
-        reset();
+        tabReset();
         this.style.opacity = 1;
         list.style.display = 'block';
     });
 }
 
-const reset = () => {
+const tabReset = () => {
     all.style.opacity = .5;
     juried.style.opacity = .5;
     recital.style.opacity = .5;

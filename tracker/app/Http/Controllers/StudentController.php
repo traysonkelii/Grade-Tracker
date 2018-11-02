@@ -27,20 +27,6 @@ class StudentController extends Controller
     public function landing($student_id, Request $request)
     {
         return new StudentLandingResponse($student_id);
-        // $data = [];
-        // // if it came from a teacher
-        // if ($request->isMethod("post")) {
-        //     $data['stat'] = 'teacher';
-        // } else {
-        //     $data['stat'] = 'student';
-        // }
-
-        // $student = $this->student->find($student_id);
-        // $data['repertoires'] = $student->repertoires;
-        // $data['jury'] = 
-        // $data['student'] = $student;
-        // $model = $this->repertoire;
-        // return view('contents/student/student', $data)->withModel($model);
     }
 
 

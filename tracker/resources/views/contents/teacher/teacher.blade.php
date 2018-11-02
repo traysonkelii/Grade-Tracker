@@ -6,7 +6,7 @@
         <h1>Professor {{$teacher->first_name}}'s Pannel</h1>
         <h2>Students</h2>
         @foreach($students as $student)
-        <form id="{{$student->id}}" method="post" action="{{route('teacher-student', ['student_id' => $student->id])}}">
+        <form id="{{$student->id}}" method="post" action="{{route('student', ['student_id' => $student->id])}}">
             @csrf    
             <input type="hidden" name="name" value="value" /> 
             <a onclick="document.getElementById('{{$student->id}}').submit();">
