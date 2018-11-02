@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{ asset('css/style/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/font.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/repertoire.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style/practice.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/layout.css') }}">
 <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" />
 <link rel="stylesheet" href="https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.css" />
@@ -19,4 +20,3 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="{{ asset('js/main.js') }}"></script>

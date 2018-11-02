@@ -19,7 +19,7 @@ Route::get('/teacher/all-students', 'StudentController@index')->name('all_studen
 
 //routes for the student view
 Route::get('/student/{student_id}', 'StudentController@landing')->name('student');
-Route::post('/student/{student_id}', 'StudentController@landing')->name('teacher-student');
+Route::post('/student/{student_id}', 'StudentController@landing')->name('student');
 Route::get('/student', 'StudentController@index');
 
 //routes for practice
@@ -29,8 +29,6 @@ Route::get('/practice', 'ContentsController@home')->name('practice');
 Route::get('/repertoire/{student_id}', 'RepertoireController@index')->name('repertoire');
 Route::get('/repertoire/{student_id}/{repertiore_id}/update', 'RepertoireController@update')->name('rep_update');
 Route::get('/repertoire/{student_id}/{repertiore_id}/{type}', 'RepertoireController@approve')->name('approve');
-// Route::post('/repertoire/{student_id}/{repertiore_id}/approve', 'RepertoireController@approve')->name('rep_approved');
-// Route::post('/repertoire/{student_id}/{repertiore_id}/reject', 'RepertoireController@reject')->name('rep_reject');
 Route::get('/repertoire/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('update');
 Route::get('/repertoire/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@approve')->name('approve');
 Route::post('/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('updateStatus');

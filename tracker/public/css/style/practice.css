@@ -1,0 +1,71 @@
+.practice-holder{
+    width: 100%;
+    background-color: #0a1e5c;
+    display: grid;
+    grid-template-areas: 
+    "p-list p-tot"
+    "p-list p-week";
+    grid-gap: 5px;
+    padding: 5px;
+}
+
+.p-list{
+    background-color: blue;
+    grid-area: p-list;
+}
+
+.p-tot{
+    background-color: yellow;
+    grid-area: p-tot;
+}
+
+.p-week{
+    background-color: green;
+    grid-area: p-week;
+}
+
+.swHolder{
+  display: grid;
+  grid-template-areas: 
+  "swRecord swReset swSubmit"
+  "swDisplay swDisplay swDisplay";
+  grid-gap: 5px;
+  margin: 5px;
+  justify-content: center;
+}
+
+.swDisplay{
+  grid-area: swDisplay;
+  padding: 5px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.swRecord{
+  grid-area: swRecord;
+}
+
+.swReset{
+  grid-area: swReset;
+}
+
+.swSubmit{
+  grid-area: swSubmit;
+}
+
+.sw-button{
+  background-color:#0a1e5c;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 100px;
+}
+
+.sw-button:hover{
+  cursor: pointer;
+}
+
+.non-use{
+  pointer-events: none;
+  opacity: .5;
+}
