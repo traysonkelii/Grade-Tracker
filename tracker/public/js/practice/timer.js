@@ -1,5 +1,4 @@
 const practiceRecord = document.getElementById('practice-record');
-const practiceSubmit = document.getElementById('practice-submit');
 const practiceReset = document.getElementById('practice-reset');
 const stopwatchHours = document.getElementById('stopwatch-hour');
 const stopwatchMin = document.getElementById('stopwatch-min');
@@ -35,18 +34,11 @@ practiceRecord.addEventListener('click', function () {
 });
 
 practiceReset.addEventListener('click', () => {
-    reset();
-});
-
-practiceSubmit.addEventListener('click', () => {
-  if (timesCollected) {
-    // format times
-    // store times to DB
-    alert(`AJAX THESE TIMES TO DB ${startTime} ${stopTime}`);
+  if (timesCollected)
+  {
     reset();
   }
-  return;
-})
+});
 
 const initialiseTimer = () => {
   interval = setInterval(() => {

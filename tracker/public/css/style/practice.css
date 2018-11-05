@@ -10,7 +10,7 @@
 }
 
 .p-list{
-    background-color: blue;
+    background-color: #dfdfdf;
     grid-area: p-list;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .p-week{
-    background-color: green;
+    background-color: #dfdfdf;
     grid-area: p-week;
 }
 
@@ -68,4 +68,36 @@
 .non-use{
   pointer-events: none;
   opacity: .5;
+}
+
+.practice-entry{
+  background-color: #dfdfdf;
+  color: black;
+  padding: 5px;
+  margin: 0;
+  transition: .5s all;
+}
+
+.practice-entry:hover{
+  opacity: .5;
+  transition: .5s all;
+  cursor: pointer;
+  background-color: #0a1e5c;
+  color: white;
+}
+
+.practice-header{
+  background-color: #7f7f7f;
+  color: black;
+  padding: 3px;
+  margin: 0;
+  font-size: 1.1em;
+  border-bottom: black 2px solid;
+}
+
+#practice-selected{
+}
+
+.hidden{
+  display: none;
 }
