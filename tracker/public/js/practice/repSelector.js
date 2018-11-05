@@ -6,7 +6,8 @@ const addFunction = async () => {
      {
          repArray[i].addEventListener('click', function(){
              let repId = repArray[i].id.substr(1);
-             selected.append(`${repId} `);
+             selected.innerHTML = "";
+             selected.append(`${repId}`);
          });
      }
 }

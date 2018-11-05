@@ -24,11 +24,8 @@ Route::get('/student', 'StudentController@index');
 
 //routes for practice
 Route::get('/practice', 'ContentsController@home')->name('practice');
+Route::post('/practice/add/{rep_stu_id}/{start}/{stop}', 'PracticeController@addPractice')->name('addPractice');
 
 //routes for the repertoires
 Route::get('/repertoire/{student_id}', 'RepertoireController@index')->name('repertoire');
-Route::get('/repertoire/{student_id}/{repertiore_id}/update', 'RepertoireController@update')->name('rep_update');
-Route::get('/repertoire/{student_id}/{repertiore_id}/{type}', 'RepertoireController@approve')->name('approve');
-Route::get('/repertoire/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('update');
-Route::get('/repertoire/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@approve')->name('approve');
-Route::post('/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('updateStatus');
+Route::post('/repertoire/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('updateStatus');

@@ -33,7 +33,7 @@ const updateStatus = (studentId, repId, type, token, val) => {
     });
 
     $.ajax({
-        url: `/update/${studentId}/${repId}/${type}/${val}`,
+        url: `/repertoire/update/${studentId}/${repId}/${type}/${val}`,
         method: 'post',
         data: {
             _token : token

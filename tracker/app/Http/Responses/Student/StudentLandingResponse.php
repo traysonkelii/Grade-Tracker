@@ -19,7 +19,6 @@ class StudentLandingResponse implements Responsable
     public function toResponse($request)
     {
         $data = [];
-        // if it came from a teacher
         if ($request->isMethod("post")) {
             $data['stat'] = 'teacher';
         } else {
@@ -27,7 +26,6 @@ class StudentLandingResponse implements Responsable
         }
 
         $student = Student::find($this->student_id);
-        Log::debug($student->id);
         $data['all'] = $student->repertoires;
         $data['jury'] = $this->getTypeRepertoires($student->repertoires, $student->id, 'jury');
         $data['recital'] = $this->getTypeRepertoires($student->repertoires, $student->id, 'recital');
@@ -41,7 +39,6 @@ class StudentLandingResponse implements Responsable
         $typeReps = [];
         foreach ($reps as $rep)
         {
-            
             if ($rep->students
             ->where('id',$studentId)
             ->first()->pivot->$type != 0)

@@ -1,8 +1,8 @@
 <div class="practice-holder">
     <div class="p-list">
-        <p class="practice-header">Repertoire List</p>
+        <p class="practice-header">My Repertoire List</p>
         @foreach ($all as $rep)
-        <p id="p{{$rep->id}}" class="practice-entry">{{$rep->name}}<p>    
+            <p id="p{{$rep->pivot->rep_stu_id}}" class="practice-entry">{{$rep->name}}</p>
         @endforeach
     </div>
     <div class="p-tot">
