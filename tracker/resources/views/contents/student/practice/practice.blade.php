@@ -2,13 +2,13 @@
     <div class="p-list">
         <p class="practice-header">My Repertoire List</p>
         @foreach ($all as $rep)
-            <p id="p{{$rep->pivot->rep_stu_id}}" class="practice-entry">{{$rep->name}}</p>
+            <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}}</p>
         @endforeach
     </div>
     <div class="p-tot">
         Hours practiced
     </div>
-    <div class="p-week">
+    <div class="p-week non-use">
         <span id="practice-selected" class="hidden"></span>
         <div class="swHolder">
             <div id="practice-record" class="swRecord sw-button">
@@ -27,6 +27,6 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/practice/timer.js') }}"></script>
-<script src="{{ asset('js/practice/repSelector.js') }}"></script>
+<div id="practice-popup"></div>
+<script src="{{ asset('js/practice/ajaxPracticeTracker.js') }}"></script>
 

@@ -8,7 +8,6 @@ use App\Student as Student;
 
 class Repertoire extends Model
 {
-
     public function students()
     {
         return $this->belongsToMany('App\Student', 'repertoire_student', 'repertoire_id', 'student_id')
@@ -37,6 +36,22 @@ class Repertoire extends Model
         ->where('repertoire_id', $repertoire_id)
         ->update([$type => $val]);
         return $update;
+    }
+
+    static public function repUpdate($rep_stu_id, $type, $time)
+    {
+        $update = DB::table('repertoire_student')
+        ->where('rep_stu_id', $rep_stu_id)
+        ->update([$type => $time]);
+    }
+
+    static public function repRead($rep_stu_id, $type)
+    {
+        $read = DB::table('repertoire_student')
+        ->select()
+        ->where('rep_stu_id', $rep_stu_id)
+        ->first()->$type;
+        return $read;
     }
 
 

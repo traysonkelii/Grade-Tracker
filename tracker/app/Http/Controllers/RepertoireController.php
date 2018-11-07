@@ -62,4 +62,16 @@ class RepertoireController extends Controller
         $update = $this->repertoire->updateStatus($student_id, $repertoire_id, $type, $val);
         return null;
     }
+
+    public function update($id, $type, $val)
+    {
+        $update = $this->repertoire->repUpdate($id, $type, $val);
+        return null;
+    }
+
+    public function read($id, $type)
+    {
+        $read = $this->repertoire->repRead($id, $type);
+        return $read;
+    }
 }

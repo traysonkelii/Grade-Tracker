@@ -28,4 +28,6 @@ Route::post('/practice/add/{rep_stu_id}/{start}/{stop}', 'PracticeController@add
 
 //routes for the repertoires
 Route::get('/repertoire/{student_id}', 'RepertoireController@index')->name('repertoire');
-Route::post('/repertoire/update/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('updateStatus');
+Route::post('/repertoire/updateStatus/{student_id}/{repertoire_id}/{type}/{val}', 'RepertoireController@updateStatus')->name('updateStatus');
+Route::post('/repertoire/update/{rep_stu_id}/{type}/{val}', 'RepertoireController@update')->name('repUpdate');
+Route::get('/repertoire/read/{rep_stu_id}/{type}', 'RepertoireController@read')->name('repRead');

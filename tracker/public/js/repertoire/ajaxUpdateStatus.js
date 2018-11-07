@@ -1,11 +1,10 @@
-"use strict";
 
 const elements = document.getElementsByClassName('icon-holder');
 let DOMarray = Array.from(elements);
 
 DOMarray.map((element) => {
     element.addEventListener('click', function (e) {
-        const dataArray = getQueryData(e.target.name);
+        const dataArray = getQueryData(e.target.id);
         const repertoireId = dataArray[2];
         const type = dataArray[1];
         const studentId = dataArray[0]
@@ -21,11 +20,10 @@ DOMarray.map((element) => {
 })
 
 const getQueryData = (data) => {
-    return data.split(' ');
+    return data.split('-');
 }
 
 const updateStatus = (studentId, repId, type, token, val) => {
-    console.log(studentId, repId, type, val, token);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': token
@@ -33,7 +31,7 @@ const updateStatus = (studentId, repId, type, token, val) => {
     });
 
     $.ajax({
-        url: `/repertoire/update/${studentId}/${repId}/${type}/${val}`,
+        url: `/repertoire/updateStatus/${studentId}/${repId}/${type}/${val}`,
         method: 'post',
         data: {
             _token : token
