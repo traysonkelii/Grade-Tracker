@@ -54,7 +54,7 @@ class Repertoire extends Model
         return $read;
     }
 
-
+    
     static public function assignStatus($num)
     {
         switch ($num) {
