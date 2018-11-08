@@ -1,8 +1,10 @@
 <div class="practice-holder">
     <div class="p-list">
-        <p class="practice-header">My Repertoire List</p>
+        <p class="practice-header">Practice List</p>
         @foreach ($all as $rep)
-            <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}}</p>
+            @if($rep->pivot->practice != 0)
+                <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}}</p>
+            @endif
         @endforeach
     </div>
     <div class="p-tot">
@@ -28,5 +30,4 @@
     </div>
 </div>
 <div id="practice-popup"></div>
-<script src="{{ asset('js/practice/ajaxPracticeTracker.js') }}"></script>
 

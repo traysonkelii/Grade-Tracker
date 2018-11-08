@@ -18,7 +18,7 @@ class Student extends Model
     public function repertoires()
     {
         return $this->belongsToMany('App\Repertoire', 'repertoire_student', 'student_id', 'repertoire_id')
-        ->withPivot('status','jury','recital','practice_time','rep_stu_id');
+        ->withPivot('practice','jury','recital','practice_time','rep_stu_id');
     }
 
     public function major()
