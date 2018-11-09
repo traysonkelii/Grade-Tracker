@@ -20,8 +20,8 @@
                                     </p>
                                 </div>
                                 <div class="icon-holder">
-                                    <img src="{{asset('images/approve.png')}}" class='accept' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>    
-                                    <img src="{{asset('images/reject.png')}}" class='reject' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>
+                                    <img src="{{asset('images/approve.png')}}" class='accept' id='{{$student->id}}-jury-{{$rep->id}}-{{csrf_token()}}'>    
+                                    <img src="{{asset('images/reject.png')}}" class='reject' id='{{$student->id}}-jury-{{$rep->id}}-{{csrf_token()}}'>
                                 </div>
                             </div>
                             @else
