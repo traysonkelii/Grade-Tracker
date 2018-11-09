@@ -6,19 +6,20 @@
         <div id="unsubmitted">Unsubmitted</div>
     </div>
     <div id="all-rep">
-        @include('contents.student.repertoire.teacherRepList.all')
+        @include('contents.student.repertoire.all')
     </div>
     <div id="juried-rep">
-        @include('contents.student.repertoire.teacherRepList.juried')
+        @include('contents.student.repertoire.juried')
     </div>
     <div id="recital-rep">
-        @include('contents.student.repertoire.teacherRepList.recital')
+        @include('contents.student.repertoire.recital')
     </div>
     <div id="unsubmitted-rep">
-        @include('contents.student.repertoire.teacherRepList.unsubmitted')
+        @include('contents.student.repertoire.unsubmitted')
     </div>
 </div>
-{{-- controls the tab and switches list displayed --}}
 <script src="{{ asset('/js/repertoire/tabControl.js') }}"></script>
+<script src="{{ asset('/js/practice/practiceTracker.js') }}"></script>
+<script src="{{ asset('/js/practice/addToPractice.js') }}"></script>
 <script src="{{ asset('/js/repertoire/ajaxUpdateStatus.js') }}"></script>
 <script src="{{ asset('/js/repertoire/approveReject.js') }}"></script>

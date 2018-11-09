@@ -8,7 +8,12 @@
         </div>
             @foreach ($all as $rep)
                 <div class="view-row">
-                    <div> 
+                    <div>
+                        @if($stat == 'student') 
+                            @if($rep->pivot->practice == '0')
+                                <p id="all-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="add-practice">Add to practice</p>
+                            @endif
+                        @endif
                         <p>{{$rep->name}} </p>
                     </div>
                     <div>
