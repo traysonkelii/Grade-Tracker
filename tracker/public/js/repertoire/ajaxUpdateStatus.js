@@ -5,7 +5,7 @@ let DOMarray = Array.from(elements);
 DOMarray.map((element) => {
     element.addEventListener('click', function (e) {
         const dataArray = getQueryData(e.target.id);
-        const studentId = dataArray[0]
+        const studentId = dataArray[0];
         const type = dataArray[1];
         const repertoireId = dataArray[2];
         const token = dataArray[3];
