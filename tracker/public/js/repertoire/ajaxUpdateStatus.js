@@ -5,16 +5,15 @@ let DOMarray = Array.from(elements);
 DOMarray.map((element) => {
     element.addEventListener('click', function (e) {
         const dataArray = getQueryData(e.target.id);
-        const studentId = dataArray[0];
+        const id = dataArray[0];
         const type = dataArray[1];
-        const repertoireId = dataArray[2];
-        const token = dataArray[3];
+        const token = dataArray[2];
         if (e.target && e.target.matches('img.accept')) {
-            updateStatus(studentId, repertoireId, type, token, '2');
+            updateStatus(id, type, 2, token);
         }
 
         if (e.target && e.target.matches('img.reject')) {
-            updateStatus(studentId, repertoireId, type, token, '4');
+            updateStatus(id, type, 4, token);
         }
     })
 })
@@ -23,7 +22,7 @@ const getQueryData = (data) => {
     return data.split('-');
 }
 
-const updateStatus = (studentId, repId, type, token, val) => {
+const updateStatus = (id, type, val, token) => {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': token
@@ -31,7 +30,7 @@ const updateStatus = (studentId, repId, type, token, val) => {
     });
 
     $.ajax({
-        url: `/repertoire/updateStatus/${studentId}/${repId}/${type}/${val}`,
+        url: `/repertoire/update/${id}/${type}/${val}`,
         method: 'post',
         data: {
             _token : token

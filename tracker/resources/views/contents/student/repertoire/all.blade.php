@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         <p>
-                            {{$rep->composer->first_name}} {{$rep->composer->last_name}}
+                            {{$rep->composer->name}}
                         </p>    
                     </div>
                     <div>

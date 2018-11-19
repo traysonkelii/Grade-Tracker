@@ -3,7 +3,7 @@ const practiceReset = document.getElementById('practice-reset');
 const stopwatchHours = document.getElementById('stopwatch-hour');
 const stopwatchMin = document.getElementById('stopwatch-min');
 const stopwatchSec = document.getElementById('stopwatch-sec');
-const pWeek = document.getElementsByClassName('p-week');
+const pWeek = document.getElementsByClassName('practice-tracker');
 const popup = document.getElementById('practice-popup');
 let interval = null;
 let currentIncrement = 0;
@@ -85,7 +85,7 @@ addClickToReps();
  */
 
 const removeCoverClass = () => {
-  pWeek[0].classList.remove('non-use');
+  pWeek[0].classList.remove('practice-nonUse');
 }
 
 const recordStyle = () => {
@@ -250,6 +250,7 @@ const ajaxGetRunningTime = (id, token) => {
 }
 
 function showPopUp(content) {
+  loader.hide();
   popup.className = 'show';
   popup.innerHTML = content;
   setTimeout(function(){ popup.className = popup.className.replace('show', ''); }, 3000);

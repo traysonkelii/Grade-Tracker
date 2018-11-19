@@ -19,7 +19,5 @@
     </div>
 </div>
 <script src="{{ asset('/js/repertoire/tabControl.js') }}"></script>
-<script src="{{ asset('/js/practice/practiceTracker.js') }}"></script>
-<script src="{{ asset('/js/practice/addToPractice.js') }}"></script>
 <script src="{{ asset('/js/repertoire/ajaxUpdateStatus.js') }}"></script>
 <script src="{{ asset('/js/repertoire/approveReject.js') }}"></script>

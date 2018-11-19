@@ -1,9 +1,8 @@
 // update dom
-const pList = document.getElementById('p-list');
+const pList = document.getElementById('practice-list');
 
-const ajaxAddToPractice = (id, token) => {
+const ajaxEditPracticeList = (id, token, val) => {
     const type = 'practice'
-    const val = 1;
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': token
@@ -28,15 +27,27 @@ const ajaxAddToPractice = (id, token) => {
     });
 }
 
-const addClickToPractice = async () => {
-    const repArray = document.getElementsByClassName('add-practice');
+const addToPracticeList = async () => {
+    const repArray = document.getElementsByClassName('practice-addToList');
     for (let i = 0; i < repArray.length; i++) {
         repArray[i].addEventListener('click', async () => {
             let repId = repArray[i].id;
             idTokenArray = repId.split('-');
-            ajaxAddToPractice(idTokenArray[1], idTokenArray[2]);
+            ajaxEditPracticeList(idTokenArray[1], idTokenArray[2], 1);
         });
     }
 }
 
-addClickToPractice();
+const removeFromPracticeList = async () => {
+    const repArray = document.getElementsByClassName('practice-removeFromList');
+    for (let i = 0; i < repArray.length; i++) {
+        repArray[i].addEventListener('click', async () => {
+            let repId = repArray[i].id;
+            idTokenArray = repId.split('-');
+            ajaxEditPracticeList(idTokenArray[1], idTokenArray[2], 0);
+        });
+    }
+}
+
+addToPracticeList();
+removeFromPracticeList();

@@ -29,6 +29,33 @@ class Repertoire extends Model
         return $this->belongsTo('App\Composer', 'composer_id');
     }
 
+    public function repCreate($name, $comId, $insId, $genId)
+    {
+        $update = DB::table('repertoires')->insertGetId(
+            ['name' => $name, 'composer_id' => $comId, 'instrument_id' => $insId, 'genre_id' => $genId]
+        );
+        return $update;
+    }
+
+    public function repCreatePivot($stu_id, $rep_id)
+    {
+        $update = DB::table('repertoire_student')->insertGetId(
+            ['student_id' => $stu_id, 'repertoire_id' => $rep_id]
+        );
+        return $update;
+    }
+
+    public function readRepCheck($id, $com_id, $ins_id, $gen_id)
+    {
+        $update = DB::table('repertoires')->select()
+        ->where('id', $id)
+        ->where('composer_id', $com_id)
+        ->where('instrument_id', $ins_id)
+        ->where('genre_id', $gen_id)
+        ->first();
+        return $update;
+    }
+
     static public function updateStatus($student_id, $repertoire_id, $type, $val)
     {
         $update = DB::table('repertoire_student')
@@ -38,11 +65,12 @@ class Repertoire extends Model
         return $update;
     }
 
-    static public function repUpdate($rep_stu_id, $type, $time)
+    static public function repUpdate($rep_stu_id, $type, $val)
     {
         $update = DB::table('repertoire_student')
         ->where('rep_stu_id', $rep_stu_id)
-        ->update([$type => $time]);
+        ->update([$type => $val]);
+        return $update;
     }
 
     static public function repRead($rep_stu_id, $type)
@@ -54,7 +82,6 @@ class Repertoire extends Model
         return $read;
     }
 
-    
     static public function assignStatus($num)
     {
         switch ($num) {

@@ -3,28 +3,43 @@
     background-color: #0a1e5c;
     display: grid;
     grid-template-areas: 
-    "p-list p-tot"
-    "p-list p-week";
+    "p-list p-graph"
+    "p-list p-tracker"
+    " . . "
+    "allrep allrep"
+    "addrep .";
     grid-gap: 5px;
     padding: 5px;
 }
 
-.p-list{
+.practice-list{
     background-color: #dfdfdf;
     grid-area: p-list;
 }
 
-.p-tot{
-    background-color: yellow;
-    grid-area: p-tot;
-}
-
-.p-week{
+.practice-graph{
     background-color: #dfdfdf;
-    grid-area: p-week;
+    grid-area: p-graph;
 }
 
-.swHolder{
+.practice-tracker{
+    background-color: #dfdfdf;
+    grid-area: p-tracker;
+}
+
+.practice-allRepHolder{
+  grid-area: allrep;
+  background-color: #dfdfdf;
+  overflow-y: scroll;
+}
+
+.practice-addRep{
+  grid-area: addrep;
+  background-color: #dfdfdf;
+}
+
+
+.practice-stopWatchHolder{
   display: grid;
   grid-template-areas: 
   "swRecord swReset swSubmit"
@@ -34,44 +49,40 @@
   justify-content: center;
 }
 
-.swDisplay{
+.practice-stopWatchDisplay{
   grid-area: swDisplay;
   padding: 5px;
   text-align: center;
   font-size: 2em;
 }
 
-.swRecord{
+.practice-stopWatchRecord{
   grid-area: swRecord;
 }
 
-.swReset{
+.practice-stopWatchReset{
   grid-area: swReset;
 }
 
-.swSubmit{
-  grid-area: swSubmit;
-}
-
-.sw-button{
+.practice-button{
   background-color:#0a1e5c;
   color: white;
   padding-top: 8px;
   padding-bottom: 8px;
   width: 100px;
+  text-align: center;
 }
 
-.sw-button:hover{
+.practice-button:hover{
   cursor: pointer;
 }
 
-.non-use{
+.practice-nonUse{
   pointer-events: none;
   opacity: .5;
 }
 
 .practice-entry{
-  background-color: #dfdfdf;
   color: black;
   padding: 5px;
   margin: 0;
@@ -79,11 +90,7 @@
 }
 
 .practice-entry:hover{
-  opacity: .5;
-  transition: .5s all;
   cursor: pointer;
-  background-color: #0a1e5c;
-  color: white;
 }
 
 .practice-header{
@@ -95,9 +102,21 @@
   border-bottom: black 2px solid;
 }
 
-#practice-selected{
+.practice-addToList:hover{
+  cursor: pointer;
 }
 
-.hidden{
+.practice-removeFromList:hover{
+  cursor: pointer;
+}
+
+.practice-hidden{
+  display: none;
+}
+
+#practice-loading-popup{
+  position: absolute;
+  top: 200px;
+  left: 350px;
   display: none;
 }

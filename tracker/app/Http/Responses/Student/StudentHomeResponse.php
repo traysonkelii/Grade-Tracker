@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\Log;
 use App\Student;
 
-class StudentLandingResponse implements Responsable
+class StudentHomeResponse implements Responsable
 {
 
     protected $student_id;
@@ -31,7 +31,7 @@ class StudentLandingResponse implements Responsable
         $data['recital'] = $this->getTypeRepertoires($student->repertoires, $student->id, 'recital');
         $data['unsubmitted'] = $this->getUnsubmitted($student->repertoires, $student->id);
         $data['student'] = $student;
-        return view('contents/student/student', $data);
+        return view('contents/student/home', $data);
     }
 
     protected function getTypeRepertoires($reps, $studentId, $type)

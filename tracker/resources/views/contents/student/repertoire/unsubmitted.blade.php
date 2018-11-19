@@ -9,7 +9,7 @@
         @foreach ($unsubmitted as $rep)
         <div class="view-row">
             <div><p> {{$rep->name}} </p></div>
-            <div> <p>{{$rep->composer->first_name}} {{$rep->composer->last_name}} </p></div>
+            <div> <p>{{$rep->composer->name}} </p></div>
             <div> <p>{{$rep->instrument->type}} </p></div>
             @if ($rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury) == 'Submitted')
                 <div class="teacher-approve"> 
