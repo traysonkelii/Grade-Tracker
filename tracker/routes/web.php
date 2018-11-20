@@ -53,3 +53,4 @@ Route::get('/autocomplete/repertoire', 'SearchController@repAutocomplete')->name
 Route::get('/autocomplete/genre', 'SearchController@genAutocomplete')->name('genAuto');
 Route::get('/autocomplete/instrument', 'SearchController@insAutocomplete')->name('insAuto');
 Route::get('/search/getAttribute/{table}/{wanted}/{col}/{value}', 'SearchController@getWantedAttribute')->name('getAttribute');
+Route::get('/search/getRepId/{value}', 'SearchController@getRepertoireIds')->name('getRepIds');

@@ -59,4 +59,11 @@ class SearchController extends Controller
         $data = DB::table($table)->select($wanted)->where($col, $value)->get()->first();
         return response()->json($data);
     }
+
+    public function getRepertoireIds($value)
+    {
+        $data = DB::table("repertoires")->select("id")->where("name", $value)->get();
+        return response()->json($data);
+    }
+
 }

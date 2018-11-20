@@ -17,10 +17,9 @@ const validate = async (token, myStuId) => {
     const genreJsonId = await ajaxGetId('genres', 'id', 'name', genInput.val(), token);
     const instrumentJsonId = await ajaxGetId('instruments', 'id', 'name', insInput.val(), token);
     let composerJsonId = await ajaxGetId('composers', 'id', 'name', comInput.val());
-    let repertoireJsonId = await ajaxGetId('repertoires', 'id', 'name', repInput.val());
-    let check;
+    let repertoireJsonArray = await ajaxGetRepIds(repInput.val());
+    let repertoireJsonId;
     let addedRepPivotId;
-
     if (!genreJsonId.id) {
         showPopUp("genre doesn't exist");
         return;
@@ -32,25 +31,29 @@ const validate = async (token, myStuId) => {
     if (!composerJsonId.id) {
         composerJsonId.id = await ajaxAddComposer(comInput.val(), token);
     }
-    if (!repertoireJsonId.id) {
-        repertoireJsonId.id = await ajaxAddRepertoire(repInput.val(), composerJsonId.id,
-        instrumentJsonId.id, genreJsonId.id, token);
-    }
-    
-    check = await ajaxCheckRepertoire(repertoireJsonId.id, composerJsonId.id, 
-        instrumentJsonId.id, genreJsonId.id, token);
-    if (check.id) {
-        addedRepPivotId = await ajaxAddRepertoirePivot(myStuId, check.id, token);
+    if (!repertoireJsonArray || repertoireJsonArray.length < 1) {
+        repertoireJsonId = await ajaxAddRepertoire(repInput.val(), composerJsonId.id, instrumentJsonId.id, genreJsonId.id, token);
+        addedRepPivotId = await ajaxAddRepertoirePivot(myStuId, repertoireJsonId, token);
     }
     else {
-        let newRepertoire = await ajaxAddRepertoire(repInput.val(), composerJsonId.id, 
-            instrumentJsonId.id, genreJsonId.id, token);
-        addedRepPivotId = await ajaxAddRepertoirePivot(myStuId, newRepertoire, token);
-    }
+        let none = true;
+        for (let i = 0; i < repertoireJsonArray.length; i++) {
+            check = await ajaxCheckRepertoire(repertoireJsonArray[i].id, composerJsonId.id, instrumentJsonId.id, genreJsonId.id, token);
+            if (check.original.id) {
+                addedRepPivotId = await ajaxAddRepertoirePivot(myStuId, check.original.id, token);
+                none = false;
+            }
+        }
+        if (none) {
+            repertoireJsonId = await ajaxAddRepertoire(repInput.val(), composerJsonId.id, instrumentJsonId.id, genreJsonId.id, token);
+            addedRepPivotId = await ajaxAddRepertoirePivot(myStuId, repertoireJsonId, token);
+        }
 
+    }
     ajaxAddToPractice(addedRepPivotId, token);
     return;
 }
+
 
 const ajaxAddToPractice = (id, token) => {
     const type = 'practice'
@@ -69,13 +72,14 @@ const ajaxAddToPractice = (id, token) => {
         },
         success: function (result) {
             window.location.reload();
-            return;
+            loader.hide();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             showPopUp('problem with adding rep to practice');
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
+            return;
         }
     });
 }
@@ -101,6 +105,33 @@ const ajaxGetId = (table, wanted, col, val, token) => {
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
+            return;
+        }
+    });
+}
+
+const ajaxGetRepIds = (val, token) => {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+
+    return $.ajax({
+        url: `/search/getRepId/${val}`,
+        method: 'get',
+        data: {
+            _token: token
+        },
+        success: function (result) {
+            return result;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            showPopUp('Problem getting DB attribute');
+            console.log(errorThrown);
+            console.log(jqXHR);
+            console.log(textStatus);
+            return;
         }
     });
 }
@@ -126,6 +157,7 @@ const ajaxAddComposer = (name, token) => {
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
+            return;
         }
     });
 }
@@ -148,10 +180,11 @@ const ajaxAddRepertoire = (name, com_id, ins_id, gen_id, token) => {
             return result;
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            showPopUp('problem adding repertoire');
+            showPopUp('problem with adding the repertoire');
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
+            return;
         }
     });
 }
@@ -174,10 +207,11 @@ const ajaxCheckRepertoire = (id, comId, insId, genId, token) => {
             return result;
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            showPopUp('problem with checking the repertoire');
+            showPopUp('problem with reading the repertoire');
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
+            return;
         }
     });
 }
@@ -199,10 +233,11 @@ const ajaxAddRepertoirePivot = (stuId, repId, token) => {
             return result;
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            showPopUp('You already have this repertoire on your list.');
+            showPopUp('Problem adding to Repertoire list');
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
+            return;
         }
     });
 }

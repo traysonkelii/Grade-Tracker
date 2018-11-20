@@ -5,7 +5,7 @@
         <p class="practice-header">Practice List</p>
         @foreach ($all as $rep)
             @if($rep->pivot->practice != 0)
-                <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}}</p>
+                <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}} - {{$rep->instrument->name}} - {{$rep->composer->name}} - {{$rep->genre->name}}</p>
                 <p class="practice-removeFromList" id="remove-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Remove from practice</p>
                {{-- remove from practice --}}
             @endif
@@ -35,9 +35,10 @@
     <div class="practice-allRepHolder">
         <p class="practice-header">All My Repertoires</p>
         @foreach ($all as $rep)
-            <p class="practice-all">{{$rep->name}}</p>
+            <p class="practice-all">{{$rep->name}} - {{$rep->instrument->name}} - {{$rep->composer->name}} - {{$rep->genre->name}}</p>
             @if($rep->pivot->practice == 0)
                 <p class="practice-addToList" id="add-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Add to practice</p>
+                <p class="practice-safeRemove" id="remove-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Remove from list</p>
             @endif
         @endforeach
     </div>

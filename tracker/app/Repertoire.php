@@ -47,13 +47,13 @@ class Repertoire extends Model
 
     public function readRepCheck($id, $com_id, $ins_id, $gen_id)
     {
-        $update = DB::table('repertoires')->select()
+        $update = DB::table('repertoires')->select('id')
         ->where('id', $id)
         ->where('composer_id', $com_id)
         ->where('instrument_id', $ins_id)
         ->where('genre_id', $gen_id)
         ->first();
-        return $update;
+        return response()->json($update);
     }
 
     static public function updateStatus($student_id, $repertoire_id, $type, $val)
