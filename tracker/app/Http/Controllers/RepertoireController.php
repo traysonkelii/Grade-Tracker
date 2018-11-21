@@ -48,4 +48,11 @@ class RepertoireController extends Controller
         $update = $this->repertoire->readRepCheck($id, $com_id, $ins_id, $gen_id);
         return response()->json($update);
     }
+
+    public function deletePivotEntry($id)
+    {
+        $update = $this->repertoire->deletePivotEntry($id);
+        return response()->json($update);
+    }
+
 }

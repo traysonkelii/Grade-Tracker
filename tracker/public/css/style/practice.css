@@ -102,14 +102,6 @@
   border-bottom: black 2px solid;
 }
 
-.practice-addToList:hover{
-  cursor: pointer;
-}
-
-.practice-removeFromList:hover{
-  cursor: pointer;
-}
-
 .practice-hidden{
   display: none;
 }
@@ -119,4 +111,98 @@
   top: 200px;
   left: 350px;
   display: none;
+}
+
+.practice-safeRemoveModal{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.practice-safeRemoveContent{
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 800px;
+  height: 400px;
+  display: grid;
+  grid-template-areas: 
+  "mc mc mc mc mc mc"
+  "mc mc mc mc mc mc"
+  "mc mc mc mc mc mc"
+  ". . yes no . .";
+  grid-gap: 10px;
+}
+
+.practice-safeContent{
+  grid-area: mc;
+  padding: 10px;
+
+}
+
+.practice-safeYes{
+  grid-area: yes;
+  padding: 10px;
+  width: 120px;
+  text-align: center;
+}
+
+.practice-safeNo{
+  grid-area: no;
+  padding: 10px;
+  width: 120px;
+  text-align: center;
+}
+
+.practice-safeClose {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-button {
+  padding: 10px;
+  font-size: 1.4em;
+  border-radius: 10px;
+  color: white;
+  background-color: #7f7f7f;
+}
+
+.modal-button:hover{
+  opacity: .8;
+  cursor: pointer;
+}
+
+.practice-safeRemove{
+  /* NEED TO MAKE BUTTON */
+}
+
+.practice-addToList{
+  /* NEED TO MAKE BUTTON */
+}
+
+.practice-removeFromLis{
+  /* NEED TO MAKE BUTTON */
+}
+
+.practice-safeRemove:hover{
+  cursor: pointer;
+}
+
+.practice-addToList:hover{
+  cursor: pointer;
+}
+
+.practice-removeFromList:hover{
+  cursor: pointer;
 }

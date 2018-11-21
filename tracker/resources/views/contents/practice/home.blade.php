@@ -38,8 +38,8 @@
             <p class="practice-all">{{$rep->name}} - {{$rep->instrument->name}} - {{$rep->composer->name}} - {{$rep->genre->name}}</p>
             @if($rep->pivot->practice == 0)
                 <p class="practice-addToList" id="add-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Add to practice</p>
-                <p class="practice-safeRemove" id="remove-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Remove from list</p>
             @endif
+            <p class="practice-safeRemove" id="delete-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Delete from repertoires</p>
         @endforeach
     </div>
     <div class="practice-addRep">
@@ -59,8 +59,28 @@
 
 <div id="practice-popup"></div>
 <div id="practice-loading-popup"><img src="{{ asset('images/loading1.gif') }}" alt=""></div>
+
+<div id="practice-removeModal" class="practice-safeRemoveModal">
+    <div class="practice-safeRemoveContent">
+        <div class="practice-safeContent">
+            <h1>YOU ARE ABOUT TO DELETE THIS REPERTOIRE AND ALL MUSIC
+                ATTRIBUTES TIED TO IT. PLEASE SELECT YES TO CONTINUE OR NO
+                TO CANCEL
+            </h1>
+        </div>
+        <div class="practice-safeYes">
+            <div id="practice-confirmYes" class="modal-button">YES</div>
+        </div>
+        <div class="practice-safeNo">
+            <div id="practice-confirmNo" class="modal-button">NO</div>
+        </div>
+    </div> 
+</div>
+
 {{-- this needs to be loaded on the view to leverage Laravel route  --}}
+<script src="{{ asset('/js/practice/practiceTracker.js') }}"></script>
 <script type="text/javascript">
+
     const comPath = "{{ route('comAuto') }}";
     const genPath = "{{ route('genAuto') }}";
     const repPath = "{{ route('repAuto') }}";
@@ -107,7 +127,6 @@
     });
     
 </script>
-<script src="{{ asset('/js/practice/practiceTracker.js') }}"></script>
 <script src="{{ asset('/js/practice/practiceListEdit.js') }}"></script>
 <script src="{{ asset('/js/practice/practiceRepSubmit.js') }}"></script>
 

@@ -29,6 +29,13 @@ class Repertoire extends Model
         return $this->belongsTo('App\Composer', 'composer_id');
     }
 
+    public function deletePivotEntry($id)
+    {
+        $update = DB::table('repertoire_student')->where('rep_stu_id', $id)
+        ->delete();
+        return $update;
+    }
+
     public function repCreate($name, $comId, $insId, $genId)
     {
         $update = DB::table('repertoires')->insertGetId(

@@ -35,6 +35,7 @@ Route::get('/repertoire/read/{rep_stu_id}/{type}', 'RepertoireController@read')-
 Route::post('/repertoire/createRep/{name}/{com_id}/{ins_id}/{gen_id}', 'RepertoireController@createRep')->name('something');
 Route::post('/repertoire/createPivot/{stu_id}/{rep_id}', 'RepertoireController@createPivot')->name('repCreatePivot');
 Route::get('/repertoire/readRepCheck/{id}/{com_id}/{ins_id}/{gen_id}', 'RepertoireController@readRepCheck')->name('repReadCheck');
+Route::post('/repertoire/deletePivotEntry/{id}', 'RepertoireController@deletePivotEntry')->name('deletePivotEntry');
 
 //routes for the instruments
 Route::get('/instrument/read/{id}/{column}/{val}', 'InstrumentController@read')->name('insRead');
