@@ -1,10 +1,5 @@
-# Grade-Tracker (WIP)
-The layout for the school of musics Repertoire grading system
 
-Installation
-
-
-# Music Tracker
+# Music Tracker (WIP)
 
 Tool which tracks BYU Music department's practice, repertoire, and jury data.
 
