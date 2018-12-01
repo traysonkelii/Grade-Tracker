@@ -55,3 +55,10 @@ Route::get('/autocomplete/genre', 'SearchController@genAutocomplete')->name('gen
 Route::get('/autocomplete/instrument', 'SearchController@insAutocomplete')->name('insAuto');
 Route::get('/search/getAttribute/{table}/{wanted}/{col}/{value}', 'SearchController@getWantedAttribute')->name('getAttribute');
 Route::get('/search/getRepId/{value}', 'SearchController@getRepertoireIds')->name('getRepIds');
+
+//jury form
+Route::get('/jury/form-builder', 'JuryController@formBuilder')->name('jury-form');
+
+//form builder
+Route::post('/form/readFormAttribute/{attribute}/{type}/{scope}', 'FormBuilderController@readFormAttribute')->name('formRead');
+Route::get('/form/createFormAttribute/{name}/{desc}/{type}/{scope}/{max}/{min}/{selections}', 'FormBuilderController@createFormAttribute')->name('formCreate');

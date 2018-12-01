@@ -58,7 +58,7 @@
 </div>
 
 <div id="practice-popup"></div>
-<div id="practice-loading-popup"><img src="{{ asset('images/loading1.gif') }}" alt=""></div>
+<div id="practice-loading-popup"><img src="{{ asset('images/loser-load.gif') }}" alt=""></div>
 
 <div id="practice-removeModal" class="practice-safeRemoveModal">
     <div class="practice-safeRemoveContent">

@@ -1,0 +1,68 @@
+.jury-form-holder{
+    text-align: center;
+}
+
+.jury-form{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 5px;
+    border: 2px solid black;
+    margin: 10px;
+    text-align: left;
+    grid-gap: 5px;
+}
+
+.jury-build-attribute{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.jury-build-attribute div{
+    text-align: center;
+}
+
+#form-adder{
+    width:130px;
+    background-color: #666666;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    transition: all .5s;
+    text-align: center;
+}
+
+#form-adder:hover{
+    transition: all .5s;
+    opacity: .8;
+    cursor: pointer;
+}
+
+#form-submit{
+    width:130px;
+    background-color: #666666;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    transition: all .5s;
+    text-align: center;
+}
+
+#form-submit:hover{
+    transition: all .5s;
+    opacity: .8;
+    cursor: pointer;
+}
+
+#form-token{
+    display: none;
+}
+
+.form-selection-adder{
+    cursor: pointer;
+    color:#0a1e5d;
+    font-size: 1.5em;
+}
+
+.form-selection-adder:hover{
+    opacity: .6;
+}

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset('css/style/repertoire.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/practice.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/layout.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style/jury-form.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/practice-popup.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 {{-- <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" /> --}}
