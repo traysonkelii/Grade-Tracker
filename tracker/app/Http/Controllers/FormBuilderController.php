@@ -30,4 +30,35 @@ class FormBuilderController extends Controller
         );
         return response()->json($data);
     }
+
+    public function createForm($name, $attributes) {
+        $data = DB::table('form')->insertGetId(
+            [
+                'name' => $name,
+                'attribute_array' => $attributes
+            ]
+        );
+        return response()->json($data);
+    }
+
+    public function viewForm($id) {
+        $data = [];
+        $form = DB::table('form')->where('id',$id)->get()->first();
+        $data['form'] = $form;
+        $data['edit'] = 0;
+        return view('/contents/jury/form-view', $data);
+    }
+
+    public function submitForm($id) {
+        $data = [];
+        $form = DB::table('form')->where('id',$id)->get()->first();
+        $data['form'] = $form;
+        $data['edit'] = 1;
+        return view('/contents/jury/form-view', $data);
+    }
+
+    public function getAttribute($id) {
+        $att = DB::table('attributes')->where('id', $id)->get()->first();
+        return response()->json($att);
+    }
 }

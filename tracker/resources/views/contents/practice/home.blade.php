@@ -7,7 +7,6 @@
             @if($rep->pivot->practice != 0)
                 <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}} - {{$rep->instrument->name}} - {{$rep->composer->name}} - {{$rep->genre->name}}</p>
                 <p class="practice-removeFromList" id="remove-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Remove from practice</p>
-               {{-- remove from practice --}}
             @endif
         @endforeach
     </div>

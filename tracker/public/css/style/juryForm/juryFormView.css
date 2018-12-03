@@ -1,0 +1,57 @@
+.formView-container{
+    display: grid;
+    grid-template-areas: 
+    "student"
+    "piece"
+    "whole";
+    text-align: center;
+}
+
+.formView-student{
+    grid-area: student;
+}
+
+.formView-piece{
+    grid-area: piece;
+    text-align: left;
+    padding: 17px;
+}
+
+.formView-whole{
+    grid-area: whole;
+    text-align: left;
+    padding: 17px;
+}
+
+#formView-info{
+    display: none;
+}
+
+.formLargeInput{
+    height: 200px;
+}
+
+.formDropDown{
+
+}
+
+.form-checkBox{
+
+}
+
+.form-rating-holder{
+
+}
+
+.form-rating-holder span{
+    padding: 10px;
+    opacity: .5;
+    transition: .7s all;
+    font-weight: bold;
+}
+
+.form-rating-holder span:hover{
+    cursor: pointer;
+   opacity: 1;
+   transition: .7s all;
+}

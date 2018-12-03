@@ -4,6 +4,7 @@ const adder = $('#form-adder');
 const submitter = $('#form-submit');
 const formHolder = $('.jury-build-holder');
 const token = $('#form-token');
+const formName = $('#form-name');
 const formArray = [];
 //implement remove
 
@@ -18,9 +19,20 @@ adder.click(() => {
 })
 
 submitter.click(async () => {
+    if (!formName[0].value || formName[0].value.length < 0){
+        alert("add proper name");
+        return;
+    }
     let fieldsHTML = document.getElementsByClassName('jury-build-attribute');
     let fieldsArray = Array.from(fieldsHTML);
-    let formIds = await fieldsArray.map(async (a) => {
+    let formIds = await getIds(fieldsArray);
+
+    ajaxCreateForm(formName[0].value, formIds, token.html());
+});
+
+
+const getIds = async (IdArray) => {
+    const promises = await IdArray.map(async (a) => {
         let htmlArray = Array.from(a.children);
 
         let name = htmlArray[0].children[1].value;
@@ -46,12 +58,10 @@ submitter.click(async () => {
         let min = htmlArray[6].children[1].value;
 
         let id = await ajaxReadOrCreateFormAttribute(name, desc, type, scope, max, min, select, max, min, token.html());
-        a = id;
-    })
-    // make AJAX call to store form array
-    // grab title
-
-});
+        return id;
+    });
+    return Promise.all(promises);
+}
 
 const getHTMLString = () => {
     let attributeHTMLString =
@@ -67,7 +77,7 @@ const getHTMLString = () => {
                     </div>
                     <div>
                         <p>Type</p>
-                        <select id="type-${count}">
+                        <select>
                             <option value="0">Drop Down</option>
                             <option value="1">Long Answer</option>
                             <option value="2">Check Box</option>
@@ -76,7 +86,7 @@ const getHTMLString = () => {
                     </div>
                     <div>
                         <p>Scope</p>
-                        <select id="select-${count}">
+                        <select>
                             <option value="0">Individual Piece</option>
                             <option value="1">Whole Performance</option>
                         </select>
@@ -105,7 +115,31 @@ const getHTMLString = () => {
     return attributeHTMLString
 }
 
+const ajaxCreateForm = async (name, attributes, token) => {
+    let stringAtt = JSON.stringify(attributes);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN':token
+        }
+    });
 
+    return $.ajax({
+        url: `/form/createForm/${name}/${stringAtt}`,
+        method: 'post',
+        data: {
+            _token: token
+        },
+        success: () => {
+            window.location.reload();
+        },
+        error: (jqXHR, textStatus, error) => {
+            console.log(error);
+            console.log(jqXHR);
+            console.log(textStatus);
+            return;
+        }
+    })
+}
 
 const ajaxReadOrCreateFormAttribute = async (name, desc, type, scope, max, min, selections, token) => {
     if (!desc)
@@ -116,9 +150,7 @@ const ajaxReadOrCreateFormAttribute = async (name, desc, type, scope, max, min, 
         max = 0;
     if (!min)
         min = 0;
-       
-        
-    console.log(name, desc, type, scope, selections, max, min);
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': token
@@ -131,20 +163,10 @@ const ajaxReadOrCreateFormAttribute = async (name, desc, type, scope, max, min, 
         data: {
             _token: token
         },
-        success: function (result) {
-            // if (result.length > 0){
-            //     if (opt === 'read')
-            //     {
-            //         formArray.push(result[0].id)
-            //     }
-            //     else{
-            //         formArray.push(result)
-            //     }
-            // }
-            console.log(result)
+        success: (result) => {
             return result;
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: (jqXHR, textStatus, errorThrown) => {
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);

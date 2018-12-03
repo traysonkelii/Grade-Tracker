@@ -1,5 +1,5 @@
 <byu-header>
-    <span slot="site-title">BYU Music Department</span>
+    <span slot="site-title">Music Department</span>
     <byu-search slot="search" action="https://www.google.com/#q=$1" method="get" placeholder="Search"></byu-search>
     <byu-user-info slot="user">
     <!-- TODO use BYU api to make the login work -->
