@@ -11,5 +11,6 @@
         <a href="{{ route('teacher') }}">Techer View</a>
         <a href="#">Student View</a>
         <a href="{{ route('jury-form')}}">Jury Form Builder</a>
+        <a href="{{ route('jury-assign')}}">Jury Assignments</a>
     </byu-menu>
 </byu-header>

@@ -13,13 +13,11 @@
 
 .formView-piece{
     grid-area: piece;
-    text-align: left;
     padding: 17px;
 }
 
 .formView-whole{
     grid-area: whole;
-    text-align: left;
     padding: 17px;
 }
 

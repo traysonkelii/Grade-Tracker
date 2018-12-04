@@ -5,7 +5,7 @@
 <div class="formView-container">
     <div class="formView-student">
         <h1>{{$form->name}} Jury Form</h1>
-        <h3>Student Name</h3>
+        <h3>Student Name and Info</h3>
     </div>
     <div class="formView-piece">
             <div class="form-piece-holder">

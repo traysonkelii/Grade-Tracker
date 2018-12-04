@@ -10,7 +10,7 @@
         <div class="view-row">
             <div><p> {{$rep->name}} </p></div>
             <div> <p>{{$rep->composer->name}} </p></div>
-            <div> <p>{{$rep->instrument->type}} </p></div>
+            <div> <p>{{$rep->instrument->name}} </p></div>
             @if ($rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury) == 'Submitted')
                 <div class="teacher-approve"> 
                     <div class="word-approve">

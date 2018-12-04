@@ -71,7 +71,7 @@ const doDropDown = (att) => {
     options.forEach(option => {
         myHTML += `<option>${option}</option>`
     });
-    myHTML += `</select>`;
+    myHTML += `</select><br>`;
     return myHTML;
 }
 

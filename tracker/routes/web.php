@@ -58,6 +58,7 @@ Route::get('/search/getRepId/{value}', 'SearchController@getRepertoireIds')->nam
 
 //jury form
 Route::get('/jury/form-builder', 'JuryController@formBuilder')->name('jury-form');
+Route::get('/jury/assign', 'JuryController@formAssign')->name('jury-assign');
 
 //form builder
 Route::get('/form/createFormAttribute/{name}/{desc}/{type}/{scope}/{max}/{min}/{selections}', 'FormBuilderController@createFormAttribute')->name('formCreateAttributes');

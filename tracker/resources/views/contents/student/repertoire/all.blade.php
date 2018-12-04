@@ -22,7 +22,7 @@
                         </p>    
                     </div>
                     <div>
-                        <p>{{$rep->instrument->type}}</p>
+                        <p>{{$rep->instrument->name}}</p>
                     </div>
                     <div>
                         <p>{{$rep->genre->name}}</p>
