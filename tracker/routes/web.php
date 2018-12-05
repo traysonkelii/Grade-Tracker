@@ -61,7 +61,7 @@ Route::get('/jury/form-builder', 'JuryController@formBuilder')->name('jury-form'
 Route::get('/jury/assign', 'JuryController@formAssign')->name('jury-assign');
 
 //form builder
-Route::get('/form/createFormAttribute/{name}/{desc}/{type}/{scope}/{max}/{min}/{selections}', 'FormBuilderController@createFormAttribute')->name('formCreateAttributes');
+Route::post('/form/createFormAttribute/{name}/{desc}/{type}/{scope}/{max}/{min}/{selections}', 'FormBuilderController@createFormAttribute')->name('formCreateAttributes');
 Route::post('/form/createForm/{name}/{attributes}', 'FormBuilderController@createForm')->name('formCreate');
 Route::get('/form/view/{form_id}', 'FormBuilderController@viewForm')->name('formView');
 Route::get('/form/getAttribute/{id}', 'FormBuilderController@getAttribute')->name('formGetAttribute');

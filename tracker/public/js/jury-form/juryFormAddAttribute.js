@@ -57,7 +57,7 @@ const getIds = async (IdArray) => {
 
         let min = htmlArray[6].children[1].value;
 
-        let id = await ajaxReadOrCreateFormAttribute(name, desc, type, scope, max, min, select, max, min, token.html());
+        let id = await ajaxCreateFormAttribute(name, desc, type, scope, max, min, select, max, min, token.html());
         return id;
     });
     return Promise.all(promises);
@@ -92,13 +92,13 @@ const getHTMLString = () => {
                         </select>
                     </div>
                     <div>
-                        <p>Select (for Drop Down)</p>
+                        <p>Select (for Rate)</p>
                         <div>
                             <div id="form-selection-adder-${count}">+</div>
                         </div>
                     </div>
                     <div>
-                        <p>Max (for Check Box)</p>
+                        <p>Max (for Rate)</p>
                         <input type="number">
                     </div>
                     <div>
@@ -141,7 +141,7 @@ const ajaxCreateForm = async (name, attributes, token) => {
     })
 }
 
-const ajaxReadOrCreateFormAttribute = async (name, desc, type, scope, max, min, selections, token) => {
+const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, selections, token) => {
     if (!desc)
         desc = "none";
     if (selections.length < 1)
@@ -159,7 +159,7 @@ const ajaxReadOrCreateFormAttribute = async (name, desc, type, scope, max, min, 
 
     return $.ajax({
         url: `/form/createFormAttribute/${name}/${desc}/${type}/${scope}/${max}/${min}/${selections}`,
-        method: 'get',
+        method: 'post',
         data: {
             _token: token
         },
@@ -167,6 +167,7 @@ const ajaxReadOrCreateFormAttribute = async (name, desc, type, scope, max, min, 
             return result;
         },
         error: (jqXHR, textStatus, errorThrown) => {
+            console.log("THIS IS NOT WORKING")
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);

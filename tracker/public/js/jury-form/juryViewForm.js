@@ -58,16 +58,15 @@ const addToDom = (attribute) => {
         default:
             break;
     }
-    console.log(attribute);
     return;
 }
 
 const doDropDown = (att) => {
     let myHTML = '';
-    myHTML += `<span>${att.name}</span> `;
+    myHTML += `<span>${att.name}</span><br>`;
+    myHTML = addDescription(att.description, myHTML);
     myHTML += `<select>`;
     let options = JSON.parse(att.selections);
-    console.log(options);
     options.forEach(option => {
         myHTML += `<option>${option}</option>`
     });
@@ -78,13 +77,15 @@ const doDropDown = (att) => {
 const doLongResponse = (att) => {
     let myHTML = '';
     myHTML += `<span>${att.name}</span><br>`;
+    myHTML = addDescription(att.description, myHTML);
     myHTML += `<textarea rows="5" cols="100"></textarea><br>`;
     return myHTML;
 }
 
 const doCheckBox = (att) => {
     let myHTML = '';
-    myHTML += `<span>${att.name}</span>`;
+    myHTML += `<span>${att.name}</span><br>`;
+    myHTML = addDescription(att.description, myHTML);
     myHTML += `<input type="checkbox"><br>`;
     return myHTML;
 }
@@ -92,9 +93,9 @@ const doCheckBox = (att) => {
 const doRating = (att) => {
     let myHTML = '';
     myHTML += `<span>${att.name}</span><br>`;
+    myHTML = addDescription(att.description, myHTML);
     myHTML += `<div class="form-rating-holder">`;
-    for (let i = att.min; i <= att.max; i++)
-    {
+    for (let i = att.min; i <= att.max; i++) {
         myHTML += `<span>${i}</span>`
     }
     myHTML += `</div><br>`;
@@ -103,7 +104,7 @@ const doRating = (att) => {
 
 const findAppend = (att, html) => {
     if (att.scope) {
-        whole.insertAdjacentHTML('beforebegin',html)
+        whole.insertAdjacentHTML('beforebegin', html)
     }
     else {
         pieceArray.forEach(element => {
@@ -112,5 +113,15 @@ const findAppend = (att, html) => {
     }
 }
 
+const addDescription = (desc, myHTML) => {
+    console.log(desc);
+    console.log(typeof(desc));
+    if (desc === 'none'){
+        return myHTML;
+    }
+    else{
+        return myHTML += `<span>${desc}</span><br>`;
+    }
+}
 
 buildView(formAttributes);
