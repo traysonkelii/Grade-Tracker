@@ -23,7 +23,9 @@ class StudentController extends Controller
 
     public function home($student_id, Request $request)
     {
-        return new StudentHomeResponse($student_id);
+        $status = $request->input('status');
+        $netid = $request->input('netid');
+        return new StudentHomeResponse($student_id, $status, $netid);
     }
 
 }

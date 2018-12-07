@@ -3,17 +3,12 @@
         <div class="view-row" id="control-row">
             <div>Title</div>
             <div>Composer</div>
-            <div>Instrument Type</div>
-            <div>Genre</div>
+            <div>Submit For Jury</div>
+            <div>Submit For Recital</div>
         </div>
             @foreach ($all as $rep)
                 <div class="view-row">
                     <div>
-                        @if($stat == 'student') 
-                            @if($rep->pivot->practice == '0')
-                                <p id="all-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="add-practice">Add to practice</p>
-                            @endif
-                        @endif
                         <p>{{$rep->name}} </p>
                     </div>
                     <div>
@@ -22,10 +17,16 @@
                         </p>    
                     </div>
                     <div>
-                        <p>{{$rep->instrument->name}}</p>
+                        <p> {{$rep->assignStatus($rep->pivot->jury)}} </p>
+                        @if (!$rep->pivot->jury)
+                            <p>submit</p>
+                        @endif
                     </div>
                     <div>
-                        <p>{{$rep->genre->name}}</p>
+                        <p>{{$rep->assignStatus($rep->pivot->recital)}}</p>
+                        @if (!$rep->pivot->recital)
+                            <p>submit</p>
+                        @endif  
                     </div>
                 </div>
         @endforeach

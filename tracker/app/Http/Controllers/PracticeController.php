@@ -19,7 +19,7 @@ class PracticeController extends Controller
         $this->practice->store($rep_stu_id, $start, $stop);
     }
 
-    public function home($student_id)
+    public function home(Request $request, $student_id)
     {
         return new PracticeHomeResponse($student_id);
     }

@@ -22,6 +22,13 @@ class PracticeHomeResponse implements Responsable
         $student = Student::find($this->student_id);
         $data['all'] = $student->repertoires;
         $data['student'] = $student;
+        if ($request->isMethod('post'))
+        {
+            $data['permissions'] = $request->input('permissions');
+        }
+        else {
+            $data['permissions'] = $student->permissions;
+        }
         return view('contents/practice/home', $data);
     }
 

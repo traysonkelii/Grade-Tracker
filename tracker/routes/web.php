@@ -11,19 +11,20 @@
 |
 */
 
-Route::get('/', 'ContentsController@home')->name('home');
-
+Route::get('/', 'ContentsController@login')->name('login');
+Route::post('/home', 'ContentsController@home')->name('home');
+Route::post('/landing', 'ContentsController@landing')->name('getLanding');
 //routes for the teacher view
 Route::get('/teacher', 'TeacherController@landing')->name('teacher');
 Route::get('/teacher/all-students', 'StudentController@index')->name('all_students');
 
 //routes for the student view
-Route::get('/student/{student_id}', 'StudentController@home')->name('student');
 Route::post('/student/{student_id}', 'StudentController@home')->name('student');
 Route::get('/student', 'StudentController@index');
 
 //routes for practice
 Route::get('/practice/{student_id}', 'PracticeController@home')->name('practice');
+Route::post('/practice/{student_id}', 'PracticeController@home')->name('practice');
 Route::post('/practice/add/{rep_stu_id}/{start}/{stop}', 'PracticeController@addPractice')->name('addPractice');
 Route::get('/practice/editList/{student_id}/{rep_stu_id}/{val}', 'PracticeController@editList')->name('editPracticeList');
 

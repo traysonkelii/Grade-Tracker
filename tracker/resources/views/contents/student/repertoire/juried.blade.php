@@ -12,7 +12,6 @@
                 <div><p>{{$rep->composer->name}}</p></div>
                 <div><p>{{$rep->instrument->name}} </p></div>
                 @if ($rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury) == 'Submitted')
-                @if($stat == "teacher")
                     <div class="teacher-approve"> 
                         <div class="word-approve">
                             <p> 
@@ -24,9 +23,7 @@
                             <img src="{{asset('images/reject.png')}}" class='reject' id='{{$rep->students->where('id',$student->id)->first()->pivot->rep_stu_id}}-jury-{{csrf_token()}}'>
                         </div>
                     </div>
-                    @else
                         <div> <p> {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}} </p></div>
-                    @endif
                 @else
                     <div> <p> {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}} </p></div>
                 @endif

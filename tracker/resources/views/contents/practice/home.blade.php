@@ -11,7 +11,7 @@
         @endforeach
     </div>
     <div class="practice-graph">
-        GRAPH INFO
+        <p>Status: {{$permissions}}</p>    
     </div>
     <div class="practice-tracker practice-nonUse">
         <span id="practice-selected" class="hidden"></span>

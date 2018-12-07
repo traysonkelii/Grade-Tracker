@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div>
     <h3>Students</h3>

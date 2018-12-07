@@ -11,19 +11,15 @@ class StudentHomeResponse implements Responsable
 
     protected $student_id;
 
-    public function __construct($student_id)
+    public function __construct($student_id, $status)
     {
         $this->student_id = $student_id;
+        $this->status = $status;
     }
 
     public function toResponse($request)
     {
         $data = [];
-        if ($request->isMethod("post")) {
-            $data['stat'] = 'teacher';
-        } else {
-            $data['stat'] = 'student';
-        }
 
         $student = Student::find($this->student_id);
         $data['all'] = $student->repertoires;
@@ -31,6 +27,8 @@ class StudentHomeResponse implements Responsable
         $data['recital'] = $this->getTypeRepertoires($student->repertoires, $student->id, 'recital');
         $data['unsubmitted'] = $this->getUnsubmitted($student->repertoires, $student->id);
         $data['student'] = $student;
+        $data['permissions'] = $this->status;
+
         return view('contents/student/home', $data);
     }
 

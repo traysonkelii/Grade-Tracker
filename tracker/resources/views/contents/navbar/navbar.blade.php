@@ -8,8 +8,7 @@
     </byu-user-info>
     <!-- TODO make a javascript file that adds the class active "after" a click -->
     <byu-menu slot="nav" class="transparent">
-        <a href="{{ route('teacher') }}">Techer View</a>
-        <a href="#">Student View</a>
+        <a href="/">Login</a>
         <a href="{{ route('jury-form')}}">Jury Form Builder</a>
         <a href="{{ route('jury-assign')}}">Jury Assignments</a>
     </byu-menu>

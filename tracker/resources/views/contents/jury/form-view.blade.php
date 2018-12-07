@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <p id="formView-info">{{$form->attribute_array}}-{{csrf_token()}}</p>
 <div class="formView-container">

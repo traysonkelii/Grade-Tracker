@@ -1,0 +1,86 @@
+.student-home-container{
+    display: grid;
+    grid-template-areas: 
+    "profile rep rep"
+    " practice jury recital";
+}
+
+.student-home-container > div{
+    margin: 10px;
+    text-align: center;
+}
+
+/* DEALS WITH STUDENT PROFILE IMAGE */
+.student-profile{
+    grid-area: profile;
+    text-align: center;
+    max-height: 500px;
+}
+
+.student-img-holder{
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #0a1e5d;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.student-img-holder img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* DEALS WITH STUDENT REPERTOIRES */
+.student-repertoire{
+    grid-area: rep;
+    max-height: 500px;
+}
+
+.student-repertoire-list-holder{
+    overflow: scroll;
+    max-height: 300px;
+}
+
+.student-repertoire-list-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    background-color: white;
+}
+
+.student-repertoire-column-headers{
+    display: grid;
+    background-color: #0a1e5d;
+    color: white;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+/* DEALS WITH STUDENT PRACTICE */
+.student-practice{
+    grid-area: practice;
+    background-color: grey;
+}
+
+.student-jury{
+    grid-area: jury;
+    background-color: grey;
+}
+
+.student-recital{
+    grid-area: recital;
+    background-color: grey;
+}
+
+
+.student-bottom-panels{
+    height: 450px;
+}
+
+.student-panel-headers{
+    background-color: #0a1e5d;
+    color: white;
+    padding: 20px;
+}

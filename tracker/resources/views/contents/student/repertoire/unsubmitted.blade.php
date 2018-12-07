@@ -12,19 +12,29 @@
             <div> <p>{{$rep->composer->name}} </p></div>
             <div> <p>{{$rep->instrument->name}} </p></div>
             @if ($rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury) == 'Submitted')
-                <div class="teacher-approve"> 
-                    <div class="word-approve">
+                @if ($status)
+                    <div class="teacher-approve"> 
+                        <div class="word-approve">
                             <p> 
                                 {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}}
                             </p>
-                    </div>
-                    <div class="icon-holder">
-                    <img src="{{asset('images/approve.png')}}" class='accept' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>    
+                        </div>
+                        <div class="icon-holder">
+                            <img src="{{asset('images/approve.png')}}" class='accept' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>    
                             <img src="{{asset('images/reject.png')}}" class='reject' name='{{$student->id}} jury {{$rep->id}} {{csrf_token()}}'>
+                        </div>
                     </div>
-                </div>
+                @endif
             @else
-                <div> <p> {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}} </p></div>
+                <div> 
+                    <p> {{$rep->assignStatus($rep->students->where('id',$student->id)->first()->pivot->jury)}} </p>
+                    @if (!$permissions)
+                        <p>
+                            <span>Jury</span>
+                            <span>Recital</span>
+                        </p>
+                    @endif
+                </div>
             @endif
         </div>
 @endforeach
