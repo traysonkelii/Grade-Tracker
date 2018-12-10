@@ -19,7 +19,7 @@ adder.click(() => {
 })
 
 submitter.click(async () => {
-    if (!formName[0].value || formName[0].value.length < 0){
+    if (!formName[0].value || formName[0].value.length < 0) {
         alert("add proper name");
         return;
     }
@@ -57,7 +57,11 @@ const getIds = async (IdArray) => {
 
         let min = htmlArray[6].children[1].value;
 
-        let id = await ajaxCreateFormAttribute(name, desc, type, scope, max, min, select, max, min, token.html());
+        let personHTML = htmlArray[7].children[1].value;
+        let personArray = personHTML.split(' ');
+        person = personArray[0];
+
+        let id = await ajaxCreateFormAttribute(name, desc, type, scope, max, min, select, person, token.html());
         return id;
     });
     return Promise.all(promises);
@@ -106,8 +110,11 @@ const getHTMLString = () => {
                         <input type="number">
                     </div>
                     <div>
-                        <p>Remove</p>
-                        X
+                        <p>Person</p>
+                        <select>
+                            <option value="0">Student</option>
+                            <option value="1">Jury</option>
+                        </select>
                     </div>
                 </div>
         `;
@@ -119,7 +126,7 @@ const ajaxCreateForm = async (name, attributes, token) => {
     let stringAtt = JSON.stringify(attributes);
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN':token
+            'X-CSRF-TOKEN': token
         }
     });
 
@@ -141,7 +148,8 @@ const ajaxCreateForm = async (name, attributes, token) => {
     })
 }
 
-const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, selections, token) => {
+const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, selections, person, token) => {
+
     if (!desc)
         desc = "none";
     if (selections.length < 1)
@@ -158,7 +166,7 @@ const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, select
     });
 
     return $.ajax({
-        url: `/form/createFormAttribute/${name}/${desc}/${type}/${scope}/${max}/${min}/${selections}`,
+        url: `/form/createFormAttribute/${name}/${desc}/${type}/${scope}/${max}/${min}/${selections}/${person}`,
         method: 'post',
         data: {
             _token: token

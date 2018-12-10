@@ -2,15 +2,30 @@
 @section('content')
 <div class="practice-holder">
     <div class="practice-list">
-        <p class="practice-header">Practice List</p>
-        @foreach ($all as $rep)
-            @if($rep->pivot->practice != 0)
-                <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}} - {{$rep->instrument->name}} - {{$rep->composer->name}} - {{$rep->genre->name}}</p>
-                <p class="practice-removeFromList" id="remove-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Remove from practice</p>
-            @endif
-        @endforeach
+        <h3>Practice List</h3>
+        <div class="repertoire-column-headers">
+                <p>Title</p>
+                <p>Composer</p>
+                <p>Jury</p>
+                <p>Recital</p>
+                <p>Remove</p>
+        </div>
+        <div class="repertoire-list-holder">
+            @foreach ($all as $rep)
+                @if($rep->pivot->practice != 0)
+                    <div class="repertoire-list-row">
+                        <p id="{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}" class="practice-entry">{{$rep->name}} </p>
+                        <p>{{$rep->composer->name}}</p>
+                        <p>{{$rep->assignStatus($rep->pivot->jury)}}</p>
+                        <p>{{$rep->assignStatus($rep->pivot->recital)}}</p>
+                        <span><img src="{{asset('images/reject.png')}}" alt="" class="practice-removeFromList" id="remove-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}"></span>
+                    </div>
+                @endif
+            @endforeach
+        </div>
     </div>
     <div class="practice-graph">
+        <h3>Practice Data</h3>
         <p>Status: {{$permissions}}</p>    
     </div>
     <div class="practice-tracker practice-nonUse">
@@ -32,14 +47,30 @@
         </div>
     </div>
     <div class="practice-allRepHolder">
-        <p class="practice-header">All My Repertoires</p>
-        @foreach ($all as $rep)
-            <p class="practice-all">{{$rep->name}} - {{$rep->instrument->name}} - {{$rep->composer->name}} - {{$rep->genre->name}}</p>
-            @if($rep->pivot->practice == 0)
-                <p class="practice-addToList" id="add-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Add to practice</p>
-            @endif
-            <p class="practice-safeRemove" id="delete-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">Delete from repertoires</p>
-        @endforeach
+            <h3>Repertoire List</h3>
+            <div class="repertoire-column-headers">
+                    <p>Title</p>
+                    <p>Composer</p>
+                    <p>Jury</p>
+                    <p>Recital</p>
+                    <p>Add</p>
+            </div>
+            <div class="repertoire-list-holder">
+                @foreach ($all as $rep)
+                    <div class="repertoire-list-row">
+                        <img src="{{asset('images/red.png')}}" alt="" class="permanent-remove practice-safeRemove" id="delete-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}">
+                        <p>{{$rep->name}} </p>
+                        <p>{{$rep->composer->name}}</p>
+                        <p>{{$rep->assignStatus($rep->pivot->jury)}}</p>
+                        <p>{{$rep->assignStatus($rep->pivot->recital)}}</p>
+                        @if ($rep->pivot->practice == 0)
+                            <span><img src="{{asset('images/approve.png')}}" alt="" class="practice-addToList" id="add-{{$rep->pivot->rep_stu_id}}-{{csrf_token()}}"></span>
+                        @else 
+                            <p>Already Added</p>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
     </div>
     <div class="practice-addRep">
         <p>Add a Repertoire</p>

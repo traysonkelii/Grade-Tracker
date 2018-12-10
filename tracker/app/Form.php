@@ -7,7 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class Form extends Model
 {
-    public static function readAll(){
-        return DB::table('form')->select()->get();
+
+    public function performance()
+    {
+        return $this->hasMany('App\Performance', 'form_id');
+    }
+
+    public static function readAll()
+    {
+        return DB::table('forms')->select()->get();
     }
 }

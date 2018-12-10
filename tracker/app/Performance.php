@@ -11,4 +11,9 @@ class Performance extends Model
     {
         return $this->belongsTo('App\Student', 'student_id');
     }
+
+    public function form()
+    {
+        return $this->belongsTo('App\Form', 'form_id');
+    }
 }

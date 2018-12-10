@@ -1,43 +1,85 @@
+/* GLOBALS */
+.repertoire-list-holder{
+  overflow: scroll;
+  max-height: 400px;
+}
+
+.repertoire-list-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  background-color: white;
+  position: relative;
+}
+
+.permanent-remove{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  max-width: 10px;
+  opacity: .5;
+  transition: .5s all;
+}
+
+.permanent-remove:hover{
+  opacity: 1;
+  cursor: pointer;
+  transition: .5s all;
+}
+
+.repertoire-column-headers{
+  display: grid;
+  background-color: #0a1e5d;
+  color: white;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+span img{
+  max-width: 20px;
+  margin: 0;
+}
+
 .practice-holder{
-    width: 100%;
-    background-color: #0a1e5c;
+    max-width: 100%;
+    /* background-color: #0a1e5c; */
     display: grid;
     grid-template-areas: 
     "p-list p-graph"
     "p-list p-tracker"
-    " . . "
     "allrep allrep"
     "addrep .";
-    grid-gap: 5px;
-    padding: 5px;
+    grid-gap: 10px;
+    padding: 10px;
 }
 
+/* PRACTICE LIST  */
 .practice-list{
-    background-color: #dfdfdf;
     grid-area: p-list;
+    text-align: center;
 }
 
+.practice-entry{
+  color: black;
+  padding: 5px;
+  margin: 0;
+  transition: .5s all;
+}
+
+.practice-entry:hover{
+  cursor: pointer;
+}
+
+/* PRACTICE GRAPH */
 .practice-graph{
-    background-color: #dfdfdf;
     grid-area: p-graph;
+    text-align: center;
 }
 
+/* STOP WATCH HOLDER */
 .practice-tracker{
-    background-color: #dfdfdf;
     grid-area: p-tracker;
 }
-
-.practice-allRepHolder{
-  grid-area: allrep;
-  background-color: #dfdfdf;
-  overflow-y: scroll;
-}
-
-.practice-addRep{
-  grid-area: addrep;
-  background-color: #dfdfdf;
-}
-
 
 .practice-stopWatchHolder{
   display: grid;
@@ -82,16 +124,20 @@
   opacity: .5;
 }
 
-.practice-entry{
-  color: black;
-  padding: 5px;
-  margin: 0;
-  transition: .5s all;
+/* ALL REP HOLDER */
+.practice-allRepHolder{
+  grid-area: allrep;
+  text-align: center;
+  max-height: 500px;
 }
 
-.practice-entry:hover{
-  cursor: pointer;
+
+/* ADD REPERTOIRE HOLDER */
+.practice-addRep{
+  grid-area: addrep;
+  background-color: #dfdfdf;
 }
+
 
 .practice-header{
   background-color: #7f7f7f;
@@ -106,6 +152,7 @@
   display: none;
 }
 
+/* POP UP */
 #practice-loading-popup{
   position: absolute;
   top: 200px;

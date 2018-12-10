@@ -26,6 +26,10 @@ class Student extends Model
         return $this->belongsTo('App\Major', 'major_id');
     }
 
+    public function performance()
+    {
+        return $this->hasMany('App\Performance', 'student_id');
+    }
     
     static public function updateStatus($student_id, $repertoire_id, $type, $val)
     {

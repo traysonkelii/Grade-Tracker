@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="{{ asset('css/style/practice-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/juryForm/juryFormView.css')}}">
 <link rel="stylesheet" href="{{ asset('css/style/student/student-home.css')}}">
+<link rel="stylesheet" href="{{ asset('css/style/juryform/juryAssign.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 {{-- <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" /> --}}
 <link rel="stylesheet" href="https://cdn.byu.edu/byu-theme-components/latest/byu-theme-components.min.css" />

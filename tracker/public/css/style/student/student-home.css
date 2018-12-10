@@ -2,7 +2,9 @@
     display: grid;
     grid-template-areas: 
     "profile rep rep"
-    " practice jury recital";
+    "controls rep rep";
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .student-home-container > div{
@@ -35,12 +37,12 @@
 /* DEALS WITH STUDENT REPERTOIRES */
 .student-repertoire{
     grid-area: rep;
-    max-height: 500px;
+    max-height: 650px;
 }
 
 .student-repertoire-list-holder{
     overflow: scroll;
-    max-height: 300px;
+    max-height: 600px;
 }
 
 .student-repertoire-list-row{
@@ -58,29 +60,22 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-/* DEALS WITH STUDENT PRACTICE */
-.student-practice{
-    grid-area: practice;
-    background-color: grey;
-}
-
-.student-jury{
-    grid-area: jury;
-    background-color: grey;
-}
-
-.student-recital{
-    grid-area: recital;
-    background-color: grey;
-}
-
-
-.student-bottom-panels{
-    height: 450px;
+/* DEALS WITH STUDENT CONTROLS*/
+.student-controls{
+    grid-area: controls;
 }
 
 .student-panel-headers{
     background-color: #0a1e5d;
     color: white;
-    padding: 20px;
+    padding: 10px;
+    margin: 5px;
+    transition: .7s all;
+}
+
+.student-panel-headers:hover{
+    text-decoration: none;
+    opacity: .8;
+    transition: .7s all;
+    cursor: pointer;
 }

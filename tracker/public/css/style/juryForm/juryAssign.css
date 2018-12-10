@@ -1,0 +1,39 @@
+.assign-form-holder{
+    display: grid;
+    grid-template-areas:
+    "assignForm"
+    "assignStudent" 
+    "assignJury";
+    grid-gap: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.assign-student-holder{
+    grid-area: assignStudent;
+}
+
+.assign-forms-holder{
+    grid-area: assignForm;
+}
+
+.assign-jury-holder{
+    grid-area: assignJury;
+}
+
+.assign-row-holder{
+    padding: 8px;
+    border-top: 1px grey solid;
+    border-bottom: 1px grey solid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    padding-left: 10px;
+}
+
+.assign-header{
+    background-color: #0a1e5d;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-left: 10px;
+}

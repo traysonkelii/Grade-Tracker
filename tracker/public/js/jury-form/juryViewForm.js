@@ -6,8 +6,8 @@ let pieceArray = Array.from(Array.from(document.getElementsByClassName('form-pie
 let whole = document.getElementsByClassName('form-whole')[0];
 
 const buildView = async (attributes) => {
-    attributes.forEach(a => {
-        ajaxGetAttribute(a, token);
+    attributes.forEach(async(a) => {
+        await ajaxGetAttribute(a, token);
     });
 };
 

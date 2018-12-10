@@ -37,22 +37,19 @@
                 @endforeach
             </div>
         </div>
-        <div class="student-practice student-bottom-panels">
+        <div class="student-controls">
+            <a href="{{route('practice', ['student_id' => $student->id])}}" style="text-decoration:none">
+                <div class="student-panel-headers">
+                    <h3>Practice</h3>
+                </div>  
+            </a>
             <div class="student-panel-headers">
-                <h3>Practice</h3>
+                <h3>Jury</h3>
+            </div>  
+            <div class="student-panel-headers">
+                <h3>Recital</h3>
             </div>   
         </div>
-        <div class="student-jury student-bottom-panels">
-                <div class="student-panel-headers">
-                    <h3>Recital</h3>
-                </div>  
-        </div>
-        <div class="student-recital student-bottom-panels">
-                <div class="student-panel-headers">
-                    <h3>Repertoire</h3>
-                </div>  
-        </div>
     </div>
-        <a href="{{route('practice', ['student_id' => $student->id])}}">Practice</a>
 
 @endsection

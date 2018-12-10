@@ -16,7 +16,7 @@ class FormBuilderController extends Controller
         return response()->json($data);
     }
 
-    public function createFormAttribute($name, $desc, $type, $scope, $max, $min, $selections) {
+    public function createFormAttribute($name, $desc, $type, $scope, $max, $min, $selections, $person) {
         $data = DB::table('attributes')->insertGetId(
             [
                 'name' => $name,
@@ -25,14 +25,15 @@ class FormBuilderController extends Controller
                 'scope' => $scope,
                 'max' => $max,
                 'min' => $min,
-                'selections' => $selections
+                'selections' => $selections,
+                'person' => $person,
             ]
         );
         return response()->json($data);
     }
 
     public function createForm($name, $attributes) {
-        $data = DB::table('form')->insertGetId(
+        $data = DB::table('forms')->insertGetId(
             [
                 'name' => $name,
                 'attribute_array' => $attributes
@@ -43,7 +44,7 @@ class FormBuilderController extends Controller
 
     public function viewForm($id) {
         $data = [];
-        $form = DB::table('form')->where('id',$id)->get()->first();
+        $form = DB::table('forms')->where('id',$id)->get()->first();
         $data['form'] = $form;
         $data['edit'] = 0;
         return view('/contents/jury/form-view', $data);
@@ -51,7 +52,7 @@ class FormBuilderController extends Controller
 
     public function submitForm($id) {
         $data = [];
-        $form = DB::table('form')->where('id',$id)->get()->first();
+        $form = DB::table('forms')->where('id',$id)->get()->first();
         $data['form'] = $form;
         $data['edit'] = 1;
         return view('/contents/jury/form-view', $data);
