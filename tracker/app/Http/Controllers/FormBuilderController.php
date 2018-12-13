@@ -16,29 +16,32 @@ class FormBuilderController extends Controller
         return response()->json($data);
     }
 
-    public function createFormAttribute($name, $desc, $type, $scope, $max, $min, $selections, $person) {
+    public function createFormAttribute(Request $request) {
         $data = DB::table('attributes')->insertGetId(
             [
-                'name' => $name,
-                'description' => $desc,
-                'type' => $type,
-                'scope' => $scope,
-                'max' => $max,
-                'min' => $min,
-                'selections' => $selections,
-                'person' => $person,
+                'name' => $request->name,
+                'description' => $request->desc,
+                'type' => $request->type,
+                'scope' => $request->scope,
+                'max' => $request->max,
+                'min' => $request->min,
+                'selections' => $request->selections,
+                'person' => $request->person,
             ]
         );
         return response()->json($data);
     }
 
-    public function createForm($name, $attributes) {
-        $data = DB::table('forms')->insertGetId(
+    public function createForm(Request $request) {
+        $data = [];
+        $data['form_id'] = DB::table('forms')->insertGetId(
             [
-                'name' => $name,
-                'attribute_array' => $attributes
+                'name' => $request->name,
+                'attribute_array' => $request->att,
+                'department_id' => $request->dept,
             ]
         );
+        $data['department_id'] = $request->dept;
         return response()->json($data);
     }
 

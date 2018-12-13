@@ -15,6 +15,12 @@ class TeacherController extends Controller
         $this->teacher = $teacher;
     }
 
+    public function getTeacherByDeptNum($num)
+    {
+        $teachers = Teacher::select('id')->where('department_id',$num)->get();
+        return response()->json($teachers);
+    }
+
     // we will need a net id of teacher for the teacher landing page
     public function landing()
     {

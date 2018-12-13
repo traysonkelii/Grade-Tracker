@@ -8,6 +8,7 @@
                 <option value="{{$form->id}}">{{$form->name}}</option>
             @endforeach
         </select>
+        <p id="performanceSubmit">submit</p>
     </div>
     <div class="assign-student-holder">
         <h3>Students</h3>
@@ -46,4 +47,5 @@
         @endforeach
     </div>
 </div>
+<script src="{{ asset('/js/performance/ajaxPerformanceAddStudent.js') }}"></script>
 @endsection

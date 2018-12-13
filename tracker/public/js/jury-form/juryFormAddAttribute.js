@@ -6,8 +6,6 @@ const formHolder = $('.jury-build-holder');
 const token = $('#form-token');
 const formName = $('#form-name');
 const formArray = [];
-//implement remove
-
 
 adder.click(() => {
     const newHTML = getHTMLString();
@@ -25,9 +23,10 @@ submitter.click(async () => {
     }
     let fieldsHTML = document.getElementsByClassName('jury-build-attribute');
     let fieldsArray = Array.from(fieldsHTML);
+    let dept = document.getElementById('jury-form-department').value;
     let formIds = await getIds(fieldsArray);
 
-    ajaxCreateForm(formName[0].value, formIds, token.html());
+    ajaxCreateForm(formName[0].value, formIds, dept, token.html());
 });
 
 
@@ -122,8 +121,8 @@ const getHTMLString = () => {
     return attributeHTMLString
 }
 
-const ajaxCreateForm = async (name, attributes, token) => {
-    let stringAtt = JSON.stringify(attributes);
+const ajaxCreateForm = async (name, attributes, dept, token) => {
+    let att = JSON.stringify(attributes);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': token
@@ -131,13 +130,18 @@ const ajaxCreateForm = async (name, attributes, token) => {
     });
 
     return $.ajax({
-        url: `/form/createForm/${name}/${stringAtt}`,
+        url: `/form/createForm`,
         method: 'post',
         data: {
-            _token: token
+            _token: token,
+            name,
+            att,
+            dept,
         },
-        success: () => {
-            window.location.reload();
+        success: (results) => {
+            addStudentsToForm(results);
+            //add this form to all the students
+            //window.location.reload();
         },
         error: (jqXHR, textStatus, error) => {
             console.log(error);
@@ -166,10 +170,18 @@ const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, select
     });
 
     return $.ajax({
-        url: `/form/createFormAttribute/${name}/${desc}/${type}/${scope}/${max}/${min}/${selections}/${person}`,
+        url: `/form/createFormAttribute`,
         method: 'post',
         data: {
-            _token: token
+            _token: token,
+            name,
+            desc,
+            type,
+            scope,
+            max,
+            min,
+            selections,
+            person,
         },
         success: (result) => {
             return result;
@@ -182,4 +194,71 @@ const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, select
             return;
         }
     });
+}
+
+
+const addStudentsToForm = async (data) => {
+    let jury = await ajaxGetPersonByDeptNum(data.department_id, 'teacher');
+    let student = await ajaxGetPersonByDeptNum(data.department_id, 'student');
+    let juryIds = JSON.stringify(Array.from(jury).map(j => j.id));
+    let studentIds = Array.from(student).map(s => s.id);
+    let form = data.form_id
+    studentIds.forEach(id => {
+        ajaxCreatePerformance(form, id, juryIds, token.html());
+    });
+}
+
+const ajaxGetPersonByDeptNum = async (num, person, token) => {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+
+    return $.ajax({
+        url: `/${person}/department/${num}`,
+        method: 'get',
+        data: {
+            _token: token,
+        },
+        success: (results) => {
+            console.log(results);
+        },
+        error: (jqXHR, textStatus, error) => {
+            console.log(error);
+            console.log(jqXHR);
+            console.log(textStatus);
+            return;
+        }
+    })
+}
+
+const ajaxCreatePerformance = async (form, student, jury, token) => {
+
+    console.log(form, student, jury, token);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+
+    return $.ajax({
+        url: `/performance/create`,
+        method: 'post',
+        data: {
+            _token: token,
+            form,
+            student,
+            jury,
+        },
+        success: (results) => {
+            console.log(results);
+        },
+        error: (jqXHR, textStatus, error) => {
+            console.log(error);
+            console.log(jqXHR);
+            console.log(textStatus);
+            return;
+        }
+    })
 }

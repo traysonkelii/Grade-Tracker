@@ -28,4 +28,10 @@ class StudentController extends Controller
         return new StudentHomeResponse($student_id, $status, $netid);
     }
 
+    public function getStudentByDeptNum($num)
+    {
+        $students = Student::select('id')->where('department_id', $num)->get();
+        return response()->json($students);
+    }
+
 }
