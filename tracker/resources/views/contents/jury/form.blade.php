@@ -3,7 +3,6 @@
 
     <div class="jury-form-holder">
         <h1>Form</h1>
-        <p>{{$welcome}}</p>
         <select name="" id="jury-form-department">
             @foreach ($department as $dept)
                 <option value="{{$dept->id}}">{{$dept->name}}</option>

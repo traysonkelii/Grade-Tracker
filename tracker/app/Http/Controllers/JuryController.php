@@ -14,7 +14,6 @@ class JuryController extends Controller
     public function formBuilder()
     {
         $data = [];
-        $data['welcome'] = 'Lets build this form';
         $data['forms'] = Form::readAll();
         $data['department'] = Department::get();
         return view('contents/jury/form', $data);

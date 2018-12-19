@@ -95,7 +95,7 @@ const getHTMLString = () => {
                         </select>
                     </div>
                     <div>
-                        <p>Select (for Rate)</p>
+                        <p>Select (for Drop)</p>
                         <div>
                             <div id="form-selection-adder-${count}">+</div>
                         </div>
@@ -105,7 +105,7 @@ const getHTMLString = () => {
                         <input type="number">
                     </div>
                     <div>
-                        <p>Min (for Check Box)</p>
+                        <p>Min (for Rate)</p>
                         <input type="number">
                     </div>
                     <div>

@@ -39,4 +39,12 @@ class Student extends Model
         ->update([$type => $val]);
         return $update;
     }
+
+    public function updateCol($id, $col, $val)
+    {
+        $update = DB::table('students')
+        ->where('id',$id )
+        ->update([$col => $val]);
+        return $update;
+    }
 }
