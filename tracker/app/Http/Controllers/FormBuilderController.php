@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Student;
+
 class FormBuilderController extends Controller
 {
     public function readFormAttribute($att, $type, $scope){
@@ -64,5 +66,12 @@ class FormBuilderController extends Controller
     public function getAttribute($id) {
         $att = DB::table('attributes')->where('id', $id)->get()->first();
         return response()->json($att);
+    }
+
+    public function studentFill($id) {
+        $data = [];
+        $student = Student::find($id);
+        $data['student'] = $student;
+        return view('/contents/forms/student-fill', $data); 
     }
 }

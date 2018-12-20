@@ -139,9 +139,7 @@ const ajaxCreateForm = async (name, attributes, dept, token) => {
             dept,
         },
         success: (results) => {
-            addStudentsToForm(results);
-            //add this form to all the students
-            //window.location.reload();
+            window.location.reload();
         },
         error: (jqXHR, textStatus, error) => {
             console.log(error);
@@ -187,78 +185,10 @@ const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, select
             return result;
         },
         error: (jqXHR, textStatus, errorThrown) => {
-            console.log("THIS IS NOT WORKING")
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);
             return;
         }
     });
-}
-
-
-const addStudentsToForm = async (data) => {
-    let jury = await ajaxGetPersonByDeptNum(data.department_id, 'teacher');
-    let student = await ajaxGetPersonByDeptNum(data.department_id, 'student');
-    let juryIds = JSON.stringify(Array.from(jury).map(j => j.id));
-    let studentIds = Array.from(student).map(s => s.id);
-    let form = data.form_id
-    studentIds.forEach(id => {
-        ajaxCreatePerformance(form, id, juryIds, token.html());
-    });
-}
-
-const ajaxGetPersonByDeptNum = async (num, person, token) => {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': token
-        }
-    });
-
-    return $.ajax({
-        url: `/${person}/department/${num}`,
-        method: 'get',
-        data: {
-            _token: token,
-        },
-        success: (results) => {
-            console.log(results);
-        },
-        error: (jqXHR, textStatus, error) => {
-            console.log(error);
-            console.log(jqXHR);
-            console.log(textStatus);
-            return;
-        }
-    })
-}
-
-const ajaxCreatePerformance = async (form, student, jury, token) => {
-
-    console.log(form, student, jury, token);
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': token
-        }
-    });
-
-    return $.ajax({
-        url: `/performance/create`,
-        method: 'post',
-        data: {
-            _token: token,
-            form,
-            student,
-            jury,
-        },
-        success: (results) => {
-            console.log(results);
-        },
-        error: (jqXHR, textStatus, error) => {
-            console.log(error);
-            console.log(jqXHR);
-            console.log(textStatus);
-            return;
-        }
-    })
 }

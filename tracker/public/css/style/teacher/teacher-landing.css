@@ -1,0 +1,94 @@
+.teacher-landing-holder{
+    display: grid;
+    grid-template-areas: 
+    "tl-top tl-top tl-top tl-top tl-top"
+    "tl-alert tl-list tl-list tl-list tl-list"
+    "tl-course tl-list tl-list tl-list tl-list"
+    "tl-quick tl-list tl-list tl-list tl-list"
+    ". . . . .";
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+
+.teacher-landing-top{
+    grid-area: tl-top;
+    background-color: #5584ca;
+}
+
+.teacher-landing-list{
+    grid-area: tl-list;
+}
+
+.teacher-landing-alert{
+    grid-area: tl-alert;
+}
+
+.teacher-landing-alert-header{
+    color: white;
+    background-color: #d3524e;
+    padding: 5px;
+}
+
+
+.teacher-landing-course{
+    grid-area: tl-course;
+}
+
+.teacher-landing-quick{ 
+    grid-area: tl-quick;
+}
+
+.teacher-landing-pannels{
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.teacher-landing-left-header{
+    color: white;
+    background-color: #5584ca;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.teacher-landing-left-body{
+    border-right: #5584ca solid 1px;
+    border-left: #5584ca solid 1px;
+    border-bottom: #5584ca solid 1px;
+    padding: 5px;
+    overflow: scroll;
+}
+
+.teacher-landing-row{
+    border-top: solid lightgray 1px;
+    border-bottom: solid lightgray 1px;
+    transition: .5s ease all;
+}
+
+.teacher-landing-row:hover{
+    transition: .2s ease all;
+    background-color: #5584ca;
+    color: white;
+    cursor: pointer;
+}
+
+.teacher-landing-student-row{
+    border-top: solid lightgray 1px;
+    border-bottom: solid lightgray 1px;
+    transition: .5s ease all;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.teacher-landing-student-row:hover{
+    transition: .2s ease all;
+    background-color: #5584ca;
+    color: white;
+    cursor: pointer;
+}
+
+.teacher-landing-student-header{
+    border-bottom: solid lightgray 1px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

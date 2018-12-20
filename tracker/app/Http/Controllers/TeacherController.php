@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student as Student;
 use App\Teacher as Teacher;
+use Illuminate\Support\Facades\DB;
+
 
 class TeacherController extends Controller
 {
@@ -30,5 +32,17 @@ class TeacherController extends Controller
         $data['students'] = $students;
         $data['teacher'] = $teacher;
         return view('contents/teacher/teacher', $data);
+    }
+
+    public function filterCourse(Request $request)
+    {
+        $student_id = $request->studentId;
+        $course_id = $request->courseId;
+        $hasCourse = DB::table('course_student')
+        ->where('student_id', $student_id)
+        ->where('course_id', $course_id)
+        ->get()
+        ->first();
+        return response()->json($hasCourse);
     }
 }

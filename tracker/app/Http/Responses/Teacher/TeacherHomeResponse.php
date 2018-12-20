@@ -34,6 +34,7 @@ class TeacherHomeResponse implements Responsable
         $data['teacher'] = $teacher;
         $data['permissions'] = $teacher->permissions;
         $data['netid'] = $teacher->id;
+        $data['courses'] = $teacher->courses;
         return $data;
     }
 
@@ -48,10 +49,17 @@ class TeacherHomeResponse implements Responsable
             {
                 $student->updateCol($student->id, 'department_id', $teacher_dept);
             }
+
+            if (!$form)
+            {
+                return;
+            }
+
             $hasForm = Performance::select('id')
             ->where('student_id', $student->id)
             ->where('form_id', $form->id)
             ->first();
+            
             if (!$hasForm)
             {
                 Performance::createNew($form->id, $student->id);

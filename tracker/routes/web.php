@@ -28,6 +28,7 @@ Route::post('/form/createFormAttribute', 'FormBuilderController@createFormAttrib
 Route::post('/form/createForm', 'FormBuilderController@createForm')->name('formCreate');
 Route::get('/form/view/{form_id}', 'FormBuilderController@viewForm')->name('formView');
 Route::get('/form/getAttribute/{id}', 'FormBuilderController@getAttribute')->name('formGetAttribute');
+Route::get('/form/student/{student_id}', 'FormBuilderController@studentFill')->name('formStudentFill');
 
 //genre
 Route::get('/genre/read/{id}/{column}/{val}', 'RepertoireController@read')->name('genRead');
@@ -77,5 +78,5 @@ Route::get('/student/department/{num}', 'StudentController@getStudentByDeptNum')
 Route::get('/teacher', 'TeacherController@landing')->name('teacher');
 Route::get('/teacher/all-students', 'StudentController@index')->name('all_students');
 Route::get('/teacher/department/{num}', 'TeacherController@getTeacherByDeptNum')->name('teacherByDept');
-
+Route::post('/teacher/filterCourse', 'TeacherController@filterCourse')->name('teacherFilterCourse');
 

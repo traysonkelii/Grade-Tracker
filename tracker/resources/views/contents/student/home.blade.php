@@ -43,9 +43,11 @@
                     <h3>Practice</h3>
                 </div>  
             </a>
-            <div class="student-panel-headers">
-                <h3>Jury</h3>
-            </div>  
+            <a href="{{route('formStudentFill', ['student_id' => $student->id])}}" style="text-decoration:none">
+                <div class="student-panel-headers">
+                    <h3>Jury</h3>
+                </div>
+            </a>  
             <div class="student-panel-headers">
                 <h3>Recital</h3>
             </div>   
