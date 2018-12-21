@@ -24,7 +24,6 @@
                             {{ucfirst($student->first_name)}} {{ucfirst($student->last_name)}}
                     </a>
                     <p>April 2019</p>
-                    <p>{{ucfirst($student->departments->name)}}</p>
                 </div>
             </form>
         @endforeach

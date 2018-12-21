@@ -10,15 +10,10 @@ class Student extends Model
     //any table not using an incrementing key should have this set to false.
     public $incrementing = false;
 
-    public function departments()
-    {
-        return $this->belongsTo('App\Department', 'department_id');
-    }
-
     public function teachers()
     {
         return $this->belongsToMany('App\Teacher', 'student_teacher', 'student_id', 'teacher_id')
-        ->withPivot('instrument_id');
+        ->withPivot('instrument_id', 'department_id');
     }
 
     public function courses()

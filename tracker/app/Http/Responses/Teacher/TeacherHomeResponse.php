@@ -4,6 +4,8 @@ namespace App\Http\Responses\Teacher;
 
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
 use App\Teacher;
 use App\Form;
 use App\Performance;
@@ -43,28 +45,35 @@ class TeacherHomeResponse implements Responsable
         $students = $teacher->students;
         $teacher_dept = $teacher->department_id;
         $form = Form::select()->where('department_id', $teacher_dept)->first();
+        $pivot = DB::table('student_teacher')->get();
         foreach($students as $student)
         {
-            if ($student->department_id != $teacher_dept)
-            {
-                $student->updateCol($student->id, 'department_id', $teacher_dept);
-            }
-
-            if (!$form)
-            {
-                return;
-            }
-
-            $hasForm = Performance::select('id')
+            $realtionship = $pivot
             ->where('student_id', $student->id)
-            ->where('form_id', $form->id)
+            ->where('teacher_id', $teacher->id)
             ->first();
-            
-            if (!$hasForm)
+
+            if ($realtionship->department_id != $teacher_dept)
             {
-                Performance::createNew($form->id, $student->id);
+                DB::table('student_teacher')
+                ->where('student_id', $student->id)
+                ->where('teacher_id', $teacher->id)
+                ->update(['department_id' => $teacher_dept]);
+            }
+
+            if ($form)
+            {
+                $hasForm = Performance::select('id')
+                ->where('student_id', $student->id)
+                ->where('form_id', $form->id)
+                ->first();
+                
+                if (!$hasForm)
+                {
+                    Performance::createNew($form->id, $student->id);
+                }
             }
         }
     }
-
+ 
 }
