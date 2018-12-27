@@ -75,8 +75,7 @@ Route::get('/student', 'StudentController@index');
 Route::get('/student/department/{num}', 'StudentController@getStudentByDeptNum')->name('studentByDept');
 
 //teachers
-Route::get('/teacher', 'TeacherController@landing')->name('teacher');
-Route::get('/teacher/all-students', 'StudentController@index')->name('all_students');
 Route::get('/teacher/department/{num}', 'TeacherController@getTeacherByDeptNum')->name('teacherByDept');
 Route::post('/teacher/filterCourse', 'TeacherController@filterCourse')->name('teacherFilterCourse');
+Route::get('/teacher/jury/{teacher_id}', 'TeacherController@goToJury')->name('teacherGoToJury');
 

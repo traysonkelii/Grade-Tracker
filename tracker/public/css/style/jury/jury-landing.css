@@ -1,0 +1,76 @@
+.jury-landing-container{
+    display: grid;
+    grid-template-areas:
+    "jlt jlt jlt jlt jlt"
+    "jll jlr jlr jlr jlr"
+    "jll jlr jlr jlr jlr";
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.jury-landing-top{
+    background-color: #d3524e;
+    grid-area: jlt;
+}
+
+.jury-landing-left{
+    grid-area: jll;
+}
+
+.jury-landing-right{
+    grid-area: jlr;
+
+}
+
+.jury-landing-pannels{
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.jury-landing-left-header{
+    background-color: #d3524e;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.jury-landing-row{
+    border-top: solid lightgray 1px;
+    border-bottom: solid lightgray 1px;
+    transition: .5s ease all;
+}
+
+.jury-landing-row:hover{
+    transition: .2s ease all;
+    background-color: #d3524e;
+    color: white;
+    cursor: pointer;
+}
+
+.jury-landing-left-body{
+    border-right: #5584ca solid 1px;
+    border-left: #5584ca solid 1px;
+    border-bottom: #5584ca solid 1px;
+    padding: 5px;
+    overflow: scroll;
+}
+
+.jury-landing-student-row{
+    border-top: solid lightgray 1px;
+    border-bottom: solid lightgray 1px;
+    transition: .5s ease all;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.jury-landing-student-row:hover{
+    transition: .2s ease all;
+    background-color: #5584ca;
+    color: white;
+    cursor: pointer;
+}
+
+.jury-landing-student-header{
+    border-bottom: solid lightgray 1px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

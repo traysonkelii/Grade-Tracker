@@ -28,6 +28,7 @@
     color: white;
     background-color: #d3524e;
     padding: 5px;
+    padding-left: 15px;
 }
 
 
@@ -91,4 +92,17 @@
     border-bottom: solid lightgray 1px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#teacher-landing-jury-mode{
+    background-color: #d3524e;
+    color: white;
+    padding: 5px;
+    transition: .5s all;
+}
+
+#teacher-landing-jury-mode:hover{
+    cursor: pointer;
+    opacity: .5;
+    transition: .5s all;
 }

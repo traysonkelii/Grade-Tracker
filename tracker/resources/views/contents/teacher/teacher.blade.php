@@ -5,6 +5,9 @@
 
     <div class="teacher-landing-top teacher-landing-pannels">
         <h1>Professor {{ucfirst($teacher->first_name)}}'s Students</h1>
+        <a href="{{route('teacherGoToJury', ['teacher_id' => $teacher->id])}}" style="text-decoration:none">
+            <span id="teacher-landing-jury-mode" name="{{$teacher->id}}">Jury Mode</span>
+        </a>
     </div>
 
     <div class="teacher-landing-list teacher-landing-pannels">
@@ -19,10 +22,8 @@
                
                 @csrf    
                 <input type="hidden" name="permissions" value="{{$permissions}}" /> 
-                <div class="teacher-landing-student-row">
-                    <a onclick="document.getElementById('{{$student->id}}').submit();">
-                            {{ucfirst($student->first_name)}} {{ucfirst($student->last_name)}}
-                    </a>
+                <div class="teacher-landing-student-row" onclick="document.getElementById('{{$student->id}}').submit();">
+                    <p>{{ucfirst($student->first_name)}} {{ucfirst($student->last_name)}} </p>
                     <p>April 2019</p>
                 </div>
             </form>
@@ -78,5 +79,4 @@
 </div>
 
     <script src="{{ asset('/js/teacher/teacherCourseFilter.js') }}"></script>
-
 @endsection

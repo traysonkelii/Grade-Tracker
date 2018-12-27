@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{{ asset('css/style/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/font.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/img.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style/jury/jury-landing.css')}}">
 <link rel="stylesheet" href="{{ asset('css/style/juryform/juryAssign.css')}}">
 <link rel="stylesheet" href="{{ asset('css/style/juryForm/jury-form.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style/juryForm/juryFormView.css')}}">

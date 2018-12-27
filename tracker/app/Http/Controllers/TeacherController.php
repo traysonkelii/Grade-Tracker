@@ -23,15 +23,31 @@ class TeacherController extends Controller
         return response()->json($teachers);
     }
 
-    // we will need a net id of teacher for the teacher landing page
-    public function landing()
+
+    // public function landing()
+    // {
+    //     $data = [];
+    //     $teacher = $this->teacher->find('cbarker');
+    //     $students = $teacher->students;
+    //     $data['students'] = $students;
+    //     $data['teacher'] = $teacher;
+    //     return view('contents/teacher/teacher', $data);
+    // }
+
+
+    public function goToJury($teacher_id)
     {
         $data = [];
-        $teacher = $this->teacher->find('cbarker');
+        $teacher = $this->teacher->find($teacher_id);
         $students = $teacher->students;
-        $data['students'] = $students;
+        $instruments = DB::table('instruments')
+        ->select('name')
+        ->where('department_id', $teacher->department_id)
+        ->get();
         $data['teacher'] = $teacher;
-        return view('contents/teacher/teacher', $data);
+        $data['students'] = $students;
+        $data['instruments'] = $instruments;
+        return view('contents/jury/landing', $data);
     }
 
     public function filterCourse(Request $request)
