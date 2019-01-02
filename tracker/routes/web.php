@@ -76,6 +76,5 @@ Route::get('/student/department/{num}', 'StudentController@getStudentByDeptNum')
 
 //teachers
 Route::get('/teacher/department/{num}', 'TeacherController@getTeacherByDeptNum')->name('teacherByDept');
-Route::post('/teacher/filterCourse', 'TeacherController@filterCourse')->name('teacherFilterCourse');
 Route::get('/teacher/jury/{teacher_id}', 'TeacherController@goToJury')->name('teacherGoToJury');
 

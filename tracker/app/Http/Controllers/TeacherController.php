@@ -49,16 +49,4 @@ class TeacherController extends Controller
         $data['instruments'] = $instruments;
         return view('contents/jury/landing', $data);
     }
-
-    public function filterCourse(Request $request)
-    {
-        $student_id = $request->studentId;
-        $course_id = $request->courseId;
-        $hasCourse = DB::table('course_student')
-        ->where('student_id', $student_id)
-        ->where('course_id', $course_id)
-        ->get()
-        ->first();
-        return response()->json($hasCourse);
-    }
 }

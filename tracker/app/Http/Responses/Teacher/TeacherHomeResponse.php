@@ -48,8 +48,7 @@ class TeacherHomeResponse implements Responsable
         $pivot = DB::table('student_teacher')->get();
         foreach($students as $student)
         {
-            $realtionship = $pivot
-            ->where('student_id', $student->id)
+            $realtionship = $pivot->where('student_id', $student->id)
             ->where('teacher_id', $teacher->id)
             ->first();
 

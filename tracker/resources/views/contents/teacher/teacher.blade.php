@@ -25,6 +25,12 @@
                 <div class="teacher-landing-student-row" onclick="document.getElementById('{{$student->id}}').submit();">
                     <p>{{ucfirst($student->first_name)}} {{ucfirst($student->last_name)}} </p>
                     <p>April 2019</p>
+                    <p>Test</p>
+                </div>
+                <div class="teacher-landing-student-courses">
+                    @foreach ($student->courses as $course)
+                        <p>{{$course->name}}</p>
+                    @endforeach
                 </div>
             </form>
         @endforeach
@@ -52,10 +58,9 @@
                 <p id="teacher-show-all">All Students</p>
             </div>
             <div id="teacher-course-holder">
-                <p id="teacher-token" style="display:none">{{ csrf_token() }}</p>
                 @foreach ($courses as $course)
                 <div class="teacher-landing-row">
-                    <p id="{{$course->id}}">{{str_replace('_',' ',$course->name)}}</p>
+                    <p id="{{$course->name}}">{{str_replace('_',' ',$course->name)}}</p>
                 </div>
                 @endforeach
             </div>
