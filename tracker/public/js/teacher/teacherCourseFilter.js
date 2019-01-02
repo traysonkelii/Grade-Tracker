@@ -1,6 +1,5 @@
 const showAll = document.getElementById('teacher-show-all');
 const studentHTML = Array.from(document.getElementsByClassName('student-holder'));
-const studentHolder = Array.from(document.getElementsByClassName('student-holder')).map(student => student.id);
 const teacherCourseHolder = Array.from(document.getElementById('teacher-course-holder').children);
 
 showAll.addEventListener('click', () => {

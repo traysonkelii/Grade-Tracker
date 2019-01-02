@@ -12,4 +12,13 @@ class Department extends Model
     {
         return $this->hasMany('App\Teacher', 'department_id');
     }
+
+    static public function getDepartmentName($id)
+    {
+        $update = DB::table('departments')
+        ->select('name')
+        ->where('id', $id)
+        ->first();
+        return $update->name;
+    }
 }

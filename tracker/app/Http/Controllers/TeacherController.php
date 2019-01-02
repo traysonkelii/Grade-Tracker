@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Department as Department;
+use App\Instrument as Instrument;
 use App\Student as Student;
 use App\Teacher as Teacher;
 use Illuminate\Support\Facades\DB;
@@ -23,18 +25,6 @@ class TeacherController extends Controller
         return response()->json($teachers);
     }
 
-
-    // public function landing()
-    // {
-    //     $data = [];
-    //     $teacher = $this->teacher->find('cbarker');
-    //     $students = $teacher->students;
-    //     $data['students'] = $students;
-    //     $data['teacher'] = $teacher;
-    //     return view('contents/teacher/teacher', $data);
-    // }
-
-
     public function goToJury($teacher_id)
     {
         $data = [];
@@ -47,6 +37,8 @@ class TeacherController extends Controller
         $data['teacher'] = $teacher;
         $data['students'] = $students;
         $data['instruments'] = $instruments;
+        $data['model_ins'] = new Instrument;
+        $data['model_dep'] = new Department;
         return view('contents/jury/landing', $data);
     }
 }

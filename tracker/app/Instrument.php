@@ -11,4 +11,13 @@ class Instrument extends Model
     {
         return $this->hasMany('App\Repertoire', 'instrument_id');
     }
+
+    static public function getInstrumentName($instrument_id)
+    {
+        $update = DB::table('instruments')
+        ->select('name')
+        ->where('id', $instrument_id)
+        ->first();
+        return $update->name;
+    }
 }

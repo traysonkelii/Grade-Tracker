@@ -42,6 +42,7 @@ Route::get('/instrument/read/{id}/{column}/{val}', 'InstrumentController@read')-
 //jury
 Route::get('/jury/form-builder', 'JuryController@formBuilder')->name('jury-form');
 Route::get('/jury/assign', 'JuryController@formAssign')->name('jury-assign');
+Route::post('/jury/grade/{student_id}', 'JuryController@gradeStudent')->name('juryGradeStudent');
 
 //landing
 Route::post('/landing', 'ContentsController@landing')->name('getLanding');

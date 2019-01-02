@@ -74,3 +74,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+
+#jury-landing-all{
+    border-top: solid lightgray 1px;
+    border-bottom: solid lightgray 1px;
+    transition: .5s ease all;
+}
+
+#jury-landing-all:hover{
+    transition: .2s ease all;
+    background-color: #d3524e;
+    color: white;
+    cursor: pointer;
+}

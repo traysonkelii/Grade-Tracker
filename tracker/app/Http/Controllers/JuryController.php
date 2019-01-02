@@ -28,4 +28,10 @@ class JuryController extends Controller
         return view('contents/jury/assign', $data);
     }
 
+    public function gradeStudent($id)
+    {
+        $data = [];
+        $data['student'] = Student::find($id);
+        return view('contents/jury/grade', $data);
+    }
 }
