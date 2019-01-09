@@ -5,9 +5,15 @@
     <h1>Test</h1>
     <p>Name: {{$student->first_name}}</p>
     <p>Major: {{$student->major->name}}</p>
-    <p>form id: {{$student->form_id}}</p>
+    <div>
+        <h3>
+            Forms
+        </h3> 
+        @foreach ($forms as $form)
+            <a href="{{route('formViewStudent', ['form_id' => $form->form_id, 'student_id' => $student->id])}}">
+                <p>{{$model_form->getName($form->form_id)}}</p>
+            </a>
+        @endforeach
+    </div>
 </div>
-{{-- <script src="{{ asset('/js/practice/practiceListEdit.js') }}"></script>
-<script src="{{ asset('/js/practice/practiceRepSubmit.js') }}"></script> --}}
-
 @endsection

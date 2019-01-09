@@ -17,4 +17,10 @@ class Form extends Model
     {
         return DB::table('forms')->select()->get();
     }
+
+    public static function getName($id)
+    {
+        $data = DB::table('forms')->select('name')->where('id',$id)->first();
+        return $data->name;
+    }
 }

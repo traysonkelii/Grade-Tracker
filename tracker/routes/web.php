@@ -26,7 +26,7 @@ Route::post('/composer/create/{name}', 'ComposerController@create')->name('comCr
 //forms
 Route::post('/form/createFormAttribute', 'FormBuilderController@createFormAttribute')->name('formCreateAttributes');
 Route::post('/form/createForm', 'FormBuilderController@createForm')->name('formCreate');
-Route::get('/form/view/{form_id}', 'FormBuilderController@viewForm')->name('formView');
+Route::get('/form/view/student/{form_id}/{student_id}', 'FormBuilderController@viewFormStudent')->name('formViewStudent');
 Route::get('/form/getAttribute/{id}', 'FormBuilderController@getAttribute')->name('formGetAttribute');
 Route::get('/form/student/{student_id}', 'FormBuilderController@studentFill')->name('formStudentFill');
 
@@ -40,7 +40,7 @@ Route::post('/home', 'ContentsController@home')->name('home');
 Route::get('/instrument/read/{id}/{column}/{val}', 'InstrumentController@read')->name('insRead');
 
 //jury
-Route::get('/jury/form-builder', 'JuryController@formBuilder')->name('jury-form');
+Route::get('/jury/form-builder', 'FormBuilderController@buildForm')->name('jury-form');
 Route::get('/jury/assign', 'JuryController@formAssign')->name('jury-assign');
 Route::post('/jury/grade/{student_id}', 'JuryController@gradeStudent')->name('juryGradeStudent');
 

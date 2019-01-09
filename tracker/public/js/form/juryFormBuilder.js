@@ -4,7 +4,7 @@ const adder = $('#form-adder');
 const submitter = $('#form-submit');
 const formHolder = $('.jury-build-holder');
 const token = $('#form-token');
-const formName = $('#form-name');
+const department = document.getElementById('department');
 const formArray = [];
 
 adder.click(() => {
@@ -17,16 +17,14 @@ adder.click(() => {
 })
 
 submitter.click(async () => {
-    if (!formName[0].value || formName[0].value.length < 0) {
-        alert("add proper name");
-        return;
-    }
-    let fieldsHTML = document.getElementsByClassName('jury-build-attribute');
-    let fieldsArray = Array.from(fieldsHTML);
-    let dept = document.getElementById('jury-form-department').value;
-    let formIds = await getIds(fieldsArray);
+    const fieldsHTML = document.getElementsByClassName('jury-build-attribute');
+    const fieldsArray = Array.from(fieldsHTML);
+    const deptArray = department.value.split('-');
+    const deptId = deptArray[0];
+    const deptName = deptArray[1];
+    const formIds = await getIds(fieldsArray);
 
-    ajaxCreateForm(formName[0].value, formIds, dept, token.html());
+    ajaxCreateForm(deptName, formIds, deptId, token.html());
 });
 
 
@@ -52,15 +50,11 @@ const getIds = async (IdArray) => {
         let selectJSON = selectArray.map(s => s.value);
         let select = JSON.stringify(selectJSON);
 
-        let max = htmlArray[5].children[1].value;
-
-        let min = htmlArray[6].children[1].value;
-
-        let personHTML = htmlArray[7].children[1].value;
+        let personHTML = htmlArray[5].children[1].value;
         let personArray = personHTML.split(' ');
         person = personArray[0];
 
-        let id = await ajaxCreateFormAttribute(name, desc, type, scope, max, min, select, person, token.html());
+        let id = await ajaxCreateFormAttribute(name, desc, type, scope, select, person, token.html());
         return id;
     });
     return Promise.all(promises);
@@ -84,7 +78,7 @@ const getHTMLString = () => {
                             <option value="0">Drop Down</option>
                             <option value="1">Long Answer</option>
                             <option value="2">Check Box</option>
-                            <option value="3">Rate</option>
+                            <option value="3">Short Answer</option>
                         </select>
                     </div>
                     <div>
@@ -99,14 +93,6 @@ const getHTMLString = () => {
                         <div>
                             <div id="form-selection-adder-${count}">+</div>
                         </div>
-                    </div>
-                    <div>
-                        <p>Max (for Rate)</p>
-                        <input type="number">
-                    </div>
-                    <div>
-                        <p>Min (for Rate)</p>
-                        <input type="number">
                     </div>
                     <div>
                         <p>Person</p>
@@ -150,16 +136,12 @@ const ajaxCreateForm = async (name, attributes, dept, token) => {
     })
 }
 
-const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, selections, person, token) => {
+const ajaxCreateFormAttribute = async (name, desc, type, scope, selections, person, token) => {
 
     if (!desc)
         desc = "none";
     if (selections.length < 1)
         selections = "none";
-    if (!max)
-        max = 0;
-    if (!min)
-        min = 0;
 
     $.ajaxSetup({
         headers: {
@@ -176,8 +158,6 @@ const ajaxCreateFormAttribute = async (name, desc, type, scope, max, min, select
             desc,
             type,
             scope,
-            max,
-            min,
             selections,
             person,
         },

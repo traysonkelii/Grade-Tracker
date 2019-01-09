@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Form;
 use App\Student;
+use App\Performance;
+use App\Department;
 
 class FormBuilderController extends Controller
 {
@@ -25,8 +28,6 @@ class FormBuilderController extends Controller
                 'description' => $request->desc,
                 'type' => $request->type,
                 'scope' => $request->scope,
-                'max' => $request->max,
-                'min' => $request->min,
                 'selections' => $request->selections,
                 'person' => $request->person,
             ]
@@ -47,12 +48,29 @@ class FormBuilderController extends Controller
         return response()->json($data);
     }
 
-    public function viewForm($id) {
+    public function buildForm(Request $request) {
         $data = [];
-        $form = DB::table('forms')->where('id',$id)->get()->first();
+        $department = Department::get();
+        $data['department'] = $department;
+        return view('/contents/forms/builder', $data);
+    }
+
+    public function getAttribute($id) {
+        $att = DB::table('attributes')->where('id', $id)->get()->first();
+        return response()->json($att);
+    }
+
+    public function viewFormStudent($form_id, $student_id) {
+        $data = [];
+        $form = DB::table('forms')->where('id',$form_id)->get()->first();
+        $performance = DB::table('performances')
+        ->where('form_id', $form_id)
+        ->where('student_id', $student_id)
+        ->get()
+        ->first();
         $data['form'] = $form;
-        $data['edit'] = 0;
-        return view('/contents/jury/form-view', $data);
+        $data['performance'] = $performance;
+        return view('/contents/forms/form-view-student', $data);
     }
 
     public function submitForm($id) {
@@ -63,15 +81,17 @@ class FormBuilderController extends Controller
         return view('/contents/jury/form-view', $data);
     }
 
-    public function getAttribute($id) {
-        $att = DB::table('attributes')->where('id', $id)->get()->first();
-        return response()->json($att);
-    }
-
     public function studentFill($id) {
         $data = [];
         $student = Student::find($id);
+        $forms = DB::table('performances')
+        ->select('form_id')
+        ->where('student_id',$id)
+        ->get();
         $data['student'] = $student;
+        $data['forms'] = $forms;
+        $data['model_form'] = new Form;
+
         return view('/contents/forms/student-fill', $data); 
     }
 }
