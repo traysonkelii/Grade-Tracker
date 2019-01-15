@@ -23,4 +23,10 @@ class Form extends Model
         $data = DB::table('forms')->select('name')->where('id',$id)->first();
         return $data->name;
     }
+
+    public static function checkActive($id)
+    {
+        $data = DB::table('forms')->select('active')->where('id', $id)->first();
+        return $data->active;
+    }
 }

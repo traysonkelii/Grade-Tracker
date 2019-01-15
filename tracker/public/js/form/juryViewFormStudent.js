@@ -76,7 +76,7 @@ const doDropDown = (att) => {
     let myHTML = `<div id=${att.id}>`;
     myHTML += `<span>${att.name}</span><br>`;
     myHTML = addDescription(att.description, myHTML);
-    myHTML += `<select>`;
+    myHTML += `<select id='val-${att.id}'>`;
     let options = JSON.parse(att.selections);
     options.forEach(option => {
         myHTML += `<option>${option}</option>`
@@ -89,7 +89,7 @@ const doLongResponse = (att) => {
     let myHTML = `<div id=${att.id}>`;
     myHTML += `<span>${att.name}</span><br>`;
     myHTML = addDescription(att.description, myHTML);
-    myHTML += `<textarea rows="5" cols="100"></textarea><br>`;
+    myHTML += `<textarea rows="5" cols="100" id='val-${att.id}'></textarea>`;
     return myHTML;
 }
 
@@ -97,23 +97,20 @@ const doCheckBox = (att) => {
     let myHTML = `<div id=${att.id}>`;
     myHTML += `<span>${att.name}</span><br>`;
     myHTML = addDescription(att.description, myHTML);
-    myHTML += `<input type="checkbox"><br>`;
+    myHTML += `<input type="checkbox" id='val-${att.id}'>`;
     return myHTML;
 }
 
 const doShortAnswer = (att) => {
     let myHTML = `<div id=${att.id}>`;
-    myHTML += `<span>${att.name}</span><br>`;
-    myHTML += `<input>`
-    myHTML += `</div>
-    <span id=${att.id}-value></span>
-    </div><br>`;
-
+    myHTML += `<span>${att.name}</span>`;
+    myHTML += `<input id='val-${att.id}'>`
+    myHTML += `</div>`;
     return myHTML;
 }
 
 const doAppend = (html, container) => {
-    container.insertAdjacentHTML('afterend', html);
+    container.innerHTML += html;
 }
 
 const addDescription = (desc, myHTML) => {

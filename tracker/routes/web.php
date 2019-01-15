@@ -28,6 +28,7 @@ Route::post('/form/createFormAttribute', 'FormBuilderController@createFormAttrib
 Route::post('/form/createForm', 'FormBuilderController@createForm')->name('formCreate');
 Route::get('/form/view/student/{form_id}/{student_id}', 'FormBuilderController@viewFormStudent')->name('formViewStudent');
 Route::get('/form/getAttribute/{id}', 'FormBuilderController@getAttribute')->name('formGetAttribute');
+Route::post('/form/student/answer', 'FormBuilderController@studentAnswer')->name('formStudentAnswer');
 Route::get('/form/student/{student_id}', 'FormBuilderController@studentFill')->name('formStudentFill');
 
 //genre

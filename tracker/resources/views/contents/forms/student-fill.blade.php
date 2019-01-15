@@ -8,11 +8,22 @@
     <div>
         <h3>
             Forms
-        </h3> 
-        @foreach ($forms as $form)
-            <a href="{{route('formViewStudent', ['form_id' => $form->form_id, 'student_id' => $student->id])}}">
-                <p>{{$model_form->getName($form->form_id)}}</p>
-            </a>
+        </h3>
+        <h4>Current</h4> 
+        @foreach ($performances as $p)
+            @if ($model_form->checkActive($p->form_id))
+                <a href="{{route('formViewStudent', ['form_id' => $p->form_id, 'student_id' => $student->id])}}">
+                    <p>{{$model_form->getName($p->form_id)}}</p>
+                </a>
+            @endif
+        @endforeach
+        <h4>Past</h4>
+        @foreach ($performances as $p)
+            @if (!$model_form->checkActive($p->form_id))
+                <a href="{{route('formViewStudent', ['form_id' => $p->form_id, 'student_id' => $student->id])}}">
+                    <p>{{$model_form->getName($p->form_id)}}</p>
+                </a>
+            @endif
         @endforeach
     </div>
 </div>

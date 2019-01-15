@@ -20,3 +20,4 @@
 </div>
 <script src="{{ asset('/js/form/juryFormBuilder.js') }}"></script>
 @endsection
+

@@ -54,7 +54,11 @@ const getIds = async (IdArray) => {
         let personArray = personHTML.split(' ');
         person = personArray[0];
 
-        let id = await ajaxCreateFormAttribute(name, desc, type, scope, select, person, token.html());
+        let max = htmlArray[6].children[1].value;
+
+        let min = htmlArray[7].children[1].value;
+
+        let id = await ajaxCreateFormAttribute(name, desc, type, scope, select, person, max, min, token.html());
         return id;
     });
     return Promise.all(promises);
@@ -101,6 +105,14 @@ const getHTMLString = () => {
                             <option value="1">Jury</option>
                         </select>
                     </div>
+                    <div>
+                        <p>min</p>
+                        <input>
+                    </div>
+                    <div>
+                        <p>max</p>
+                        <input>
+                    </div>
                 </div>
         `;
     count += 1;
@@ -136,12 +148,17 @@ const ajaxCreateForm = async (name, attributes, dept, token) => {
     })
 }
 
-const ajaxCreateFormAttribute = async (name, desc, type, scope, selections, person, token) => {
+const ajaxCreateFormAttribute = async (name, desc, type, scope, selections, person, min, max, token) => {
 
     if (!desc)
         desc = "none";
     if (selections.length < 1)
         selections = "none";
+
+    if (!max)
+        max = 0;
+    if (!min)
+        min = 0;
 
     $.ajaxSetup({
         headers: {
@@ -160,11 +177,14 @@ const ajaxCreateFormAttribute = async (name, desc, type, scope, selections, pers
             scope,
             selections,
             person,
+            min,
+            max
         },
         success: (result) => {
             return result;
         },
         error: (jqXHR, textStatus, errorThrown) => {
+            alert("ERROR WITH FORM INPUT");
             console.log(errorThrown);
             console.log(jqXHR);
             console.log(textStatus);

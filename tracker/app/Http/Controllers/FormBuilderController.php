@@ -30,6 +30,8 @@ class FormBuilderController extends Controller
                 'scope' => $request->scope,
                 'selections' => $request->selections,
                 'person' => $request->person,
+                'min' => $request->min,
+                'max' => $request->max
             ]
         );
         return response()->json($data);
@@ -37,13 +39,17 @@ class FormBuilderController extends Controller
 
     public function createForm(Request $request) {
         $data = [];
-        $data['form_id'] = DB::table('forms')->insertGetId(
+        DB::table('forms')->where('department_id', $request->dept)
+        ->update(['active' => 0]);
+        $formId = DB::table('forms')->insertGetId(
             [
                 'name' => $request->name,
                 'attribute_array' => $request->att,
                 'department_id' => $request->dept,
+                'active' => 1
             ]
         );
+        $data['form_id'] = $formId;
         $data['department_id'] = $request->dept;
         return response()->json($data);
     }
@@ -70,6 +76,7 @@ class FormBuilderController extends Controller
         ->first();
         $data['form'] = $form;
         $data['performance'] = $performance;
+        $data['student_id'] = $student_id;
         return view('/contents/forms/form-view-student', $data);
     }
 
@@ -81,15 +88,25 @@ class FormBuilderController extends Controller
         return view('/contents/jury/form-view', $data);
     }
 
-    public function studentFill($id) {
+    public function studentAnswer(Request $request)
+    {
+        $form = DB::table('performances')
+        ->where('student_id', $request->studentId)
+        ->where('form_id', $request->formId)
+        ->update(['student_response' => $request->answer]);
+        return response()->json($form);
+    }
+
+    public function studentFill($id) 
+    {
         $data = [];
         $student = Student::find($id);
-        $forms = DB::table('performances')
+        $performances = DB::table('performances')
         ->select('form_id')
         ->where('student_id',$id)
         ->get();
         $data['student'] = $student;
-        $data['forms'] = $forms;
+        $data['performances'] = $performances;
         $data['model_form'] = new Form;
 
         return view('/contents/forms/student-fill', $data); 

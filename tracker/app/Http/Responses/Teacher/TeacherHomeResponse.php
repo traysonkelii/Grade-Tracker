@@ -44,7 +44,10 @@ class TeacherHomeResponse implements Responsable
     {
         $students = $teacher->students;
         $teacher_dept = $teacher->department_id;
-        $form = Form::select()->where('department_id', $teacher_dept)->first();
+        $form = Form::select()
+        ->where('department_id', $teacher_dept)
+        ->where('active',1)
+        ->first();
         $pivot = DB::table('student_teacher')->get();
         foreach($students as $student)
         {
