@@ -10,6 +10,19 @@ submit.addEventListener('click', () => {
     answersHolder.forEach((answer) => {
         let id = answer.id;
         let val = document.getElementById(`val-${answer.id}`).value;
+        let valHolder = $(`#val-${answer.id}`);
+        if (valHolder.attr('name') === 'checkbox')
+        {
+           let checkboxes = document.getElementById(`val-${answer.id}`);
+           let jsCheckboxes = Array.from(checkboxes.children);
+           let answers = [];
+           jsCheckboxes.forEach(e => {
+               if(e.checked){
+                   answers.push(e.id)
+               }
+           })
+           val = answers;
+        }
         studentAnswers[id] = val; 
     })
 

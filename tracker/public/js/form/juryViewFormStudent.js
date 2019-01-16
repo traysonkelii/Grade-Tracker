@@ -97,7 +97,14 @@ const doCheckBox = (att) => {
     let myHTML = `<div id=${att.id}>`;
     myHTML += `<span>${att.name}</span><br>`;
     myHTML = addDescription(att.description, myHTML);
-    myHTML += `<input type="checkbox" id='val-${att.id}'>`;
+    myHTML += `<div id=val-${att.id} name="checkbox">`
+    let options = JSON.parse(att.selections);
+    options.forEach(option => {
+        myHTML += `<input name="check-${att.id}" type="checkbox" id="${option}">
+                    <label for="${option}">${option}</label>
+                `
+    })
+    myHTML += `</div></div>`;
     return myHTML;
 }
 

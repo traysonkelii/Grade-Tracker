@@ -54,9 +54,9 @@ const getIds = async (IdArray) => {
         let personArray = personHTML.split(' ');
         person = personArray[0];
 
-        let max = htmlArray[6].children[1].value;
+        let min = htmlArray[6].children[1].value;
 
-        let min = htmlArray[7].children[1].value;
+        let max = htmlArray[7].children[1].value;
 
         let id = await ajaxCreateFormAttribute(name, desc, type, scope, select, person, max, min, token.html());
         return id;
@@ -93,7 +93,7 @@ const getHTMLString = () => {
                         </select>
                     </div>
                     <div>
-                        <p>Select (for Drop)</p>
+                        <p>Select (for Drop/checkbox)</p>
                         <div>
                             <div id="form-selection-adder-${count}">+</div>
                         </div>
