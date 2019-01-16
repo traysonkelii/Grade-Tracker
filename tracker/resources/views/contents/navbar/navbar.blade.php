@@ -1,5 +1,5 @@
 <byu-header>
-    <span slot="site-title">Music Department</span>
+    <span slot="site-title">MUSIC TRACKS</span>
     <byu-user-info slot="user">
     <!-- TODO use BYU api to make the login work -->
         <a slot="login" href="#login">Sign In</a>
