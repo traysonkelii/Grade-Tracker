@@ -5,7 +5,7 @@ const token = infoArray[2];
 const questions = document.getElementById('formView-holder');
 const answers = document.getElementById('formView-answers');
 
-const buildView = async (attributes) => {
+const buildView = (attributes) => {
     attributes.forEach(async (a) => {
         await ajaxGetAttribute(a, token);
     });
@@ -148,6 +148,5 @@ const getAnswers = (attribute) => {
         doAppend(html, answers);
     }
 }
-let meeeee = document.getElementsByClassName('meeeester');
-console.log(meeeee)
+
 buildView(formAttributes);
