@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Teacher;
 use App\Form;
 use App\Performance;
+use App\Instrument;
+use App\Department;
 
 class TeacherHomeResponse implements Responsable
 {
@@ -37,6 +39,8 @@ class TeacherHomeResponse implements Responsable
         $data['permissions'] = $teacher->permissions;
         $data['netid'] = $teacher->id;
         $data['courses'] = $teacher->courses;
+        $data['model_department'] = new Department;
+        $data['model_instrument'] = new Instrument;
         return $data;
     }
 

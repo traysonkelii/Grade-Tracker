@@ -1,11 +1,11 @@
 .teacher-landing-holder{
     display: grid;
     grid-template-areas: 
-    "tl-top tl-top"
-    "tl-alert tl-list"
-    "tl-course tl-list"
-    ". tl-list"
-    ". .";
+    "tl-top tl-top tl-top"
+    "tl-alert tl-list tl-list"
+    "tl-course tl-list tl-list"
+    ". tl-list tl-list"
+    ". . .";
     grid-gap: 10px;
     padding: 20px;
     margin-right: 3%;
@@ -39,7 +39,6 @@
 
 .teacher-landing-alert{
     grid-area: tl-alert;
-    width:300px;
 }
 
 .teacher-landing-alert-header{
@@ -52,7 +51,6 @@
 
 .teacher-landing-course{
     grid-area: tl-course;
-    width:300px;
 }
 
 .teacher-landing-quick{ 
@@ -90,7 +88,7 @@
     border-top: solid lightgray 1px;
     transition: .5s ease all;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
 }
 
@@ -103,7 +101,7 @@
 .teacher-landing-student-header{
     border-bottom: solid lightgray 1px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 #teacher-landing-jury-mode{

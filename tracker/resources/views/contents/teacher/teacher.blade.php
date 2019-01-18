@@ -31,8 +31,9 @@
                 <input type="hidden" name="permissions" value="{{$permissions}}" /> 
                 <div class="teacher-landing-student-row" onclick="document.getElementById('{{$student->id}}').submit();">
                     <p class="student">{{ucfirst($student->first_name)}} {{ucfirst($student->last_name)}} </p>
-                    <p>April 2019</p>
-                    <p>Test</p>
+                    <p>{{$model_department::getDepartmentName($student->pivot->department_id)}} / {{$model_instrument::getInstrumentName($student->pivot->instrument_id)}}</p>
+                    <p>Grad date</p>
+                    <p>Status</p>
                 </div>
                 <div class="teacher-landing-student-courses">
                     @foreach ($student->courses as $course)
