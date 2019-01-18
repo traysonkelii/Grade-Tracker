@@ -9,6 +9,7 @@ use App\Form;
 use App\Student;
 use App\Performance;
 use App\Department;
+use App\Attribute;
 
 class FormBuilderController extends Controller
 {
@@ -61,8 +62,8 @@ class FormBuilderController extends Controller
         return view('/contents/forms/builder', $data);
     }
 
-    public function getAttribute($id) {
-        $att = DB::table('attributes')->where('id', $id)->get()->first();
+    public function getAttributes(Request $request) {
+        $att =Attribute::find($request->ids);
         return response()->json($att);
     }
 

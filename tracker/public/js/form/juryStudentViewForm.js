@@ -6,12 +6,10 @@ const questions = document.getElementById('formView-holder');
 const answers = document.getElementById('formView-answers');
 
 const buildView = (attributes) => {
-    attributes.forEach(async (a) => {
-        await ajaxGetAttribute(a, token);
-    });
+    ajaxGetAttributes(attributes);
 };
 
-const ajaxGetAttribute = async (id, token) => {
+const ajaxGetAttributes = async (ids, token) => {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': token
@@ -19,14 +17,14 @@ const ajaxGetAttribute = async (id, token) => {
     });
 
     return $.ajax({
-        url: `/form/getAttribute/${id}`,
-        method: 'get',
+        url: `/form/getAttributes`,
+        method: 'post',
         data: {
-            _token: token
+            _token: token,
+            ids
         },
         success: (result) => {
-            addToDom(result);
-
+            addToDom(result)
         },
         error: (jqXHR, textStatus, error) => {
             console.log(error);
@@ -37,39 +35,42 @@ const ajaxGetAttribute = async (id, token) => {
     })
 }
 
-const addToDom = (attribute) => {
+const addToDom = (attributes) => {
+
+    attributes.forEach(attribute => {
+        if (attribute.person) {
+            return;
+        }
+        let html;
+    
+        switch (attribute.type) {
+            case 0:
+                html = doDropDown(attribute);
+                doAppend(html, questions);
+                getAnswers(attribute);
+                break;
+            case 1:
+                html = doLongResponse(attribute);
+                doAppend(html, questions);
+                getAnswers(attribute);
+                break;
+            case 2:
+                html = doCheckBox(attribute);
+                doAppend(html, questions);
+                getAnswers(attribute);
+                break;
+            case 3:
+                html = doShortAnswer(attribute);
+                doAppend(html, questions);
+                getAnswers(attribute);
+                break;
+            default:
+                break;
+        }
+        return;
+    })
     //checks attribute is meant for student or jury
     //0 student 1 jury
-    if (attribute.person) {
-        return;
-    }
-    let html;
-
-    switch (attribute.type) {
-        case 0:
-            html = doDropDown(attribute);
-            doAppend(html, questions);
-            getAnswers(attribute);
-            break;
-        case 1:
-            html = doLongResponse(attribute);
-            doAppend(html, questions);
-            getAnswers(attribute);
-            break;
-        case 2:
-            html = doCheckBox(attribute);
-            doAppend(html, questions);
-            getAnswers(attribute);
-            break;
-        case 3:
-            html = doShortAnswer(attribute);
-            doAppend(html, questions);
-            getAnswers(attribute);
-            break;
-        default:
-            break;
-    }
-    return;
 }
 
 const doDropDown = (att) => {
@@ -133,8 +134,8 @@ const getAnswers = (attribute) => {
     if (studentResponse !== 'none') {
         let value = 'none';
         let resp = JSON.parse(studentResponse);
-        for(id in resp){
-            if(Number.parseInt(id) === attribute.id){
+        for (id in resp) {
+            if (Number.parseInt(id) === attribute.id) {
                 value = resp[id];
             }
         }
@@ -144,7 +145,7 @@ const getAnswers = (attribute) => {
 
     }
     else {
-    let html = `<div><span>${attribute.name}: Not submitted</span></div>`;
+        let html = `<div><span>${attribute.name}: Not submitted</span></div>`;
         doAppend(html, answers);
     }
 }

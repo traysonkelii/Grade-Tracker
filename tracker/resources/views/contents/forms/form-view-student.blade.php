@@ -16,6 +16,6 @@
     <br>
     <span id="formView-submit">submit</span>
 </div>
-<script src="{{ asset('/js/form/juryViewFormStudent.js') }}"></script>
+<script src="{{ asset('/js/form/juryStudentViewForm.js') }}"></script>
 <script src="{{ asset('/js/form/juryFormStudentSave.js') }}"></script>
 @endsection
