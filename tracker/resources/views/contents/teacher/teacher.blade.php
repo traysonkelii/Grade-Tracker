@@ -25,7 +25,7 @@
             <p>STATUS</p>
         </div>
         @foreach($students as $student)
-            <form id="{{$student->id}}" class="student-holder" method="post" action="{{route('practice', ['student_id' => $student->id])}}">
+            <form id="{{$student->id}}" class="student-holder" method="post" action="{{route('getTeacherView', ['student_id' => $student->id])}}">
                
                 @csrf    
                 <input type="hidden" name="permissions" value="{{$permissions}}" /> 
