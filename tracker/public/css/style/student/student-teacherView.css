@@ -37,12 +37,20 @@
     font-size: 20px;
     padding: 10px;
     font-weight: 500;
+    transition: .5s all;
+}
+
+.student-teacherView-stitle:hover{
+    background-color: #84848484;
+    cursor: pointer;
+    transition: .5s all;
 }
 
 .student-teacherView-sbody{
     grid-area: sbody;
     height: 250px;
     overflow: scroll;
+    transition: 1s all;
 }
 
 .student-teacherView-top{
@@ -85,6 +93,22 @@
     vertical-align: middle;
     line-height: normal;
     border-radius: 10px;
+    transition: .5s all;
+}
+
+.student-teacherView-repbutton{
+    padding: 10px;
+    font-size: 20;
+    background-color:#5d6e8d;
+    opacity: .7;
+    color:white;
+    border-radius: 10px;
+    transition: .5s all;
+}
+
+.student-teacherView-repbutton:hover{
+    cursor: pointer;
+    opacity: 1;
     transition: .5s all;
 }
 
@@ -136,11 +160,22 @@
     text-align: left;
     border-top: 1px solid grey;
     padding-top: 15px;
+    z-index: 1;
+    transition: .5s all;
+}
+
+.student-teacherView-pvalues:hover{
+    background-color: #e8ebef;
+    cursor: pointer;
+    transition: .5s all;
 }
 
 .student-teacherView-pdata{
     height: 0px;
+    opacity: 0;
+    transition: 1s all;
     display: none;
+    z-index: 0;
 }
 
 .student-teacherView-pdata-holder{
@@ -162,10 +197,25 @@
 .student-teacherView-rtitle{
     grid-area: rtitle;
     background-color: #e8ebef;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.student-teacherView-rtitle-header{
     color: #1a315d;
     font-size: 20px;
-    padding: 10px;
     font-weight: 500;
+    grid-column: 1/2
+}
+
+.student-teacherView-rsearch{
+    margin-left: 80px;
+    grid-column: 4/5
+}
+
+.student-teacherView-raddrep{
+    grid-column: 5/6
 }
 
 .student-teacherView-rholder{

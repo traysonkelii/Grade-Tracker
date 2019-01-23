@@ -14,7 +14,11 @@
         <div class="student-teacherView-stitle">Summary</div>
         <div class="student-teacherView-sbody">
             <p>All Practice Data</p>
-            {{$practice}}
+            @foreach ($practice as $p)
+            <p>
+                Repertorie id:{{$p->repertoire_id}}, Pivot id:{{$p->rep_stu_id}} Start:{{$p->practice_start}} Stop:{{$p->practice_stop}}
+            </p>
+            @endforeach
         </div>
     </div>
     <div class="student-teacherView-practice">
@@ -36,21 +40,20 @@
                             <p>status</p>
                         </div>
                         <div class="student-teacherView-pdata">
-                                <p>Practice data for this Repertoire</p>
-                                <div class="student-teacherView-pdata-holder">
-                                    <div>
-                                        <h5>Comments</h5>
-                                    </div>
-                                    <div>
-                                        <h5>Practice Data</h5>
-                                        @foreach ($practice as $p)
-                                            @if ($p->repertoire_id == $rep->id)
-                                                ID:{{$p->id}} Start:{{$p->practice_start}} Stop:{{$p->practice_stop}} <br>
-                                            @endif
-                                        @endforeach
-                                    </div>
+                            <p>Practice data for this Repertoire</p>
+                            <div class="student-teacherView-pdata-holder">
+                                <div>
+                                    <h5>Comments</h5>
                                 </div>
-                            {{-- COMMENT AND PRACTICE DISPLAY --- HIDDEN --}}
+                                <div>
+                                    <h5>Practice Data</h5>
+                                    @foreach ($practice as $p)
+                                        @if ($p->repertoire_id == $rep->id)
+                                            ID:{{$p->id}} Start:{{$p->practice_start}} Stop:{{$p->practice_stop}} <br>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endif
@@ -58,7 +61,15 @@
         </div>
     </div>
     <div class="student-teacherView-repertoire">
-        <div class="student-teacherView-rtitle">Repertoire</div>
+        <div class="student-teacherView-rtitle">
+            <div class="student-teacherView-rtitle-header">Repertoire</div>
+            <div class="student-teacherView-rsearch">
+                <input type="text" placeholder=" Search... ">
+            </div>
+            <div class="student-teacherView-raddrep">
+                <span class="student-teacherView-repbutton" id="add-rep">Add Repertoire</span>
+            </div>
+        </div>
         <div class="student-teacherView-rholder">
                 <div class="student-teacherView-rheader">
                         <p></p>
@@ -77,10 +88,11 @@
                     <p>{{$rep->name}}</p>
                     <p>{{$rep->composer->name}}</p>
                     <p>date</p>
-                    <p>status</p>
+                    <p>jury:{{$rep->pivot->jury}} </p>
                 </div>
             @endforeach
         </div>
     </div>
 </div>
+<script src="{{ asset('/js/student/studentTeacherView.js') }}"></script>
 @endsection
