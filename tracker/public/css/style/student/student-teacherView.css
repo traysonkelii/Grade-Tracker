@@ -12,13 +12,37 @@
     display: grid;
     grid-template-areas: 
     "top"
-    "practice"
-    "practice"
-    "practice"
-    "rep"
+    "summary"
+    "practice"    
     "rep";
     grid-gap: 5px;
-    margin: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.student-teacherView-summary{
+    grid-area: summary;
+    display: grid;
+    grid-template-areas: 
+    "stitle"
+    "sbody"
+}
+
+.student-teacherView-stitle{
+    grid-area: stitle;
+    background-color: #e8ebef;
+    color: #1a315d;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.student-teacherView-sbody{
+    grid-area: sbody;
+    height: 250px;
+    overflow: scroll;
 }
 
 .student-teacherView-top{
@@ -97,7 +121,9 @@
 .student-teacherView-pheader{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    text-align: center;
+    text-align: left;
+    color:#a8a8a8;
+    padding-top: 25px;
 }
 
 .student-teacherView-pbody{
@@ -107,13 +133,24 @@
 .student-teacherView-pvalues{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    text-align: center;
+    text-align: left;
     border-top: 1px solid grey;
+    padding-top: 15px;
+}
+
+.student-teacherView-pdata{
+    height: 0px;
+    display: none;
+}
+
+.student-teacherView-pdata-holder{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
 }
 
 .student-teacherView-repertoire{
     grid-area: rep;
-    background-color: green;
     display: grid;
     grid-template-areas:
     "rtitle"
@@ -133,4 +170,19 @@
 
 .student-teacherView-rholder{
     grid-area: rholder;
+}
+
+.student-teacherView-rvalues{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-top: 1px solid grey;
+    padding-top: 15px;
+}
+
+.student-teacherView-rheader{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: left;
+    color:#a8a8a8;
+    padding-top: 25px;
 }

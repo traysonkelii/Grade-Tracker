@@ -9,6 +9,7 @@ use App\Student as Student;
 use App\Teacher as Teacher;
 use App\Repertoire as Repertoire;
 use App\Http\Controllers\IUser;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Responses\testResponse;
 use App\Http\Responses\Student\StudentHomeResponse;
@@ -39,8 +40,13 @@ class StudentController extends Controller
     {
         $data = [];
         $student = Student::find($student_id);
+        $practice = DB::table('repertoire_student')
+        ->join('practice','repertoire_student.rep_stu_id', '=', 'practice.rep_stu_id')
+        ->where('student_id', $student_id)
+        ->get();
         $data['student'] = $student;
         $data['reps'] = $student->repertoires;
+        $data['practice'] = $practice;
         return view('contents/student/teacher-view', $data);
     }
     

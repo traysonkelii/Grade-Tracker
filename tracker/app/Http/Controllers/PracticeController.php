@@ -15,7 +15,8 @@ class PracticeController extends Controller
         $this->repertoire = $repertoire;
     }
     
-    public function addPractice($rep_stu_id, $start, $stop){
+    public function addPractice($rep_stu_id, $start, $stop)
+    {
         $this->practice->store($rep_stu_id, $start, $stop);
     }
 
