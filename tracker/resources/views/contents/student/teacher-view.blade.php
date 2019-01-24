@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<p id="token" style="display:none">{{ csrf_token() }}</p>
 <div class="student-teacherView-holder">
     <div class="student-teacherView-top">
         <div class="student-teacherView-picture">
@@ -34,7 +35,7 @@
                 @if ($rep->pivot->practice)
                     <div class="student-teacherView-prow">
                         <div class="student-teacherView-pvalues">
-                            <p>{{ucfirst($rep->name)}}</p>
+                            <p><span class="student-teacherView-removeFromPractice" id="{{$student->id}}-{{$rep->id}}-remove">X</span> {{ucfirst($rep->name)}}</p>
                             <p>{{ucfirst($rep->composer->name)}}</p>
                             <p>date</p>
                             <p>status</p>
@@ -44,6 +45,14 @@
                             <div class="student-teacherView-pdata-holder">
                                 <div>
                                     <h5>Comments</h5>
+                                    <div class="student-teacherView-comment-holder">
+                                        <div class="student-teacherView-tcomment">Hello</div>
+                                        <div class="student-teacherView-scomment">Hey</div>
+                                    </div>
+                                    <div class="student-teacherView-commentBox">
+                                        <input type="text" placeholder="Comment" class="student-teacherView-message">
+                                        <button class="student-teacherView-sendMessage">Send</button>
+                                    </div>
                                 </div>
                                 <div>
                                     <h5>Practice Data</h5>
@@ -83,7 +92,7 @@
                     @if ($rep->pivot->practice)
                         <p>already added</p>
                     @else
-                        <p>Add to Practice</p>
+                        <p class="student-teacherView-addToPractice" id="{{$student->id}}-{{$rep->id}}-add">Add to Practice</p>
                     @endif
                     <p>{{$rep->name}}</p>
                     <p>{{$rep->composer->name}}</p>
@@ -95,4 +104,6 @@
     </div>
 </div>
 <script src="{{ asset('/js/student/studentTeacherView.js') }}"></script>
+
+<script src="{{ asset('/js/student/studentTeacherMessage.js') }}"></script>
 @endsection

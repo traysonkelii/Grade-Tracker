@@ -27,7 +27,7 @@
     display: grid;
     grid-template-areas: 
     "stitle"
-    "sbody"
+    "sbody";
 }
 
 .student-teacherView-stitle{
@@ -172,6 +172,7 @@
 
 .student-teacherView-pdata{
     height: 0px;
+    max-height: 250px;
     opacity: 0;
     transition: 1s all;
     display: none;
@@ -181,7 +182,7 @@
 .student-teacherView-pdata-holder{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 5px;
+    grid-gap: 10%;
 }
 
 .student-teacherView-repertoire{
@@ -235,4 +236,30 @@
     text-align: left;
     color:#a8a8a8;
     padding-top: 25px;
+}
+
+.student-teacherView-comment-holder{
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: scroll;
+}
+
+.student-teacherView-tcomment{
+    border: 1px solid #a8a8a8;
+    padding: 5px;
+    display: flex;
+    float: left;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    margin-right: 40%;
+}
+
+.student-teacherView-scomment{
+    border: 1px solid #a8a8a8;
+    background-color: #e8ebef;
+    padding: 5px;
+    display: flex;
+    float: right;
+    margin-left: 40%;
+    border-radius: 10px;
 }
