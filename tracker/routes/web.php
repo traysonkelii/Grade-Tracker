@@ -19,6 +19,9 @@ Route::get('/autocomplete/repertoire', 'SearchController@repAutocomplete')->name
 Route::get('/autocomplete/genre', 'SearchController@genAutocomplete')->name('genAuto');
 Route::get('/autocomplete/instrument', 'SearchController@insAutocomplete')->name('insAuto');
 
+//comments
+Route::post('/comments/add', 'CommentController@addComment')->name('addComment');
+
 //composers
 Route::get('/composer/read/{id}/{column}/{val}', 'ComposerController@read')->name('comRead');
 Route::post('/composer/create/{name}', 'ComposerController@create')->name('comCreate');

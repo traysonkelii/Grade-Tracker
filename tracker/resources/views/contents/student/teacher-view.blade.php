@@ -41,17 +41,20 @@
                             <p>status</p>
                         </div>
                         <div class="student-teacherView-pdata">
-                            <p>Practice data for this Repertoire</p>
                             <div class="student-teacherView-pdata-holder">
                                 <div>
                                     <h5>Comments</h5>
                                     <div class="student-teacherView-comment-holder">
-                                        <div class="student-teacherView-tcomment">Hello</div>
-                                        <div class="student-teacherView-scomment">Hey</div>
+                                        <span id='comments-{{$rep->id}}'style="display:none">{{$comments = $model_comment->getAllComments($rep->pivot->rep_stu_id)}}</span>
+                                        
+
+                                        {{-- <div class="student-teacherView-tcomment">Hello</div>
+                                        <div class="student-teacherView-scomment">Hey</div> --}}
                                     </div>
                                     <div class="student-teacherView-commentBox">
                                         <input type="text" placeholder="Comment" class="student-teacherView-message">
                                         <button class="student-teacherView-sendMessage">Send</button>
+                                        <p style="display:none">{{$rep->pivot->rep_stu_id}}</p>
                                     </div>
                                 </div>
                                 <div>

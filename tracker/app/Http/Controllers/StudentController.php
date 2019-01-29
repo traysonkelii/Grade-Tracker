@@ -8,6 +8,7 @@ use App\Instrument as Instrument;
 use App\Student as Student;
 use App\Teacher as Teacher;
 use App\Repertoire as Repertoire;
+use App\Comment as Comment;
 use App\Http\Controllers\IUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -47,6 +48,7 @@ class StudentController extends Controller
         $data['student'] = $student;
         $data['reps'] = $student->repertoires;
         $data['practice'] = $practice;
+        $data['model_comment'] = new Comment();
         return view('contents/student/teacher-view', $data);
     }
     

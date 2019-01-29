@@ -242,6 +242,7 @@
     display: grid;
     grid-template-columns: 1fr;
     overflow: scroll;
+    height: 125px;
 }
 
 .student-teacherView-tcomment{
