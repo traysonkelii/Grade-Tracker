@@ -6,6 +6,7 @@ const messageToken = document.getElementById('token').innerHTML;
 commentHolder.forEach(container => {
     let data =  container.children[0].innerHTML.split('[')[1]
     let cleansedCommentArray = JSON.parse(`[${data}`);
+    console.log(cleansedCommentArray)
     // let id = container.children[0].id
     cleansedCommentArray.forEach(comment => {
         let person =  comment.person ? 'student-teacherView-tcomment' : 'student-teacherView-scomment';

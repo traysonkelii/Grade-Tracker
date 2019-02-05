@@ -79,6 +79,7 @@ Route::post('/student/{student_id}', 'StudentController@home')->name('student');
 Route::get('/student', 'StudentController@index');
 Route::get('/student/department/{num}', 'StudentController@getStudentByDeptNum')->name('studentByDept');
 Route::post('/student/teacherView/{student_id}', 'StudentController@getTeacherView')->name('getTeacherView');
+Route::get('/student/teacherApprove/{student_id}', 'StudentController@getTeacherApprove')->name('getTeacherApprove');
 
 //teachers
 Route::get('/teacher/department/{num}', 'TeacherController@getTeacherByDeptNum')->name('teacherByDept');

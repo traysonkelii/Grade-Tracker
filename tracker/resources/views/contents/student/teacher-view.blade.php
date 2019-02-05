@@ -8,7 +8,9 @@
             <span class="student-teacherView-name">{{strtoupper($student->first_name)}} {{strtoupper($student->last_name)}}</span>
         </div>
         <div class="student-teacherView-jury">
-            <span class="student-teacherView-button">Approve Jury</span>
+            <a href="{{route('getTeacherApprove', ['student_id' => $student->id])}}">
+                <span class="student-teacherView-button">Approve Jury</span>
+            </a>
         </div>
     </div>
     <div class="student-teacherView-summary">
@@ -45,9 +47,7 @@
                                 <div>
                                     <h5>Comments</h5>
                                     <div class="student-teacherView-comment-holder">
-                                        <span id='comments-{{$rep->id}}'style="display:none">{{$comments = $model_comment->getAllComments($rep->pivot->rep_stu_id)}}</span>
-                                        
-
+                                        <span id='comments-{{$rep->id}}' style="display:none">{{$model_comment->getAllComments($rep->pivot->rep_stu_id)}}</span>
                                         {{-- <div class="student-teacherView-tcomment">Hello</div>
                                         <div class="student-teacherView-scomment">Hey</div> --}}
                                     </div>
@@ -107,6 +107,5 @@
     </div>
 </div>
 <script src="{{ asset('/js/student/studentTeacherView.js') }}"></script>
-
 <script src="{{ asset('/js/student/studentTeacherMessage.js') }}"></script>
 @endsection

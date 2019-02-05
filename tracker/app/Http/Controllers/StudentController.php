@@ -49,7 +49,13 @@ class StudentController extends Controller
         $data['reps'] = $student->repertoires;
         $data['practice'] = $practice;
         $data['model_comment'] = new Comment();
+        // DO COMMENT LOGIC HERE
         return view('contents/student/teacher-view', $data);
+    }
+
+    public function getTeacherApprove(Request $request, $student_id)
+    {
+        return view('contents/student/teacher-approve');
     }
     
 }
