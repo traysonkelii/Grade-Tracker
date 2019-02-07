@@ -11,9 +11,8 @@ Your machine will need to have the following downloaded:
 
 -php
 
--mysql DB (phpmyadmin is recommended)
+-mysql DB (phpmyadmin is recommended, install XAMPP with SQL,PHP, and Server is the easiest route)
 
--artisan
 
 
 Here are the steps:
