@@ -23,11 +23,6 @@ composer install
 ```
 Now change the .env.example file to a .env file.
 
-Add the app key to this environment variable shown below. (The app key will be given by a system admin, the project will not compile without this key)
-```
-APP_KEY=
-```
-
 To launch the local server:
 
 ```
