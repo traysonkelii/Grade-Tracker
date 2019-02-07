@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
+@component('components.repertoire-search')
+    @slot('size')
+        100
+    @endslot    
+@endcomponent
 <div class="teacher-landing-holder">
 
     <div class="teacher-landing-top">
