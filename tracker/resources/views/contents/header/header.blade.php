@@ -21,6 +21,9 @@
 <link rel="stylesheet" href="{{ asset('css/style/student/student-home.css')}}">
 <link rel="stylesheet" href="{{ asset('css/style/student/student-teacherView.css')}}">
 <link rel="stylesheet" href="{{ asset('css/style/teacher/teacher-landing.css')}}">
+<link rel="stylesheet" href="{{asset('css/style/component/test.css')}}">
+<link rel="stylesheet" href="{{asset('css/style/component/repertoire-search.css')}}">
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 {{-- <link type="text/css" rel="stylesheet" href="//cloud.typography.com/75214/6517752/css/fonts.css" media="all" /> --}}
