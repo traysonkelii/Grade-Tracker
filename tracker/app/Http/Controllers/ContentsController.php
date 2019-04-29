@@ -10,12 +10,6 @@ use App\Http\Responses\Teacher\TeacherHomeResponse;
 
 class ContentsController extends Controller
 {
-    public function __construct(Student $student, Teacher $teacher)
-    {
-        $this->student = $student;
-        $this->teacher = $teacher;
-    }
-
     public function login()
     {
         $data = [];
@@ -29,7 +23,7 @@ class ContentsController extends Controller
         $type = $request->input('type');
         $data = [];
 
-        $teacher = $this->teacher->find($netid);
+        $teacher = Teacher::find($netid);
         
         if ($teacher)
         {
@@ -38,7 +32,7 @@ class ContentsController extends Controller
 
         else 
         {
-            $student = $this->student->find($netid);
+            $student = Student::find($netid);
             if ($student)
             {
                 $status = $student->permissions;

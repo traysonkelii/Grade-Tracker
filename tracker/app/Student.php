@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class Student extends Model
 {
-    //any table not using an incrementing key should have this set to false.
+    // Any table not using an incrementing key should have this set to false.
     public $incrementing = false;
 
+    // Establishes Relationship
     public function teachers()
     {
         return $this->belongsToMany('App\Teacher', 'student_teacher', 'student_id', 'teacher_id')
@@ -37,6 +38,7 @@ class Student extends Model
         return $this->hasMany('App\Performance', 'student_id');
     }
     
+    // Custom Calls
     static public function updateStatus($student_id, $repertoire_id, $type, $val)
     {
         $update = DB::table('repertoire_student')
